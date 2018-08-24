@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="es">
+	<meta charset="UTF8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title></title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootsnipp.min.css">
+	<link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-dialgauge/src/angular-dialgauge.js"></script>
+	<!--<script type="text/javascript" src="node_modules/angular/angular-ui-router.min.js"></script>-->
+	<script src="js/angular-ui-router.min.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+	<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+	<script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+	<script src="js/angular-animate.js" type="text/javascript" ></script>
+	<script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
+
+	<script src="app/app.module.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/core.constants.js"></script>
+    <script src="app/shared/shared.module.js"></script>
+    <script src="app/shared/shared.services.js"></script>
+
+	<script src="app/app.config.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.run.js"></script>
+
+	<script src="app/login/login.module.js"></script>
+	<script src="app/login/login.route.js"></script>
+	<script src="app/login/login.controller.js"></script>
+	<script src="app/login/login.services.js"></script>
+
+	<script src="app/home/home.module.js"></script>
+	<script src="app/home/home.route.js"></script>
+	<script src="app/home/home.controller.js"></script>
+	<script src="app/home/home.services.js"></script>
+</head>
+<body ng-app="app">
+    <ui-view></ui-view>
+</body>
+</html>

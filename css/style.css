@@ -1,0 +1,38 @@
+body{
+	margin-top: 0px;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.boxlogin{
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 360px;
+	margin:50px auto;
+	border-radius: 10px;
+	border:solid;
+	border-color: rgba(197, 197, 197, 0.16);
+	padding:30px;
+}
+.boxlogin h1{
+	font-size: 1.6em;
+}
+.boxlogin #btnlogin{
+	color: #fff;
+	background-color: #36a7fc;
+    border-color: #ffffff;
+}
+.navbar-right li a{
+	cursor: pointer;
+}
+.title{
+	font-size: 2em;
+    color: #676767;
+    font-weight: bold;
+}
+.mtop{
+	margin-top: 80px;
+}
+.mright{
+    margin-right: 10px;
+}
