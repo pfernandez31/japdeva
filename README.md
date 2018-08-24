@@ -1,7 +1,7 @@
 # JAPDEVA
 Ingreso de Formularios
 
-#Tecnologías
+# Tecnologías
 PHP
 Angular
 Mysql
