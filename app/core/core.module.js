@@ -4,10 +4,8 @@
   angular
     .module('app.core', [
       'ui.router',
-      'ngAnimate',
-      'ui.bootstrap',
-      'angular-dialgauge',
-      'ngCookies'
+      'ngCookies',
+      'ui.bootstrap'
     ]);
 
 })();
