@@ -1,16 +1,12 @@
-<div class="boxlogin text-center">
-	<h1 style="color:rgb(255, 255, 255);">Bienvenido</h1>
-	<form class="form-signin" ng-submit="vm.login()">
-      <label for="inputEmail" class="sr-only">Usuario</label>
-      <input type="text" id="inputEmail" class="form-control" ng-model="vm.infoUser.user" placeholder="Usuario" required="" autofocus="">
-      <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input type="password" id="inputPassword" class="form-control"  ng-model="vm.infoUser.pass" placeholder="Contraseña" required="">
-      <div class="checkbox mb-3">
-        <label>
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img src="../japdeva/assets/img/login_japdeva.png" id="icon" alt="User Icon" />
+    </div>
+    <form ng-submit="vm.login()">
+      <input type="text" id="username" class="fadeIn second" name="login" ng-model="vm.infoUser.user" placeholder="Usuario" required>
+      <input type="password" id="password" class="fadeIn third" name="login" ng-model="vm.infoUser.pass" placeholder="Contraseña" required>
+      <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
     </form>
+  </div>
 </div>
-
