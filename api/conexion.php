@@ -6,26 +6,19 @@
 
 	$servidor = "localhost";
 
-	$usuario = "";
+	$usuario = "root";
 
-	$password = "";
+	$password = "b43e7f69fa152ed976a2349d4a2d49b99ab275501195c047";
 
-	$bd = "";
+	$bd = "form_antecedentes";
 
 	try{
-
 		$cnn = new PDO("mysql:host=$servidor;dbname=$bd;charset=utf8",$usuario,$password);
-
-		//Excepciones
-
 		$cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	}
 
 	catch(PDOException $e){
-
 		echo "Error ".$e->getMessage();
-
 	}
 
 ?>

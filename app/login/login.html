@@ -3,7 +3,7 @@
     <div class="fadeIn first">
       <img src="assets/login_japdeva.png" id="icon" alt="User Icon" />
     </div>
-    <form ng-submit="vm.login()">
+    <form ng-submit="vm.login()" class="formLogin">
       <input type="text" id="username" class="fadeIn second" name="login" ng-model="vm.infoUser.user" placeholder="Usuario" required>
       <input type="password" id="password" class="fadeIn third" name="login" ng-model="vm.infoUser.pass" placeholder="Contraseña" required>
       <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">

@@ -16,6 +16,7 @@
         loginServices.setLogin(vm.infoUser)
         	.then(function(res){
 	            var respuesta = res.data;
+              console.log(respuesta);
 	            if(respuesta.loggin){
 	                sharedService.setAuth(respuesta);
 	                $state.go("home");
