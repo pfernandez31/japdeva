@@ -8,7 +8,7 @@
 
 	$usuario = "root";
 
-	$password = "b43e7f69fa152ed976a2349d4a2d49b99ab275501195c047";
+	$password = "";//"b43e7f69fa152ed976a2349d4a2d49b99ab275501195c047";
 
 	$bd = "form_antecedentes";
 
