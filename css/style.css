@@ -37,11 +37,7 @@ body{
     margin-right: 10px;
 }
 
-/***Login***/
-html {
-	background-color: #56baed;
-  }
-  
+/***Login***/  
   body {
 	font-family: "Poppins", sans-serif;
 	height: 100vh;
@@ -262,4 +258,7 @@ html {
   } 
   #icon {
 	width:60%;
+  }
+  .title{
+  	font-size: 1em !important;
   }
