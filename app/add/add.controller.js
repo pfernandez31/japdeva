@@ -16,6 +16,8 @@
     vm.chooseRazon = chooseRazon;
     vm.antecedentes = {};
     vm.selecDistritos = selecDistritos;
+    vm.antecedentes.movHistoricos = [];
+    vm.addNewMovH = addNewMovH;
     active();
 
     function selecDistritos(){
@@ -38,6 +40,10 @@
 
     function send(){
       alert("datos enviados");
+    }
+
+    function addNewMovH(){
+      vm.antecedentes.movHistoricos.push({mov:''});
     }
 
     function active(){
@@ -64,7 +70,7 @@
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
       vm.antecedentes.razon = '';
-      //
+      vm.antecedentes.movHistoricos.push({mov:''});
     }
 
     function exit() {

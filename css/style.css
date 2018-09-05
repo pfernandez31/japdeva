@@ -262,3 +262,7 @@ body{
   .title{
   	font-size: 1em !important;
   }
+  .table td {
+    padding: 0px;
+    vertical-align: initial;
+  }

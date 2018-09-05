@@ -1,5 +1,6 @@
 <?php
 	require("../conexion.php");
+	require("../logs.php");
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
  	$usuario = $request->usuario;
@@ -18,9 +19,11 @@
 			$objeto->idrole = $row['idrole'];
 			$objeto->loggin = true;
 	    }
+	    addregistro($usuario,'auth','inicio de session');
 	}else{
 		$objeto->loggin = false;
 		$objeto->error = "Usuario o Contraseña Incorrecta";
+		addregistro($usuario,'auth','error inicio de session');
 	}
 	echo json_encode($objeto);
 ?>

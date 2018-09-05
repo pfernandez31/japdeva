@@ -106,10 +106,10 @@
 										 	</label>
 										</div>
 										<div class="col-md-7 row" style="padding:0px" ng-if="r.checked && r.id == 2 || r.checked && r.id == 12 || r.checked && r.id == 3">
-											<label ng-if="r.id == 2" class="col-md-4 text-right">No.Expediente</label>
-											<label ng-if="r.id == 12" class="col-md-4 text-right">Otra</label>
-											<label ng-if="r.id == 3" class="col-md-3 text-right" maxlength="2">Plazo de la limitación</label>
-											<input type="text" ng-model="vm.antecedentes.razon" placeholder="" class="text-left form-control form-control-sm col-md-8">
+											<label ng-if="r.id == 2" class="col-md-5 text-right">No.Expediente</label>
+											<label ng-if="r.id == 12" class="col-md-5 text-right">Otra</label>
+											<label ng-if="r.id == 3" class="col-md-5 text-right">Plazo de la limitación</label>
+											<input type="text" ng-model="vm.antecedentes.razon" placeholder="" class="text-left form-control form-control-sm col-md-7">
 										</div>
 									</div>
 								</div>
@@ -235,7 +235,21 @@
 							<h5>Movimientos Históricos de la Finca</h5>
 							<h6>Posteriores a su inscripción(Orden Cronológico)</h6>
 						</div>
-
+						<div class="col-md-12 pt-3 text-center">
+							<table class="table table-bordered">
+								<tbody>
+									<tr ng-repeat="mv in vm.antecedentes.movHistoricos">
+										<td>{{$index+1}}</td>
+										<td>
+											<input type="text" class="form-control" ng-model="mv.mov">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="text-right">
+								<button type="button" class="btn btn-link" ng-click="vm.addNewMovH()">Nuevo</button>
+							</div>
+						</div>
 						<div class="col-md-12 text-right pt-4">
 							<input type="submit" wz-next value="Paso 4" />
 						</div>
@@ -315,6 +329,6 @@
 					</div>
 				</wz-step>
 			</wizard>
-			</div>
-			</div>
+		</div>
+	</div>
 </div>
