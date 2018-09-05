@@ -8,25 +8,37 @@
                         <div class="col-md-12">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-left">
                                         <th>#</th>
-                                        <th class="text-center">RESPONSABLE</th>
-                                        <th class="text-center">FINCA</th>
-                                        <th class="text-center">DERECHO</th>
-                                        <th class="text-center">IDENTIFICADOR PREDIAL</th>
-                                        <th class="text-center">PLANO</th>
-                                        <th class="text-center">AREA</th>
+                                        <th>RESPONSABLE</th>
+                                        <th>FINCA</th>
+                                        <th>DERECHO</th>
+                                        <th>IDENTIFICADOR PREDIAL</th>
+                                        <th>PLANO</th>
+                                        <th>AREA</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
+                                    <tr class="text-left" ng-repeat="datos in vm.listAntecedentes |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
+                                        <td>{{$index}}</td>
+                                        <td>{{datos.responsable}}</td>
+                                        <td>{{datos.finca}}</td>
+                                        <td>{{datos.derecho}}</td>
+                                        <td>{{datos.identificador}}</td>
+                                        <td>{{datos.plano}}</td>
+                                        <td>{{datos.area}}</td>
                                     </tr>
-                                    <tr></tr>
-                                    <tr></tr>
                                 </tbody>
                             </table>
+                            <div class="text-center">
+                                <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
+                                    Previous
+                                </button>
+                                {{vm.currentPage+1}}/{{vm.numberOfPages()}}
+                                <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
+                                    Next
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
