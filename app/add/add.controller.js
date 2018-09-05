@@ -11,9 +11,11 @@
     vm.exit = exit;
     vm.send = send;
     vm.razones = [];
+    vm.parametrosInscripcion = [];
     vm.cantones = [];
     vm.distritos = [];
     vm.chooseRazon = chooseRazon;
+    vm.chooseParam = chooseParam;
     vm.antecedentes = {};
     vm.selecDistritos = selecDistritos;
     vm.antecedentes.movHistoricos = [];
@@ -38,6 +40,16 @@
       });
     }
 
+    function chooseParam(){
+      vm.antecedentes.parametros_inscripcion = [];
+      angular.forEach(vm.parametrosInscripcion, function(value, key) { 
+        if(value.checked){
+          var obj = { "id":value.id ,"parametro":value.razon }
+          vm.antecedentes.parametros_inscripcion.push(obj);
+        }
+      });
+    }
+
     function send(){
       alert("datos enviados");
     }
@@ -56,6 +68,10 @@
       addServices.getRazones().then(function(data){
         vm.razones = data.data;
       });
+      //SELECT PARAMETROS INSCRIPCION FINCA
+      addServices.getParametros().then(function(data){
+        vm.parametrosInscripcion = data.data;
+      });
       //CANTONES
       addServices.getCantones(7).then(function(data){
         var data = data.data;
@@ -70,6 +86,7 @@
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
       vm.antecedentes.razon = '';
+      vm.antecedentes.opcParametro = '';
       vm.antecedentes.movHistoricos.push({mov:''});
     }
 

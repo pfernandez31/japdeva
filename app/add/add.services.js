@@ -13,12 +13,25 @@
         getProvincias:getProvincias,
         getCantones:getCantones,
         getDistritos:getDistritos,
+        getParametros:getParametros,
         path: PATHSERVICE
     };
     return service;
 
     function getRazones(){
       var link = service.path+"data/getrazones.php";
+      var getRequest = {
+        method: 'GET',
+        url: link,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      return $http(getRequest);
+    }
+
+    function getParametros(){
+      var link = service.path+"data/getparametros.php";
       var getRequest = {
         method: 'GET',
         url: link,

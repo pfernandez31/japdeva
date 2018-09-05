@@ -94,10 +94,10 @@
 				<wz-step wz-title="Paso 2">
 					<div class="row">
 						<div class="col-md-12 row">
-							<div class="col-md-2">
-								<div class="title">Nace por: </div>
+							<div class="col-md-5">
+								<div class="title">Nace por:</div>
 							</div>
-							<div class="col-md-10 ">
+							<div class="col-md-7">
 								<div class="form-check" ng-repeat="r in vm.razones">
 									<div class="row">
 										<div class="col-md-5">
@@ -116,6 +116,33 @@
 							</div>
 						</div>
 
+						<div class="col-md-12 row pt-4">
+							<div class="col-md-5">
+								<div class="title">PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
+							</div>
+							<div class="col-md-7 ">
+								<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
+									<div class="row">
+										<div class="col-md-7">
+											<label class="form-check-label">
+										    	<input type="checkbox" class="form-check-input" value="{{p.id}}" ng-click="vm.chooseParam()" ng-model="p.checked" >{{p.parametro}}
+										 	</label>
+										</div>
+										<div class="col-md-5 row" style="padding:0px" ng-if="p.checked && p.id == 3">
+											<label ng-if="p.id == 3" class="col-md-5 text-right">Justifique</label>
+											<input type="text" ng-model="vm.antecedentes.opcParametro" placeholder="" class="text-left form-control form-control-sm col-md-7">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 text-right pt-4">
+							<input type="submit" wz-next value="Paso 3" />
+						</div>
+					</div>
+				</wz-step>
+				<wz-step wz-title="Paso 3">
+					<div class="row">
 						<div class="col-md-12 row pt-4">
 							<div class="col-md-4">
 								<div class="title">Otorgamiento:</div>
@@ -225,11 +252,11 @@
 						</div>
 
 						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 3" />
+							<input type="submit" wz-next value="Paso 4" />
 						</div>
 					</div>
 				</wz-step>
-				<wz-step wz-title="Paso 3">
+				<wz-step wz-title="Paso 4">
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<h5>Movimientos Históricos de la Finca</h5>
@@ -251,11 +278,11 @@
 							</div>
 						</div>
 						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 4" />
+							<input type="submit" wz-next value="Paso 5" />
 						</div>
 					</div>
 				</wz-step>
-				<wz-step wz-title="Paso 4">
+				<wz-step wz-title="Paso 5">
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<h5>Informe Legal</h5>
@@ -267,7 +294,8 @@
 								</div>
 							</div>
 							<div class="col-md-10 ">
-								<div class="form-check" ng-repeat="r in vm.razones">
+								<code>[add list traslape ASD]</code>
+								<!--<div class="form-check" ng-repeat="r in vm.razones">
 									<div class="row">
 										<div class="col-md-5">
 											<label class="form-check-label">
@@ -275,7 +303,7 @@
 										 	</label>
 										</div>
 									</div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 						<div class="col-md-12 row pt-4">
@@ -283,11 +311,13 @@
 								<div class="title">Finca inscrita a derecho:</div>
 							</div>
 							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title" style="padding:0px">SI:</label>
-									<input type="checkbox"  class="form-check-input">
-									<label class="col col-md-3 title" style="padding:0px">NO:</label>
-									<input type="checkbox" class="form-check-input">
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+								  <label class="form-check-label" for="inlineRadio1">SI</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+								  <label class="form-check-label" for="inlineRadio2">NO</label>
 								</div>
 							</div>
 							<div class="col-md-12 row pt-2">
@@ -332,3 +362,5 @@
 		</div>
 	</div>
 </div>
+
+{{vm.antecedentes | json}}
