@@ -1,45 +1,44 @@
-<div ng-include="'app/header/header.html'"></div>
-<div class="container">
+<div class="fluid-container">
+    <div ng-include="'app/templates/header.html'"></div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr class="text-left">
-                                        <th>#</th>
-                                        <th>RESPONSABLE</th>
-                                        <th>FINCA</th>
-                                        <th>DERECHO</th>
-                                        <th>IDENTIFICADOR PREDIAL</th>
-                                        <th>PLANO</th>
-                                        <th>AREA</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-left" ng-repeat="datos in vm.listAntecedentes |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
-                                        <td>{{$index}}</td>
-                                        <td>{{datos.responsable}}</td>
-                                        <td>{{datos.finca}}</td>
-                                        <td>{{datos.derecho}}</td>
-                                        <td>{{datos.identificador}}</td>
-                                        <td>{{datos.plano}}</td>
-                                        <td>{{datos.area}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-center">
-                                <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
-                                    Previous
-                                </button>
-                                {{vm.currentPage+1}}/{{vm.numberOfPages()}}
-                                <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
+        <div class="col-md-2" style="background-color: #2d94ff;">
+            <div ng-include="'app/templates/sidebar.html'"></div>
+        </div>
+        <div class="col-md-10 ">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr class="text-left">
+                                <th>#</th>
+                                <th>RESPONSABLE</th>
+                                <th>FINCA</th>
+                                <th>DERECHO</th>
+                                <th>IDENTIFICADOR PREDIAL</th>
+                                <th>PLANO</th>
+                                <th>AREA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-left" ng-repeat="datos in vm.listAntecedentes |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
+                                <td>{{$index}}</td>
+                                <td>{{datos.responsable}}</td>
+                                <td>{{datos.finca}}</td>
+                                <td>{{datos.derecho}}</td>
+                                <td>{{datos.identificador}}</td>
+                                <td>{{datos.plano}}</td>
+                                <td>{{datos.area}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
+                            Previous
+                        </button>
+                        {{vm.currentPage+1}}/{{vm.numberOfPages()}}
+                        <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
+                            Next
+                        </button>
                     </div>
                 </div>
             </div>

@@ -271,3 +271,6 @@ body{
   	position: absolute;
     top: -78px;
   }
+  .sidebar-sticky  .nav-link {
+  	color:#fff;
+  }
