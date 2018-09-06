@@ -2,20 +2,17 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
-    "angular": {
-      "version": "1.5.8",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.5.8.tgz",
-      "integrity": "sha1-klpTkrjCEtCVctxEbbfgEmTglMs="
-    },
+    "angular": "^1.7.2",
     "angular1-ui-bootstrap4": {
-      "version": "2.4.22",
+      "integrity": "sha1-N4aXQFyVe5b5R/QjIvNmYM0/yI0=",
       "resolved": "https://registry.npmjs.org/angular1-ui-bootstrap4/-/angular1-ui-bootstrap4-2.4.22.tgz",
-      "integrity": "sha1-N4aXQFyVe5b5R/QjIvNmYM0/yI0="
+      "version": "2.4.22"
     },
     "angularjs": {
-      "version": "0.0.1",
+      "integrity": "sha1-SW9QxxQVFedB6pdt6JHe8IOLPxk=",
       "resolved": "https://registry.npmjs.org/angularjs/-/angularjs-0.0.1.tgz",
-      "integrity": "sha1-SW9QxxQVFedB6pdt6JHe8IOLPxk="
-    }
+      "version": "0.0.1"
+    },
+    "ui-bootstrap4": "^3.0.4"
   }
 }

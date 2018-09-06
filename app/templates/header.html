@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+       <div class="logo">
+        <a href="#" class="simple-text"> JAPDEVA</a>
+      </div>
+      <button class="navbar-toggler navbar-toggler-right" type="button" ng-click="isNavCollapsed = !isNavCollapsed" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" uib-collapse="!isNavCollapsed">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" ng-click="vm.exit()">Salir ({{vm.infoUser.usuario}})</a>
+          </li>
+        </ul>
+      </div>
+</nav>
