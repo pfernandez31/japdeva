@@ -2,363 +2,374 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="col-md-12 py-5">
+			<div class="col-md-12 py-5 pb-5">
 				<h4>Estudio Antecendentes</h4>
 				<hr>
 			</div>
-			<wizard on-finish="vm.send()">
-				<wz-step wz-title="Paso 1">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Finca: (<small class="text-muted">7 Dígitos</small>)</label>
-								<input type="text" maxlength="7" ng-model="vm.antecedentes.finca" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<label class="title">D: (<small class="text-muted">1 Dígito</small>)</label>
-								<input type="text" maxlength="1" ng-model="vm.antecedentes.d" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Derecho: (<small class="text-muted">3 Dígitos</small>)</label>
-								<input type="text" maxlength="3" ng-model="vm.antecedentes.derecho" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Identificador Predial: (<small class="text-muted">7 Dígitos</small>)</label>
-								<input type="text" maxlength="7" ng-model="vm.antecedentes.identificadorPredial"class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Plano: (<small class="text-muted">12 Dígitos</small>)</label>
-								<input type="text" maxlength="12" ng-model="vm.antecedentes.plano" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<label class="title">Área: (<small class="text-muted">8 Dígitos</small>)</label>
-								<input type="text" maxlength="8" ng-model="vm.antecedentes.area" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Cantón:</label>
-								<select class="custom-control custom-select" ng-change="vm.selecDistritos()" ng-model="vm.antecedentes.canton">
-									<option  ng-repeat="c in vm.cantones" value="{{c.id}}">{{c.canton}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Distrito:</label>
-								<select class="custom-control custom-select" ng-model="vm.antecedentes.distrito">
-									<option  ng-repeat="d in vm.distritos" value="{{d.id}}" >{{d.distrito}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Inscripción: </label>
-								<input type="date" ng-model="vm.antecedentes.inscripcion" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-2">
-							<div class="form-group">
-								<label class="title">Tomo: (<small class="text-muted">4 Digitos</small>)</label>
-								<input type="text" maxlength="4" ng-model="vm.antecedentes.tomo" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Folio: (<small class="text-muted">3 Digitos</small>)</label>
-								<input type="text" maxlength="3" ng-model="vm.antecedentes.folio" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="title">Asiento: (<small class="text-muted">3 Digitos</small>)</label>
-								<input type="text"  maxlength="3" ng-model="vm.antecedentes.asiento" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 2"/>	
-						</div>
-					</div>
-				</wz-step>
-				<wz-step wz-title="Paso 2">
-					<div class="row">
-						<div class="col-md-12 row">
-							<div class="col-md-5">
-								<div class="title">Nace por:</div>
-							</div>
-							<div class="col-md-7">
-								<div class="form-check" ng-repeat="r in vm.razones">
-									<div class="row">
-										<div class="col-md-5">
-											<label class="form-check-label">
-										    	<input type="checkbox" class="form-check-input" value="{{r.id}}" ng-click="vm.chooseRazon()" ng-model="r.checked" >{{r.razon}}
-										 	</label>
-										</div>
-										<div class="col-md-7 row" style="padding:0px" ng-if="r.checked && r.id == 2 || r.checked && r.id == 12 || r.checked && r.id == 3">
-											<label ng-if="r.id == 2" class="col-md-5 text-right">No.Expediente</label>
-											<label ng-if="r.id == 12" class="col-md-5 text-right">Otra</label>
-											<label ng-if="r.id == 3" class="col-md-5 text-right">Plazo de la limitación</label>
-											<input type="text" ng-model="vm.antecedentes.razon" placeholder="" class="text-left form-control form-control-sm col-md-7">
-										</div>
-									</div>
+			<div class="col-md-12 pt-5">
+				<wizard on-finish="vm.send()">
+					<wz-step wz-title="Paso 1">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Finca: (<small class="text-muted">7 Dígitos</small>)</label>
+									<input type="text" maxlength="7" ng-model="vm.antecedentes.finca" class="form-control">
 								</div>
 							</div>
-						</div>
-
-						<div class="col-md-12 row pt-4">
-							<div class="col-md-5">
-								<div class="title">PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
-							</div>
-							<div class="col-md-7 ">
-								<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
-									<div class="row">
-										<div class="col-md-7">
-											<label class="form-check-label">
-										    	<input type="checkbox" class="form-check-input" value="{{p.id}}" ng-click="vm.chooseParam()" ng-model="p.checked" >{{p.parametro}}
-										 	</label>
-										</div>
-										<div class="col-md-5 row" style="padding:0px" ng-if="p.checked && p.id == 3">
-											<label ng-if="p.id == 3" class="col-md-5 text-right">Justifique</label>
-											<input type="text" ng-model="vm.antecedentes.opcParametro" placeholder="" class="text-left form-control form-control-sm col-md-7">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 3" />
-						</div>
-					</div>
-				</wz-step>
-				<wz-step wz-title="Paso 3">
-					<div class="row">
-						<div class="col-md-12 row pt-4">
-							<div class="col-md-4">
-								<div class="title">Otorgamiento:</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title" style="padding:0px">Hora: </label>
-									<input type="time" ng-model="vm.antecedentes.horaOt" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title">Fecha: </label>
-									<input type="date" ng-model="vm.antecedentes.fechaOt" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12 row" >
-							<div class="col-md-4">
-								<div class="title">Presentación:</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title" style="padding:0px">Hora: </label>
-									<input type="time" ng-model="vm.antecedentes.horaP" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title">Fecha: </label>
-									<input type="date" ng-model="vm.antecedentes.fechaP" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12 row">
-							<div class="col-md-4">
-								<div class="title">Plazo de convalidación:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text" ng-model="vm.antecedentes.plazo" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-4">
-							<div class="col-md-4">
-								<div class="title">Ejecutoria del Juzgado:</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title" style="padding:0px">Hora: </label>
-									<input type="time" ng-model="vm.antecedentes.horaE" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group row">
-									<label class="col col-md-3 title">Fecha: </label>
-									<input type="date" ng-model="vm.antecedentes.fechaE" class="form-control form-control-sm  col-md-9">
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-2">
-							<div class="col-md-4">
-								<div class="title">Notario:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text" ng-model="vm.antecedentes.notario" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-2">
-							<div class="col-md-4">
-								<div class="title">Juzgado:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text" ng-model="vm.antecedentes.juzgado" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-2">
-							<div class="col-md-4">
-								<div class="title">Expediente Número:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text" ng-model="vm.antecedentes.numExpediente" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-2">
-							<div class="col-md-4">
-								<div class="title">Propietario Original:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text" ng-model="vm.antecedentes.propietario" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 row pt-2">
-							<div class="col-md-4">
-								<div class="title">Propietario Actual:</div>
-							</div>
-							<div class="col-md-8">
-								<input type="text"  ng-model="vm.antecedentes.propietarioA" class="form-control form-control-sm">
-							</div>
-						</div>
-
-						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 4" />
-						</div>
-					</div>
-				</wz-step>
-				<wz-step wz-title="Paso 4">
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<h5>Movimientos Históricos de la Finca</h5>
-							<h6>Posteriores a su inscripción(Orden Cronológico)</h6>
-						</div>
-						<div class="col-md-12 pt-3 text-center">
-							<table class="table table-bordered">
-								<tbody>
-									<tr ng-repeat="mv in vm.antecedentes.movHistoricos">
-										<td>{{$index+1}}</td>
-										<td>
-											<input type="text" class="form-control" ng-model="mv.mov">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="text-right">
-								<button type="button" class="btn btn-link" ng-click="vm.addNewMovH()">Nuevo</button>
-							</div>
-						</div>
-						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Paso 5" />
-						</div>
-					</div>
-				</wz-step>
-				<wz-step wz-title="Paso 5">
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<h5>Informe Legal</h5>
-						</div>
-						<div class="col-md-12 row">
 							<div class="col-md-2">
-								<div class="title">Hechos relevantes y tipologia:<br>
-									<small class="text-muted">Traslape con ASP</small>
+								<div class="form-group">
+									<label class="title">D: (<small class="text-muted">1 Dígito</small>)</label>
+									<input type="text" maxlength="1" ng-model="vm.antecedentes.d" class="form-control">
 								</div>
 							</div>
-							<div class="col-md-10 ">
-								<code>[add list traslape ASD]</code>
-								<!--<div class="form-check" ng-repeat="r in vm.razones">
-									<div class="row">
-										<div class="col-md-5">
-											<label class="form-check-label">
-										    	<input type="checkbox" class="form-check-input" value="{{r.id}}" ng-click="vm.chooseRazon()" ng-model="r.checked" >{{r.razon}}
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Derecho: (<small class="text-muted">3 Dígitos</small>)</label>
+									<input type="text" maxlength="3" ng-model="vm.antecedentes.derecho" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Identificador Predial: (<small class="text-muted">7 Dígitos</small>)</label>
+									<input type="text" maxlength="7" ng-model="vm.antecedentes.identificadorPredial"class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Plano: (<small class="text-muted">12 Dígitos</small>)</label>
+									<input type="text" maxlength="12" ng-model="vm.antecedentes.plano" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label class="title">Área: (<small class="text-muted">8 Dígitos</small>)</label>
+									<input type="text" maxlength="8" ng-model="vm.antecedentes.area" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Cantón:</label>
+									<select class="custom-control custom-select" ng-change="vm.selecDistritos()" ng-model="vm.antecedentes.canton">
+										<option  ng-repeat="c in vm.cantones" value="{{c.id}}">{{c.canton}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Distrito:</label>
+									<select class="custom-control custom-select" ng-model="vm.antecedentes.distrito">
+										<option  ng-repeat="d in vm.distritos" value="{{d.id}}" >{{d.distrito}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Inscripción: </label>
+									<input type="date" ng-model="vm.antecedentes.inscripcion" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-2">
+								<div class="form-group">
+									<label class="title">Tomo: (<small class="text-muted">4 Digitos</small>)</label>
+									<input type="text" maxlength="4" ng-model="vm.antecedentes.tomo" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Folio: (<small class="text-muted">3 Digitos</small>)</label>
+									<input type="text" maxlength="3" ng-model="vm.antecedentes.folio" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="title">Asiento: (<small class="text-muted">3 Digitos</small>)</label>
+									<input type="text"  maxlength="3" ng-model="vm.antecedentes.asiento" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-12 text-right pt-4">
+								<input type="submit" wz-next value="Paso 2"/>	
+							</div>
+						</div>
+					</wz-step>
+					<wz-step wz-title="Paso 2">
+						<div class="row">
+							<div class="col-md-12 row">
+								<div class="col-md-5">
+									<div class="title">Nace por:</div>
+								</div>
+								<div class="col-md-7">
+									<div class="form-check" ng-repeat="r in vm.razones">
+										<div class="row">
+											<div class="col-md-5">
+												<label class="form-check-label">
+											    	<input type="checkbox" class="form-check-input" value="{{r.id}}" ng-click="vm.chooseRazon()" ng-model="r.checked" >{{r.razon}}
+											 	</label>
+											</div>
+											<div class="col-md-7 row" style="padding:0px" ng-if="r.checked && r.id == 2 || r.checked && r.id == 12 || r.checked && r.id == 3">
+												<label ng-if="r.id == 2" class="col-md-5 text-right">No.Expediente</label>
+												<label ng-if="r.id == 12" class="col-md-5 text-right">Otra</label>
+												<label ng-if="r.id == 3" class="col-md-5 text-right">Plazo de la limitación</label>
+												<input type="text" ng-model="vm.antecedentes.razon" placeholder="" class="text-left form-control form-control-sm col-md-7">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-4">
+								<div class="col-md-5">
+									<div class="title">PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
+								</div>
+								<div class="col-md-7 ">
+									<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
+										<div class="row">
+											<div class="col-md-7">
+												<label class="form-check-label">
+											    	<input type="checkbox" class="form-check-input" value="{{p.id}}" ng-click="vm.chooseParam()" ng-model="p.checked" >{{p.parametro}}
+											 	</label>
+											</div>
+											<div class="col-md-5 row" style="padding:0px" ng-if="p.checked && p.id == 3">
+												<label ng-if="p.id == 3" class="col-md-5 text-right">Justifique</label>
+												<input type="text" ng-model="vm.antecedentes.opcParametro" placeholder="" class="text-left form-control form-control-sm col-md-7">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 text-right pt-4">
+								<input type="submit" wz-next value="Paso 3" />
+							</div>
+						</div>
+					</wz-step>
+					<wz-step wz-title="Paso 3">
+						<div class="row">
+							<div class="col-md-12 row pt-4">
+								<div class="col-md-4">
+									<div class="title">Otorgamiento:</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title" style="padding:0px">Hora: </label>
+										<input type="time" ng-model="vm.antecedentes.horaOt" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title">Fecha: </label>
+										<input type="date" ng-model="vm.antecedentes.fechaOt" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 row" >
+								<div class="col-md-4">
+									<div class="title">Presentación:</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title" style="padding:0px">Hora: </label>
+										<input type="time" ng-model="vm.antecedentes.horaP" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title">Fecha: </label>
+										<input type="date" ng-model="vm.antecedentes.fechaP" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 row">
+								<div class="col-md-4">
+									<div class="title">Plazo de convalidación:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text" ng-model="vm.antecedentes.plazo" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-4">
+								<div class="col-md-4">
+									<div class="title">Ejecutoria del Juzgado:</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title" style="padding:0px">Hora: </label>
+										<input type="time" ng-model="vm.antecedentes.horaE" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label class="col col-md-3 title">Fecha: </label>
+										<input type="date" ng-model="vm.antecedentes.fechaE" class="form-control form-control-sm  col-md-9">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-2">
+								<div class="col-md-4">
+									<div class="title">Notario:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text" ng-model="vm.antecedentes.notario" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-2">
+								<div class="col-md-4">
+									<div class="title">Juzgado:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text" ng-model="vm.antecedentes.juzgado" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-2">
+								<div class="col-md-4">
+									<div class="title">Expediente Número:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text" ng-model="vm.antecedentes.numExpediente" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-2">
+								<div class="col-md-4">
+									<div class="title">Propietario Original:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text" ng-model="vm.antecedentes.propietario" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 row pt-2">
+								<div class="col-md-4">
+									<div class="title">Propietario Actual:</div>
+								</div>
+								<div class="col-md-8">
+									<input type="text"  ng-model="vm.antecedentes.propietarioA" class="form-control form-control-sm">
+								</div>
+							</div>
+
+							<div class="col-md-12 text-right pt-4">
+								<input type="submit" wz-next value="Paso 4" />
+							</div>
+						</div>
+					</wz-step>
+					<wz-step wz-title="Paso 4">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h5>Movimientos Históricos de la Finca</h5>
+								<h6>Posteriores a su inscripción(Orden Cronológico)</h6>
+							</div>
+							<div class="col-md-12 pt-3 text-center">
+								<table class="table table-bordered">
+									<tbody>
+										<tr ng-repeat="mv in vm.antecedentes.movHistoricos">
+											<td>{{$index+1}}</td>
+											<td>
+												<input type="text" class="form-control" ng-model="mv.mov">
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="text-right">
+									<button type="button" class="btn btn-link" ng-click="vm.addNewMovH()">Nuevo</button>
+								</div>
+							</div>
+							<div class="col-md-12 text-right pt-4">
+								<input type="submit" wz-next value="Paso 5" />
+							</div>
+						</div>
+					</wz-step>
+					<wz-step wz-title="Paso 5">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h5>Informe Legal</h5>
+							</div>
+							<div class="col-md-12 row">
+								<div class="col-md-3">
+									<div class="title">
+										Hechos relevantes y tipologia:
+									</div>
+								</div>
+								<div class="col-md-9 row">
+									<div class="col-md-3">
+										<div class="title">Traslape con ASP
+										</div>
+									</div>
+									<div class="col-md-9">
+										<div class="form-check" ng-repeat="t in vm.traslapes">
+											<label class="form-check-label" ng-if="t.tipo == 'asp'">
+										    	<input type="checkbox" class="form-check-input" value="{{t.id}}" ng-click="vm.chooseTraslape()" ng-model="t.checked" >{{t.traslape}}
 										 	</label>
 										</div>
 									</div>
-								</div>-->
+									<div></div>
+									<div class="col-md-12">
+										<div class="form-check" ng-repeat="t in vm.traslapes">
+											<label class="form-check-label" ng-if="t.tipo == 'traslape'">
+										    	<input type="checkbox" class="form-check-input" value="{{t.id}}" ng-click="vm.chooseTraslape()" ng-model="t.checked" >{{t.traslape}}
+										 	</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 row pt-4">
+								<div class="col-md-4">
+									<div class="title">Finca inscrita a derecho:</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									  <label class="form-check-label" for="inlineRadio1">SI</label>
+									</div>
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+									  <label class="form-check-label" for="inlineRadio2">NO</label>
+									</div>
+								</div>
+								<div class="col-md-12 row pt-2">
+									<div class="col-md-4">
+										<div class="title">Análisis jurídico del caso:</div>
+									</div>
+									<div class="col-md-8">
+										<input type="text" ng-model="vm.antecedentes.analisisCaso" class="form-control form-control-sm">
+									</div>
+								</div>
+								<div class="col-md-12 row pt-2">
+									<div class="col-md-4">
+										<div class="title">Recomendación legal:</div>
+									</div>
+									<div class="col-md-8">
+										<input type="text" ng-model="vm.antecedentes.recomendacionLegal" class="form-control form-control-sm">
+									</div>
+								</div>
+								<div class="col-md-12 row pt-2">
+									<div class="col-md-4">
+										<div class="title">Asesor reponsable/Historial registral:</div>
+									</div>
+									<div class="col-md-8">
+										<input type="text" ng-model="vm.antecedentes.asesorRegistral" class="form-control form-control-sm">
+									</div>
+								</div>
+								<div class="col-md-12 row pt-2">
+									<div class="col-md-4">
+										<div class="title">Asesor responsable/Análisis legal:</div>
+									</div>
+									<div class="col-md-8">
+										<input type="text" ng-model="vm.antecedentes.asesorLegal" class="form-control form-control-sm">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 text-right pt-4">
+								<input type="submit" wz-next value="Guardar" />
 							</div>
 						</div>
-						<div class="col-md-12 row pt-4">
-							<div class="col-md-4">
-								<div class="title">Finca inscrita a derecho:</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-								  <label class="form-check-label" for="inlineRadio1">SI</label>
-								</div>
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-								  <label class="form-check-label" for="inlineRadio2">NO</label>
-								</div>
-							</div>
-							<div class="col-md-12 row pt-2">
-								<div class="col-md-4">
-									<div class="title">Análisis jurídico del caso:</div>
-								</div>
-								<div class="col-md-8">
-									<input type="text" ng-model="vm.antecedentes.analisisCaso" class="form-control form-control-sm">
-								</div>
-							</div>
-							<div class="col-md-12 row pt-2">
-								<div class="col-md-4">
-									<div class="title">Recomendación legal:</div>
-								</div>
-								<div class="col-md-8">
-									<input type="text" ng-model="vm.antecedentes.recomendacionLegal" class="form-control form-control-sm">
-								</div>
-							</div>
-							<div class="col-md-12 row pt-2">
-								<div class="col-md-4">
-									<div class="title">Asesor reponsable/Historial registral:</div>
-								</div>
-								<div class="col-md-8">
-									<input type="text" ng-model="vm.antecedentes.asesorRegistral" class="form-control form-control-sm">
-								</div>
-							</div>
-							<div class="col-md-12 row pt-2">
-								<div class="col-md-4">
-									<div class="title">Asesor responsable/Análisis legal:</div>
-								</div>
-								<div class="col-md-8">
-									<input type="text" ng-model="vm.antecedentes.asesorLegal" class="form-control form-control-sm">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 text-right pt-4">
-							<input type="submit" wz-next value="Guardar" />
-						</div>
-					</div>
-				</wz-step>
-			</wizard>
+					</wz-step>
+				</wizard>
+			</div>
 		</div>
 	</div>
 </div>

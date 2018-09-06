@@ -14,9 +14,22 @@
         getCantones:getCantones,
         getDistritos:getDistritos,
         getParametros:getParametros,
+        getTraslapes: getTraslapes,
         path: PATHSERVICE
     };
     return service;
+
+    function getTraslapes(){
+      var link = service.path+"data/gettraslapes.php";
+      var getRequest = {
+        method: 'GET',
+        url: link,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      return $http(getRequest);
+    }
 
     function getRazones(){
       var link = service.path+"data/getrazones.php";

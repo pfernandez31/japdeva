@@ -11,7 +11,7 @@
     vm.exit = exit;
     vm.listAntecedentes = [];
     vm.currentPage = 0;
-    vm.pageSize = 15;
+    vm.pageSize = 2;
     vm.getData = getData;
     vm.numberOfPages = numberOfPages;
     vm.q = '';

@@ -266,3 +266,8 @@ body{
     padding: 0px;
     vertical-align: initial;
   }
+
+  .cambiosWizard{
+  	position: absolute;
+    top: -78px;
+  }

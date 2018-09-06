@@ -11,11 +11,13 @@
     vm.exit = exit;
     vm.send = send;
     vm.razones = [];
+    vm.traslapes = [];
     vm.parametrosInscripcion = [];
     vm.cantones = [];
     vm.distritos = [];
     vm.chooseRazon = chooseRazon;
     vm.chooseParam = chooseParam;
+    vm.chooseTraslape = chooseTraslape;
     vm.antecedentes = {};
     vm.selecDistritos = selecDistritos;
     vm.antecedentes.movHistoricos = [];
@@ -50,6 +52,16 @@
       });
     }
 
+    function chooseTraslape(){
+      vm.antecedentes.traslapes = [];
+      angular.forEach(vm.traslapes, function(value, key) { 
+        if(value.checked){
+          var obj = { "id":value.id ,"traslape":value.razon, "tipo": value.tipo }
+          vm.antecedentes.traslapes.push(obj);
+        }
+      });
+    }
+
     function send(){
       alert("datos enviados");
     }
@@ -74,13 +86,15 @@
       });
       //CANTONES
       addServices.getCantones(7).then(function(data){
-        var data = data.data;
-        vm.cantones = data;
+        vm.cantones = data.data;
       });
       //DISTRITOS
       addServices.getDistritos(1).then(function(data){
-        var data = data.data;
-        vm.distritos = data;
+        vm.distritos = data.data;
+      });
+      //TRASLAPES ASP/OTRO
+      addServices.getTraslapes().then(function(data){
+        vm.traslapes = data.data;
       });
       //DEFAUTL
       vm.antecedentes.canton = '1';

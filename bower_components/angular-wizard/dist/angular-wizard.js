@@ -16,7 +16,7 @@ angular.module("wizard.html", []).run(["$templateCache", function($templateCache
   $templateCache.put("wizard.html",
     "<div>\n" +
     "    <div class=\"steps\" ng-if=\"indicatorsPosition === 'bottom'\" ng-transclude></div>\n" +
-    "    <ul class=\"steps-indicator steps-{{getEnabledSteps().length}}\" ng-if=\"!hideIndicators\">\n" +
+    "    <ul class=\"cambiosWizard steps-indicator steps-{{getEnabledSteps().length}}\" ng-if=\"!hideIndicators\">\n" +
     "      <li ng-class=\"{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}\" ng-repeat=\"step in getEnabledSteps()\">\n" +
     "        <a ng-click=\"goTo(step)\">{{step.title || step.wzTitle}}</a>\n" +
     "      </li>\n" +
