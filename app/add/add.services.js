@@ -15,6 +15,7 @@
         getDistritos:getDistritos,
         getParametros:getParametros,
         getTraslapes: getTraslapes,
+        saveForm: saveForm,
         path: PATHSERVICE
     };
     return service;
@@ -95,6 +96,16 @@
         }
       };
       return $http(getRequest);
+    }
+
+    function saveForm(data){
+      console.log(data);
+       return $http({
+        method: 'POST',
+        url: service.path + 'form/save.php',
+        headers: {'Content-Type': 'application/json'},
+        data,
+      })
     }
    
   }
