@@ -274,3 +274,6 @@ body{
   .sidebar-sticky  .nav-link {
   	color:#fff;
   }
+  .gregorian{
+  	display: none !important;
+  }

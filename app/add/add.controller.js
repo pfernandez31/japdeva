@@ -15,14 +15,15 @@
     vm.parametrosInscripcion = [];
     vm.cantones = [];
     vm.distritos = [];
-    vm.chooseRazon = chooseRazon;
-    vm.chooseParam = chooseParam;
-    vm.chooseTraslape = chooseTraslape;
     vm.antecedentes = {};
     vm.selecDistritos = selecDistritos;
     vm.antecedentes.movHistoricos = [];
     vm.addNewMovH = addNewMovH;
+    vm.valueRazones = '';
+    vm.valueParametro = '';
     active();
+
+
 
     function selecDistritos(){
       var id = vm.antecedentes.canton;
@@ -32,38 +33,18 @@
       });
     }
 
-    function chooseRazon(){
-      vm.antecedentes.razones = [];
-      angular.forEach(vm.razones, function(value, key) { 
-        if(value.checked){
-          var obj = { "id":value.id ,"razon":value.razon }
-          vm.antecedentes.razones.push(obj);
-        }
-      });
-    }
 
-    function chooseParam(){
-      vm.antecedentes.parametros_inscripcion = [];
-      angular.forEach(vm.parametrosInscripcion, function(value, key) { 
-        if(value.checked){
-          var obj = { "id":value.id ,"parametro":value.razon }
-          vm.antecedentes.parametros_inscripcion.push(obj);
-        }
-      });
-    }
-
-    function chooseTraslape(){
-      vm.antecedentes.traslapes = [];
-      angular.forEach(vm.traslapes, function(value, key) { 
-        if(value.checked){
-          var obj = { "id":value.id ,"traslape":value.razon, "tipo": value.tipo }
-          vm.antecedentes.traslapes.push(obj);
-        }
-      });
-    }
 
     function send(){
-      alert("datos enviados");
+      addServices.saveForm(vm.antecedentes)
+      .then(function(resp){
+        var data = resp.data;
+        alert(data.success);
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+      
     }
 
     function addNewMovH(){
@@ -97,11 +78,16 @@
         vm.traslapes = data.data;
       });
       //DEFAUTL
+      vm.antecedentes.asesor = vm.infoUser.nombre;
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
+      vm.antecedentes.razones = [];
       vm.antecedentes.razon = '';
       vm.antecedentes.opcParametro = '';
       vm.antecedentes.movHistoricos.push({mov:''});
+      vm.antecedentes.traslapes = [];
+      vm.antecedentes.parametros_inscripcion = [];
+      vm.antecedentes.razones = [];
     }
 
     function exit() {

@@ -76,19 +76,19 @@
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label class="title">Tomo: (<small class="text-muted">4 Digitos</small>)</label>
+											<label class="title">Tomo: (<small class="text-muted">4 Dígitos</small>)</label>
 											<input type="text" maxlength="4" ng-model="vm.antecedentes.tomo" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Folio: (<small class="text-muted">3 Digitos</small>)</label>
+											<label class="title">Folio: (<small class="text-muted">3 Dígitos</small>)</label>
 											<input type="text" maxlength="3" ng-model="vm.antecedentes.folio" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Asiento: (<small class="text-muted">3 Digitos</small>)</label>
+											<label class="title">Asiento: (<small class="text-muted">3 Dígitos</small>)</label>
 											<input type="text"  maxlength="3" ng-model="vm.antecedentes.asiento" class="form-control">
 										</div>
 									</div>
@@ -100,48 +100,41 @@
 							<wz-step wz-title="Paso 2">
 								<div class="row">
 									<div class="col-md-12 row">
-										<div class="col-md-5">
+										<div class="col-md-3">
 											<div class="title">Nace por:</div>
 										</div>
-										<div class="col-md-7">
+										<div class="col-md-5">
 											<div class="form-check" ng-repeat="r in vm.razones">
-												<div class="row">
-													<div class="col-md-5">
-														<label class="form-check-label">
-													    	<input type="checkbox" class="form-check-input" value="{{r.id}}" ng-click="vm.chooseRazon()" ng-model="r.checked" >{{r.razon}}
-													 	</label>
-													</div>
-													<div class="col-md-7 row" style="padding:0px" ng-if="r.checked && r.id == 2 || r.checked && r.id == 12 || r.checked && r.id == 3">
-														<label ng-if="r.id == 2" class="col-md-5 text-right">No.Expediente</label>
-														<label ng-if="r.id == 12" class="col-md-5 text-right">Otra</label>
-														<label ng-if="r.id == 3" class="col-md-5 text-right">Plazo de la limitación</label>
-														<input type="text" ng-model="vm.antecedentes.razon" placeholder="" class="text-left form-control form-control-sm col-md-7">
-													</div>
-												</div>
+												<label class="form-check-label">
+											    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.razones" ng-click="vm.valueRazones = r.id" checklist-value="r" >{{r.razon}}
+											 	</label>
 											</div>
 										</div>
+										 <div class="form-group col-md-4 text-left"  ng-if="vm.valueRazones == 2 || vm.valueRazones == 12 || vm.valueRazones == 3">
+										    <label ng-if="vm.valueRazones == 2">No.Expediente</label>
+											<label ng-if="vm.valueRazones == 12">Otra</label>
+											<label ng-if="vm.valueRazones == 3">Plazo de la limitación</label>
+										    <input type="text" ng-model="vm.antecedentes.razon" class="text-left form-control form-control-sm">
+										 </div>
 									</div>
 
 									<div class="col-md-12 row pt-4">
-										<div class="col-md-5">
+										<div class="col-md-3">
 											<div class="title">PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
 										</div>
-										<div class="col-md-7 ">
+										<div class="col-md-5">
 											<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
-												<div class="row">
-													<div class="col-md-7">
-														<label class="form-check-label">
-													    	<input type="checkbox" class="form-check-input" value="{{p.id}}" ng-click="vm.chooseParam()" ng-model="p.checked" >{{p.parametro}}
-													 	</label>
-													</div>
-													<div class="col-md-5 row" style="padding:0px" ng-if="p.checked && p.id == 3">
-														<label ng-if="p.id == 3" class="col-md-5 text-right">Justifique</label>
-														<input type="text" ng-model="vm.antecedentes.opcParametro" placeholder="" class="text-left form-control form-control-sm col-md-7">
-													</div>
-												</div>
+												<label class="form-check-label">
+											    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.parametros_inscripcion" ng-click="vm.valueParametro = p.id" checklist-value="p" >{{p.parametro}}
+											 	</label>
 											</div>
 										</div>
+										 <div class="form-group col-md-4 text-left"  ng-if="vm.valueParametro == 3">
+											<label ng-if="vm.valueParametro == 3">Justifique</label>
+										    <input type="text" ng-model="vm.antecedentes.opcParametro" class="text-left form-control form-control-sm">
+										 </div>
 									</div>
+
 									<div class="col-md-12 text-right pt-4">
 										<input type="submit" wz-next value="Paso 3" />
 									</div>
@@ -280,7 +273,7 @@
 											<div class="col-md-9">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'asp'">
-												    	<input type="checkbox" class="form-check-input" value="{{t.id}}" ng-click="vm.chooseTraslape()" ng-model="t.checked" >{{t.traslape}}
+												    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.traslapes" checklist-value="t" >{{t.traslape}}
 												 	</label>
 												</div>
 											</div>
@@ -288,7 +281,7 @@
 											<div class="col-md-12">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'traslape'">
-												    	<input type="checkbox" class="form-check-input" value="{{t.id}}" ng-click="vm.chooseTraslape()" ng-model="t.checked" >{{t.traslape}}
+												    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.traslapes" checklist-value="t" >{{t.traslape}}
 												 	</label>
 												</div>
 											</div>
@@ -300,11 +293,11 @@
 										</div>
 										<div class="col-md-4">
 											<div class="form-check form-check-inline">
-											  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+											  <input class="form-check-input" ng-model="vm.antecedentes.finca_inscrita_derecho" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="si">
 											  <label class="form-check-label" for="inlineRadio1">SI</label>
 											</div>
 											<div class="form-check form-check-inline">
-											  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+											  <input class="form-check-input" ng-model="vm.antecedentes.finca_inscrita_derecho" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no">
 											  <label class="form-check-label" for="inlineRadio2">NO</label>
 											</div>
 										</div>
@@ -313,7 +306,7 @@
 												<div class="title">Análisis jurídico del caso:</div>
 											</div>
 											<div class="col-md-8">
-												<input type="text" ng-model="vm.antecedentes.analisisCaso" class="form-control form-control-sm">
+												<textarea class="form-control" ng-model="vm.antecedentes.analisisCaso" cols="4" rows="4"> </textarea>
 											</div>
 										</div>
 										<div class="col-md-12 row pt-2">
@@ -321,12 +314,12 @@
 												<div class="title">Recomendación legal:</div>
 											</div>
 											<div class="col-md-8">
-												<input type="text" ng-model="vm.antecedentes.recomendacionLegal" class="form-control form-control-sm">
+												<textarea class="form-control" ng-model="vm.antecedentes.recomendacionLegal" cols="4" rows="4"> </textarea>
 											</div>
 										</div>
 										<div class="col-md-12 row pt-2">
 											<div class="col-md-4">
-												<div class="title">Asesor reponsable/Historial registral:</div>
+												<div class="title">Asesor responsable / Historial registral:</div>
 											</div>
 											<div class="col-md-8">
 												<input type="text" ng-model="vm.antecedentes.asesorRegistral" class="form-control form-control-sm">
@@ -334,7 +327,7 @@
 										</div>
 										<div class="col-md-12 row pt-2">
 											<div class="col-md-4">
-												<div class="title">Asesor responsable/Análisis legal:</div>
+												<div class="title">Asesor responsable / Análisis legal:</div>
 											</div>
 											<div class="col-md-8">
 												<input type="text" ng-model="vm.antecedentes.asesorLegal" class="form-control form-control-sm">
