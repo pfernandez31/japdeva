@@ -6,6 +6,7 @@
 
 	$resp = new stdClass();
 	
+	$usuario = $request->usuarioId;
  	$movHistoricos = $request->movHistoricos; //ARRAY
 	$asesor = $request->asesor;
 	$canton = (int)$request->canton;
@@ -43,7 +44,7 @@
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
 
 	//ANTECEDENTES
-	$cnn->query("INSERT into antecedentes(finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado)values('$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado')");
+	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado')");
 	$idAntecedente = $cnn->lastInsertId();
 
 	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones_uno','$parametros_inscripcion_uno','$razon','$opcParametro')");

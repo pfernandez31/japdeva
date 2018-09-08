@@ -11,7 +11,7 @@
     vm.exit = exit;
     vm.listAntecedentes = [];
     vm.currentPage = 0;
-    vm.pageSize = 2;
+    vm.pageSize = 20;
     vm.getData = getData;
     vm.numberOfPages = numberOfPages;
     vm.q = '';
@@ -31,8 +31,30 @@
           $state.go("login");
       }
       vm.infoUser = sharedService.getAuth();
-
-      vm.listAntecedentes.push({responsable:'Japdeva Admin',finca:'21528',derecho:'111',identificador:'aaa',plano:'123',area:'456'});
+      homeServices.getForms()
+        .then(function(resp){
+          var data = resp.data;
+          console.log(data);
+          angular.forEach(data,function(value,key){
+            var fechaInscripcion = new Date(value.fecha_inscripcion);
+             vm.listAntecedentes.push(
+                {
+                  usuarioid: value.usuarioid,
+                  idAntecedente: value.id,
+                  responsable: value.asesor,
+                  finca: value.finca,
+                  derecho: value.derecho,
+                  identificador: value.identificador_predial,
+                  plano: value.plano,
+                  area: value.area,
+                  fecha_inscripcion: fechaInscripcion
+                }
+              );
+          })
+        })
+        .catch(function(err){
+          console.log(err);
+        });
     }
 
     function exit() {

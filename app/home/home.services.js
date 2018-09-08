@@ -6,16 +6,24 @@
     .factory('homeServices', homeServices);
 
   /* @ngInject */
-  function homeServices(PATHSERVICE) {
+  function homeServices(PATHSERVICE, $http) {
 
     var service = {
-        init:init,
-        path: PATHSERVICE
+        path: PATHSERVICE,
+        getForms: getForms
     };
     return service;
 
-    function init(){
-        
+     function getForms(){
+      var link = service.path+"form/list.php";
+      var getRequest = {
+        method: 'GET',
+        url: link,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      return $http(getRequest);
     }
    
   }
