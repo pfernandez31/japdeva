@@ -70,7 +70,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="title">Inscripción: </label>
-											<input type="date" ng-model="vm.antecedentes.inscripcion" class="form-control form-control-sm">
+											<adm-dtp ng-model="vm.antecedentes.inscripcion" options='date1_options'></adm-dtp>
 										</div>
 									</div>
 
@@ -106,7 +106,7 @@
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="r in vm.razones">
 												<label class="form-check-label">
-											    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.razones" ng-click="vm.valueRazones = r.id" checklist-value="r" >{{r.razon}}
+											    	<input type="checkbox"  class="form-check-input" checklist-model="vm.antecedentes.razones" ng-click="vm.valueRazones = r.id" checklist-value="r">{{r.razon}}
 											 	</label>
 											</div>
 										</div>

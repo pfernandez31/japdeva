@@ -99,7 +99,6 @@
     }
 
     function saveForm(data){
-      console.log(data);
        return $http({
         method: 'POST',
         url: service.path + 'form/save.php',
