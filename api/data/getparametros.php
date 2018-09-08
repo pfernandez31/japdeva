@@ -2,7 +2,7 @@
 	require("../conexion.php");
  	$contador = 0;
 	
-	foreach($cnn->query("SELECT * from parametro_inscripcion") as $row){
+	foreach($cnn->query("SELECT * from parametros_values") as $row){
 		$data[$contador]['id'] = $row['id'];
 		$data[$contador]['parametro'] = $row['parametro'];
 		$contador++;

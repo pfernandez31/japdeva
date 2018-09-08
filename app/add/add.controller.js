@@ -78,6 +78,7 @@
         vm.traslapes = data.data;
       });
       //DEFAUTL
+      vm.antecedentes.usuarioId = vm.infoUser.idusuario;
       vm.antecedentes.asesor = vm.infoUser.nombre;
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
