@@ -1,7 +1,7 @@
 <div class="fluid-container">
     <div ng-include="'app/templates/header.html'"></div>
     <div class="row">
-        <div class="col-md-2" style="background-color: #2d94ff;">
+        <div class="col-md-2">
             <div ng-include="'app/templates/sidebar.html'"></div>
         </div>
         <div class="col-md-10 ">
@@ -18,7 +18,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="title">Finca: (<small class="text-muted">7 Dígitos</small>)</label>
-											<input type="text" maxlength="7" ng-model="vm.antecedentes.finca" class="form-control">
+											<input type="text" maxlength="7" ng-model="vm.antecedentes.finca" class="form-control" required>
 										</div>
 									</div>
 									<div class="col-md-2">
