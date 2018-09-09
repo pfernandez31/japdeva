@@ -13,7 +13,7 @@
 		$cnn->query("delete from traslapes where idAntecedente = '$idAntecedente'");
 		$cnn->query("delete from movimientos where idAntecedente = '$idAntecedente'");
 
-		addregistro($usuario,'delete',"se elimino la fila #".$idAntecedente." asociada a finca ".$finca);
+		addregistro('delete',"se elimino la fila #".$idAntecedente." asociada a finca ".$finca);
 		header("location: ../../#!/home/");
 	} else{
 		header("location: ../../");

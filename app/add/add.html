@@ -7,14 +7,19 @@
         <div class="col-md-10 ">
         	<div class="row">
 				<div class="col-md-12">
-					<div class="col-md-12  pb-5">
+					<div class="col-md-12  pb-3">
 						<h4>Estudio Antecedentes</h4>
 						<hr>
+						<div class="progress">
+						  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{ wizardMeta.activeStep * 25 }}%;" aria-valuenow="{{ wizardMeta.activeStep }}" aria-valuemin="0" aria-valuemax="{{ wizardMeta.totalSteps }}">{{ wizardMeta.activeStep * 25 }}%</div>
+						</div>
 					</div>
-					<div class="col-md-12 pt-5">
-						<wizard on-finish="vm.send()">
-							<wz-step wz-title="Paso 1">
-								<div class="row">
+					<div class="col-md-12 pt-2">
+					
+					<wiz-form wizard-meta="wizardMeta" on-finish="vm.save()">
+					    <wiz-step>
+					        
+					        <div class="row">
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="title">Finca: (<small class="text-muted">7 Dígitos</small>)</label>
@@ -92,13 +97,11 @@
 											<input type="text"  maxlength="3" ng-model="vm.antecedentes.asiento" class="form-control">
 										</div>
 									</div>
-									<div class="col-md-12 text-right pt-4">
-										<input type="submit" wz-next value="Paso 2"/>	
-									</div>
 								</div>
-							</wz-step>
-							<wz-step wz-title="Paso 2">
-								<div class="row">
+					    </wiz-step>
+					    <wiz-step>
+					        
+					        <div class="row">
 									<div class="col-md-12 row">
 										<div class="col-md-3">
 											<div class="title">Nace por:</div>
@@ -134,23 +137,18 @@
 										    <input type="text" ng-model="vm.antecedentes.opcParametro" class="text-left form-control form-control-sm">
 										 </div>
 									</div>
-
-									<div class="col-md-12 text-right pt-4">
-										<input type="submit" wz-next value="Paso 3" />
-									</div>
 								</div>
-							</wz-step>
-							<wz-step wz-title="Paso 3">
-								<div class="row">
-									<div class="col-md-12 row pt-4">
-										<div class="col-md-4 py-2">
+					    </wiz-step>
+					    <wiz-step>
+					        <div class="row">
+									<div class="col-md-12 row">
+										<div class="col-md-4">
 											<div class="title">Otorgamiento:</div>
 										</div>
-										<div class="col-md-4 py-2">
+										<div class="col-md-4">
 											<adm-dtp ng-model="vm.antecedentes.otorgamiento" options='date1_options'></adm-dtp>
 										</div>
 									</div>
-
 									<div class="col-md-12 row" >
 										<div class="col-md-4 py-2">
 											<div class="title">Presentación:</div>
@@ -222,14 +220,10 @@
 											<input type="text"  ng-model="vm.antecedentes.propietarioA" class="form-control form-control-sm">
 										</div>
 									</div>
-
-									<div class="col-md-12 text-right pt-4">
-										<input type="submit" wz-next value="Paso 4" />
-									</div>
 								</div>
-							</wz-step>
-							<wz-step wz-title="Paso 4">
-								<div class="row">
+					    </wiz-step>
+					    <wiz-step>
+					        <div class="row">
 									<div class="col-md-12 text-center">
 										<h5>Movimientos Históricos de la Finca</h5>
 										<h6>Posteriores a su inscripción(Orden Cronológico)</h6>
@@ -249,13 +243,10 @@
 											<button type="button" class="btn btn-link" ng-click="vm.addNewMovH()">Nuevo</button>
 										</div>
 									</div>
-									<div class="col-md-12 text-right pt-4">
-										<input type="submit" wz-next value="Paso 5" />
-									</div>
 								</div>
-							</wz-step>
-							<wz-step wz-title="Paso 5">
-								<div class="row">
+					    </wiz-step>
+					    <wiz-step>
+					        <div class="row">
 									<div class="col-md-12 text-center">
 										<h5>Informe Legal</h5>
 									</div>
@@ -334,12 +325,9 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-md-12 text-right pt-4">
-										<input type="submit" wz-next value="Guardar" />
-									</div>
 								</div>
-							</wz-step>
-						</wizard>
+					    </wiz-step>
+					</wiz-form>
 					</div>
 				</div>
         	</div>

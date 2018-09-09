@@ -19,12 +19,14 @@
 			$objeto->idrole = $row['idrole'];
 			$objeto->nombre = $row['nombre'];
 			$objeto->loggin = true;
+			$_SESSION['idusuario'] = $row['id'];
+			$_SESSION['nombre'] = $row['nombre'];
 	    }
-	    addregistro($usuario,'auth','inicio de session');
+	    addregistro('auth','inicio de session');
 	}else{
 		$objeto->loggin = false;
 		$objeto->error = "Usuario o Contraseña Incorrecta";
-		addregistro($usuario,'auth','error inicio de session');
+		addregistro('auth','error inicio de session');
 	}
 	echo json_encode($objeto);
 ?>

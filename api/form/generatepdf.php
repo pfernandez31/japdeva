@@ -1,6 +1,7 @@
 <?php 
 require("../conexion.php");
 require_once '../vendor/autoload.php';
+require("../logs.php");
 
 if(isset($_GET['id'])){
 	$data = new stdClass();
@@ -62,6 +63,7 @@ if(isset($_GET['id'])){
 		}
 		$data->movimiento = json_encode($mov);
     }
+    addregistro('view',"Consulta formulario PDF asociado a finca ".$data->finca);
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->SetPrintHeader(false);
     $pdf->SetPrintFooter(false);
@@ -107,7 +109,7 @@ EOF;
 			</tr>
 			<div></div>
 			<tr >
-				<td width="25%" style="color:#39ACE7"><span class="title">INSCRIPCIÓN</span></td>
+				<td width="25%"><span class="title">INSCRIPCIÓN</span></td>
 				<td width="25%"><span class="title">TOMO: </span>$data->tomo</td>
 				<td width="25%"><span class="title">FOLIO: </span>$data->folio</td>
 				<td width="25%"><span class="title">ASIENTO: </span>$data->asiento</td>

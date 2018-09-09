@@ -5,11 +5,11 @@
     .module('app.add')
     .controller('addController', addController);
 
-  function addController($state,$cookies, addServices, sharedService) {
+  function addController($state,$cookies, addServices, sharedService, $scope) {
     var vm = this;
     vm.infoUser = {};
     vm.exit = exit;
-    vm.send = send;
+    vm.save = save;
     vm.razones = [];
     vm.traslapes = [];
     vm.parametrosInscripcion = [];
@@ -21,9 +21,16 @@
     vm.addNewMovH = addNewMovH;
     vm.valueRazones = '';
     vm.valueParametro = '';
+    $scope.wizardMeta = {};
+
+    $scope.previousStep = function() {
+      if ($scope.currentStep > 0) {
+        return $scope.currentStep -= 1;
+      }
+      alert("test");
+    };
+
     active();
-
-
 
     function selecDistritos(){
       var id = vm.antecedentes.canton;
@@ -33,9 +40,7 @@
       });
     }
 
-
-
-    function send(){
+    function save(){
       addServices.saveForm(vm.antecedentes)
       .then(function(resp){
         var data = resp.data;

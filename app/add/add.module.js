@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('app.add', ['mgo-angular-wizard','checklist-model']);
+    .module('app.add', ['checklist-model','wiz']);
 })();

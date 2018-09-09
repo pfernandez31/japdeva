@@ -39,11 +39,11 @@
             </table>
             <div class="text-center">
                 <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
-                    Previous
+                    Anterior
                 </button>
                 {{vm.currentPage+1}}/{{vm.numberOfPages()}}
                 <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
-                    Next
+                    Siguiente
                 </button>
             </div>
         </div>
