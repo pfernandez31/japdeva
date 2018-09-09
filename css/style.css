@@ -445,3 +445,7 @@ a.article, a.article:hover {
         display: none;
     }
 }
+
+table tbody th{
+  font-weight: 500;
+}
