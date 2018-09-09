@@ -5,44 +5,46 @@
             <div ng-include="'app/templates/sidebar.html'"></div>
         </div>
         <div class="col-md-10 ">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="text-left">
-                                <th>RESPONSABLE</th>
-                                <th>FINCA</th>
-                                <th>DERECHO</th>
-                                <th>IDENTIFICADOR PREDIAL</th>
-                                <th>PLANO</th>
-                                <th>AREA</th>
-                                <th>FECHA INSCRIPCIÓN</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-left" ng-repeat="datos in vm.listAntecedentes |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
-                                <td>{{datos.responsable}}</td>
-                                <td>{{datos.finca}}</td>
-                                <td>{{datos.derecho}}</td>
-                                <td>{{datos.identificador}}</td>
-                                <td>{{datos.plano}}</td>
-                                <td>{{datos.area}}</td>
-                                <td>{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</td>
-                                <td><a href="api/form/deleteItem.php?id={{datos.idAntecedente}}&usuario={{datos.usuarioid}}&finca={{datos.finca}}"><i class="far fa-trash-alt"></i></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center">
-                        <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
-                            Previous
-                        </button>
-                        {{vm.currentPage+1}}/{{vm.numberOfPages()}}
-                        <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
-                            Next
-                        </button>
-                    </div>
-                </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">RESPONSABLE</th>
+                        <th scope="col">FINCA</th>
+                        <th scope="col">DERECHO</th>
+                        <th scope="col">IDENTIFICADOR PREDIAL</th>
+                        <th scope="col">PLANO</th>
+                        <th scope="col">AREA</th>
+                        <th scope="col">FECHA INSCRIPCIÓN</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="datos in vm.listAntecedentes |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
+                        <th scope="row">{{datos.responsable}}</th>
+                        <th scope="row">{{datos.finca}}</th>
+                        <th scope="row">{{datos.derecho}}</th>
+                        <th scope="row">{{datos.identificador}}</th>
+                        <th scope="row">{{datos.plano}}</th>
+                        <th scope="row">{{datos.area}}</th>
+                        <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</th>
+                        <th scope="row">
+                            <a href="api/form/generatepdf.php?id={{datos.idAntecedente}}" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </th scope="row">
+                        <th scope="row">
+                            <a href="api/form/deleteItem.php?id={{datos.idAntecedente}}&usuario={{datos.usuarioid}}&finca={{datos.finca}}"><i class="far fa-trash-alt"></i></a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
+                    Previous
+                </button>
+                {{vm.currentPage+1}}/{{vm.numberOfPages()}}
+                <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
+                    Next
+                </button>
             </div>
         </div>
     </div>
