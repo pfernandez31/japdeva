@@ -8,6 +8,7 @@
 		'app.login',
 		'app.home',
 		'app.add',
-		'app.activity'
+		'app.activity',
+		'app.edit'
     ]);
 })();
