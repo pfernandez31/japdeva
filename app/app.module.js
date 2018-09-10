@@ -7,6 +7,7 @@
 		'app.shared',
 		'app.login',
 		'app.home',
-		'app.add'
+		'app.add',
+		'app.activity'
     ]);
 })();
