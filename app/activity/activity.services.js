@@ -7,15 +7,15 @@
 
     /* @ngInject */
     function activityServices(PATHSERVICE, $http) {
-/*
+
         var service = {
             path: PATHSERVICE,
-            getForms: getForms
+            getActivity: getActivity
         };
         return service;
 
-        function getForms(){
-            var link = service.path+"form/list.php";
+        function getActivity(){
+            var link = service.path+"data/getactivity.php";
             var getRequest = {
                 method: 'GET',
                 url: link,
@@ -25,7 +25,7 @@
             };
             return $http(getRequest);
         }
-*/
+
     }
 
 })();
