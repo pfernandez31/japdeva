@@ -42,15 +42,15 @@
 	t.traslape,
 	t.tipo
 	from antecedentes a
-	inner join usuarios u on u.id = a.usuario
-	inner join  canton on canton.id = a.idCanton
-	inner join distrito on distrito.id = a.idDistrito
-	inner join  informacion_legal il on il.idAntecedente = a.id
-	inner join  inscripcion i on i.idAntecedente = a.id
-	inner join razones_values rv on rv.id = i.idrazon
-	inner join parametros_values pv on pv.id = i.idparametro
-	inner join notariado n on n.idAntecedente = a.id
-	inner join traslapes t on t.idAntecedente = a.id
+	left join usuarios u on u.id = a.usuario
+	left join  canton on canton.id = a.idCanton
+	left join distrito on distrito.id = a.idDistrito
+	left join  informacion_legal il on il.idAntecedente = a.id
+	left join  inscripcion i on i.idAntecedente = a.id
+	left join razones_values rv on rv.id = i.idrazon
+	left join parametros_values pv on pv.id = i.idparametro
+	left join notariado n on n.idAntecedente = a.id
+	left join traslapes t on t.idAntecedente = a.id
 	order by a.id DESC
 	";
 	foreach($cnn->query($query) as $row){
