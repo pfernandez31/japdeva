@@ -6,7 +6,8 @@
       'ui.router',
       'ngCookies',
       'ui.bootstrap',
-      'ADM-dateTimePicker'
+      'ADM-dateTimePicker',
+      'ng-sweet-alert'
     ])
     .filter('startFrom', function() {
     	return function(input, start) {
