@@ -7,7 +7,7 @@
       'ngCookies',
       'ui.bootstrap',
       'ADM-dateTimePicker',
-      'ng-sweet-alert'
+      'oitozero.ngSweetAlert'
     ])
     .filter('startFrom', function() {
     	return function(input, start) {

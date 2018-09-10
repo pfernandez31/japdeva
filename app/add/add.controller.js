@@ -5,7 +5,7 @@
     .module('app.add')
     .controller('addController', addController);
 
-  function addController($state,$cookies, addServices, sharedService, $scope) {
+  function addController($state,$cookies, addServices, $scope, sharedService, SweetAlert) {
     var vm = this;
     vm.infoUser = {};
     vm.exit = exit;
@@ -23,12 +23,6 @@
     vm.valueParametro = '';
     $scope.wizardMeta = {};
 
-    $scope.previousStep = function() {
-      if ($scope.currentStep > 0) {
-        return $scope.currentStep -= 1;
-      }
-      alert("test");
-    };
 
     active();
 
@@ -44,7 +38,7 @@
       addServices.saveForm(vm.antecedentes)
       .then(function(resp){
         var data = resp.data;
-        alert(data.success);
+        SweetAlert.swal("Formulario", data.success, "success");
       })
       .catch(function(err){
         console.log(err);
@@ -56,7 +50,9 @@
       vm.antecedentes.movHistoricos.push({mov:''});
     }
 
+
     function active(){
+
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");

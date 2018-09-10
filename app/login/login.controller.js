@@ -5,7 +5,7 @@
     .module('app.login')
     .controller('loginController', loginController);
 
-  function loginController($state,$cookies, loginServices,sharedService ) {
+  function loginController($state,$cookies, loginServices,sharedService, SweetAlert ) {
     var vm = this;
     vm.infoUser = {user:'',pass:''};
     vm.login = login;
@@ -20,7 +20,7 @@
 	                sharedService.setAuth(respuesta);
 	                $state.go("home");
 	            }else{
-	                alert(respuesta.error);
+                  SweetAlert.swal("Verifique Información", 'Usuario o Contraseña Incorrecta', "error");
 	            }
 	        })
           .catch(function(err){
@@ -29,7 +29,7 @@
     }
 
     function active(){
-
+      
     }
 
   }

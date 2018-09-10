@@ -61,7 +61,7 @@
 
 	$cnn->query("INSERT into informacion_legal(idAntecedente,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal)value('$idAntecedente','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal')");
 	//OK
-	$resp->success = "Formulario Guardado con Exito.";
+	$resp->success = "Insertado con Exito!";
 	addregistro('insert','registro formulario finca #'.$finca.' creado por '.$asesor);
 	echo json_encode($resp);
 ?>
