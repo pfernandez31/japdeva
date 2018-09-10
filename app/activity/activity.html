@@ -1,0 +1,35 @@
+<div class="fluid-container">
+    <div ng-include="'app/templates/header.html'"></div>
+    <div class="row">
+        <div class="col-md-2">
+            <div ng-include="'app/templates/sidebar.html'"></div>
+        </div>
+        <div class="col-md-10 ">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">REGISTRO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="datos in vm.listActivity |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
+                        <th scope="row">{{datos.usuario}}</th>
+                        <th scope="row">{{datos.fecha | date:  "dd-MM-y"}}</th>
+                        <th scope="row">{{datos.registro}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
+                    Anterior
+                </button>
+                {{vm.currentPage+1}}/{{vm.numberOfPages()}}
+                <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
