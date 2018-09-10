@@ -21,7 +21,7 @@
 					        <div class="row">
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Finca: (<small class="text-muted">7 Dígitos</small>)</label>
+											<label class="title"><span class="required">*</span>Finca: (<small class="text-muted">7 Dígitos</small>)</label>
 											<input type="text" maxlength="7" ng-model="vm.antecedentes.finca" class="form-control" required>
 										</div>
 									</div>
@@ -39,7 +39,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Identificador Predial: (<small class="text-muted">7 Dígitos</small>)</label>
+											<label class="title"><span class="required">*</span>Identificador Predial: (<small class="text-muted">7 Dígitos</small>)</label>
 											<input type="text" maxlength="7" ng-model="vm.antecedentes.identificadorPredial"class="form-control">
 										</div>
 									</div>
@@ -57,7 +57,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Cantón:</label>
+											<label class="title"><span class="required">*</span>Cantón:</label>
 											<select class="custom-control custom-select" ng-change="vm.selecDistritos()" ng-model="vm.antecedentes.canton">
 												<option  ng-repeat="c in vm.cantones" value="{{c.id}}">{{c.canton}}</option>
 											</select>
@@ -65,7 +65,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Distrito:</label>
+											<label class="title"><span class="required">*</span>Distrito:</label>
 											<select class="custom-control custom-select" ng-model="vm.antecedentes.distrito">
 												<option  ng-repeat="d in vm.distritos" value="{{d.id}}" >{{d.distrito}}</option>
 											</select>
@@ -73,26 +73,26 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Inscripción: </label>
+											<label class="title"><span class="required">*</span>Inscripción: </label>
 											<adm-dtp ng-model="vm.antecedentes.inscripcion" options='date1_options'></adm-dtp>
 										</div>
 									</div>
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label class="title">Tomo: (<small class="text-muted">4 Dígitos</small>)</label>
+											<label class="title"><span class="required">*</span>Tomo: (<small class="text-muted">4 Dígitos</small>)</label>
 											<input type="text" maxlength="4" ng-model="vm.antecedentes.tomo" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Folio: (<small class="text-muted">3 Dígitos</small>)</label>
+											<label class="title"><span class="required">*</span>Folio: (<small class="text-muted">3 Dígitos</small>)</label>
 											<input type="text" maxlength="3" ng-model="vm.antecedentes.folio" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title">Asiento: (<small class="text-muted">3 Dígitos</small>)</label>
+											<label class="title"><span class="required">*</span>Asiento: (<small class="text-muted">3 Dígitos</small>)</label>
 											<input type="text"  maxlength="3" ng-model="vm.antecedentes.asiento" class="form-control">
 										</div>
 									</div>
@@ -104,7 +104,7 @@
 					        <div class="row">
 									<div class="col-md-12 row">
 										<div class="col-md-3">
-											<div class="title">Nace por:</div>
+											<div class="title"><span class="required">*</span>Nace por:</div>
 										</div>
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="r in vm.razones">
@@ -123,7 +123,7 @@
 
 									<div class="col-md-12 row pt-4">
 										<div class="col-md-3">
-											<div class="title">PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
+											<div class="title"><span class="required">*</span>PARAMETRO DE ANALISIS INSCRIPCION DE LA FINCA:</div>
 										</div>
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
@@ -205,7 +205,7 @@
 
 									<div class="col-md-12 row pt-2">
 										<div class="col-md-4">
-											<div class="title">Propietario Original:</div>
+											<div class="title"><span class="required">*</span>Propietario Original:</div>
 										</div>
 										<div class="col-md-4">
 											<input type="text" ng-model="vm.antecedentes.propietario" class="form-control form-control-sm">
@@ -214,7 +214,7 @@
 
 									<div class="col-md-12 row pt-2">
 										<div class="col-md-4">
-											<div class="title">Propietario Actual:</div>
+											<div class="title"><span class="required">*</span>Propietario Actual:</div>
 										</div>
 										<div class="col-md-4">
 											<input type="text"  ng-model="vm.antecedentes.propietarioA" class="form-control form-control-sm">
@@ -280,7 +280,7 @@
 									</div>
 									<div class="col-md-12 row pt-4">
 										<div class="col-md-4">
-											<div class="title">Finca inscrita a derecho:</div>
+											<div class="title"><span class="required">*</span>Finca inscrita a derecho:</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-check form-check-inline">
@@ -310,7 +310,7 @@
 										</div>
 										<div class="col-md-12 row pt-2">
 											<div class="col-md-4">
-												<div class="title">Asesor responsable / Historial registral:</div>
+												<div class="title"><span class="required">*</span>Asesor responsable / Historial registral:</div>
 											</div>
 											<div class="col-md-8">
 												<input type="text" ng-model="vm.antecedentes.asesorRegistral" class="form-control form-control-sm">

@@ -1,6 +1,10 @@
 body{
 	margin-top: 0px;
 }
+.required{
+  color: #ff0404;
+  font-size: 1.2em;
+}
 .row {
     margin-right: 0px;
     margin-left: 0px;

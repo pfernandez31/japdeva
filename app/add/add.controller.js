@@ -35,14 +35,21 @@
     }
 
     function save(){
-      addServices.saveForm(vm.antecedentes)
-      .then(function(resp){
-        var data = resp.data;
-        SweetAlert.swal("Formulario", data.success, "success");
-      })
-      .catch(function(err){
-        console.log(err);
-      })
+      if(vm.antecedentes.finca == null ||  vm.antecedentes.tomo == null || vm.antecedentes.folio == null || vm.antecedentes.asiento == null || vm.antecedentes.identificadorPredial == null || vm.antecedentes.razones.length <= 0 || vm.antecedentes.parametros_inscripcion.length <= 0 || vm.antecedentes.propietarioA == null || vm.antecedentes.propietario == null || vm.antecedentes.finca_inscrita_derecho == null || vm.antecedentes.asesorRegistral == null  ){
+        SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
+      }
+      else{
+        addServices.saveForm(vm.antecedentes)
+        .then(function(resp){
+          var data = resp.data;
+          SweetAlert.swal("Formulario", data.success, "success");
+          $state.go('home');
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+      }
+      
       
     }
 
