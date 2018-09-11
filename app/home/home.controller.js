@@ -34,7 +34,6 @@
       homeServices.getForms()
         .then(function(resp){
           var data = resp.data;
-          console.log(data);
           angular.forEach(data,function(value,key){
             var fechaInscripcion = new Date(value.fecha_inscripcion);
              vm.listAntecedentes.push(

@@ -29,8 +29,11 @@
                         <th scope="row">{{datos.area}}</th>
                         <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</th>
                         <th scope="row">
-                            <a href="api/form/generatepdf.php?id={{datos.idAntecedente}}" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a ui-sref="form-edit({id:datos.idAntecedente})"><i class="fas fa-pen-square"></i> EDITAR</a>
                         </th scope="row">
+                        <th scope="row">
+                            <a href="api/form/generatepdf.php?id={{datos.idAntecedente}}" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </th>
                     </tr>
                 </tbody>
             </table>

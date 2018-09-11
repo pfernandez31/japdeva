@@ -34,7 +34,6 @@
         activityServices.getActivity()
             .then(function(resp){
                 var data = resp.data;
-                console.log(data);
                 angular.forEach(data,function(value,key){
                      vm.listActivity.push(
                         {

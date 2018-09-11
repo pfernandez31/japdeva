@@ -3,56 +3,72 @@
 if(isset($_GET['id'])){
 	$data = new stdClass();
 	$idFormulario = $_GET['id'];
-	$query = "select u.nombre, a.usuario as usuarioid, a.id, a.finca, a.d, a.derecho, a.identificador_predial, a.plano, a.area, a.idDistrito,a.idCanton, a.plazo_convalidacion, a.otorgamiento, a.presentacion, a.ejecutoria_juzgado, canton.canton, distrito.distrito, il.finca_inscrita_derecho, il.analisis_juridico_caso, il.recomendacion_legal, il.historial_registral, il.analisis_legal, i.fecha as fecha_inscripcion,i.tomo, i.folio, i.asiento, rv.razon as nace_por, i.razon, pv.parametro as parametroSelect, i.parametro, n.notario, n.juzgado, n.expediente_numero, n.propietario_original, n.propietario_actual, t.traslape, t.tipo from antecedentes a left join usuarios u on u.id = a.usuario left join  canton on canton.id = a.idCanton left join distrito on distrito.id = a.idDistrito left join  informacion_legal il on il.idAntecedente = a.id left join  inscripcion i on i.idAntecedente = a.id left join razones_values rv on rv.id = i.idrazon left join parametros_values pv on pv.id = i.idparametro left join notariado n on n.idAntecedente = a.id left join traslapes t on t.idAntecedente = a.id where a.id = '$idFormulario' order by a.id DESC";
+	$query = "select u.nombre, a.usuario as usuarioid, a.id as idAntecedente, a.finca, a.d, a.derecho, a.identificador_predial, a.plano, a.area, a.idDistrito,a.idCanton, a.plazo_convalidacion, a.otorgamiento, a.presentacion, a.ejecutoria_juzgado, canton.canton, distrito.distrito, il.finca_inscrita_derecho, il.analisis_juridico_caso, il.recomendacion_legal, il.historial_registral, il.analisis_legal, i.fecha as fecha_inscripcion,i.tomo, i.folio, i.asiento, rv.id as razonid, rv.razon as nace_por, i.razon, pv.id as parametroid, pv.parametro as parametroSelect, i.parametro, n.notario, n.juzgado, n.expediente_numero, n.propietario_original, n.propietario_actual, t.id as traslapeid, t.traslape, t.tipo from antecedentes a left join usuarios u on u.id = a.usuario left join  canton on canton.id = a.idCanton left join distrito on distrito.id = a.idDistrito left join  informacion_legal il on il.idAntecedente = a.id left join  inscripcion i on i.idAntecedente = a.id left join razones_values rv on rv.id = i.idrazon left join parametros_values pv on pv.id = i.idparametro left join notariado n on n.idAntecedente = a.id left join traslapes t on t.idAntecedente = a.id where a.id = '$idFormulario' order by a.id DESC  limit 1";
 	foreach($cnn->query($query) as $row){
+		$data->idAntecedente = $row['idAntecedente'];
 		$data->asesor = $row['nombre'];
 		$data->usuarioid = $row['usuarioid'];
-		$data->id = $row['id'];
 		$data->finca = $row['finca'];
 		$data->d = $row['d'];
 		$data->derecho = $row['derecho'];
-		$data->identificador_predial = $row['identificador_predial'];
+		$data->identificadorPredial = $row['identificador_predial'];
 		$data->plano = $row['plano'];
 		$data->area = $row['area'];
-		$data->idDistrito = $row['idDistrito'];
-		$data->idCanton = $row['idCanton'];
-		$data->plazo_convalidacion = $row['plazo_convalidacion'];
+		$data->distrito = $row['idDistrito'];
+		$data->canton = $row['idCanton'];
+		$data->plazo = $row['plazo_convalidacion'];
 		$data->otorgamiento = $row['otorgamiento'];
 		$data->presentacion = $row['presentacion'];
 		$data->ejecutoria_juzgado = $row['ejecutoria_juzgado'];
-		$data->canton = $row['canton'];
-		$data->distrito = $row['distrito'];
+		$data->ncanton = $row['canton'];
+		$data->ndistrito = $row['distrito'];
 		$data->finca_inscrita_derecho = $row['finca_inscrita_derecho'];
-		$data->analisis_juridico_caso = $row['analisis_juridico_caso'];
-		$data->recomendacion_legal = $row['recomendacion_legal'];
-		$data->historial_registral = $row['historial_registral'];
-		$data->analisis_legal = $row['analisis_legal'];
-		$data->fecha_inscripcion = $row['fecha_inscripcion'];
+		$data->analisisCaso = $row['analisis_juridico_caso'];
+		$data->recomendacionLegal = $row['recomendacion_legal'];
+		$data->asesorRegistral = $row['historial_registral'];
+		$data->asesorLegal = $row['analisis_legal'];
+		$data->inscripcion = $row['fecha_inscripcion'];
 		$data->tomo = $row['tomo'];
 		$data->folio = $row['folio'];
 		$data->asiento = $row['asiento'];
+		$data->checkNace = $row['razonid'];
 		$data->nace_por = $row['nace_por'];
 		$data->razon = $row['razon'];
+
+		$raz[0]['id'] = $row['razonid'];
+		$raz[0]['razon'] = $row['nace_por'];
+		$data->razones = $raz;
+
+		$data->checkParam = $row['parametroid'];
+		$data->checkTraslape = $row['traslapeid'];
 		$data->parametroSelect = $row['parametroSelect'];
 		$data->parametro = $row['parametro'];
+
+		$param[0]['id'] = $row['parametroid'];
+		$param[0]['parametro'] = $row['parametro'];
+		$data->parametros_inscripcion = $param;
+
+
 		$data->notario = $row['notario'];
 		$data->juzgado = $row['juzgado'];
-		$data->expediente_numero = $row['expediente_numero'];
-		$data->propietario_original = $row['propietario_original'];
-		$data->propietario_actual = $row['propietario_actual'];
+		$data->numExpediente = $row['expediente_numero'];
+		$data->propietario = $row['propietario_original'];
+		$data->propietarioA = $row['propietario_actual'];
 		$data->traslape = $row['traslape'];
+
+		$trasl[0]['id'] = $row['traslapeid'];
+		$trasl[0]['traslape'] = $row['traslape'];
+		$trasl[0]['tipo'] = $row['tipo'];
+		$data->traslapes = $trasl;
+
+
 		$data->tipo = $row['tipo'];
 		$cont = 0;
 		foreach($cnn->query("select movimiento from movimientos where idAntecedente = '$idFormulario'") as $m){
-			$mov[$cont]['movimiento'] = $m['movimiento'];
+			$mov[$cont]['mov'] = $m['movimiento'];
 			$cont++;
 		}
-		$data->movimiento = json_encode($mov);
-		/*
-		foreach (json_decode($data->movimiento)  as $key => $value) {
-			$m = $value->movimiento;
-		}
-		*/
+		$data->movHistoricos = $mov;
 		echo json_encode($data);
     }
 } else {

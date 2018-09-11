@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('app.add')
-    .factory('addServices', addServices);
+    .module('app.form')
+    .factory('formServices', formServices);
 
   /* @ngInject */
-  function addServices(PATHSERVICE, $http) {
+  function formServices(PATHSERVICE, $http) {
 
     var service = {
         getRazones:getRazones,
@@ -16,6 +16,8 @@
         getParametros:getParametros,
         getTraslapes: getTraslapes,
         saveForm: saveForm,
+        loadForm: loadForm,
+        updateForm: updateForm,
         path: PATHSERVICE
     };
     return service;
@@ -105,6 +107,30 @@
         headers: {'Content-Type': 'application/json'},
         data,
       })
+    }
+
+    function updateForm(data){
+       return $http({
+        method: 'POST',
+        url: service.path + 'form/update.php',
+        headers: {'Content-Type': 'application/json'},
+        data,
+      })
+    }
+
+    function loadForm(idAntecedente){
+      var link = service.path+"form/view.php";
+      var getRequest = {
+        method: 'GET',
+        url: link,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        params: {
+          id: idAntecedente
+        }
+      };
+      return $http(getRequest);
     }
    
   }

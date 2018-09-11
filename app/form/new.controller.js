@@ -2,10 +2,10 @@
   'use strict';
 
   angular
-    .module('app.add')
-    .controller('addController', addController);
+    .module('app.form')
+    .controller('newController', newController);
 
-  function addController($state,$cookies, addServices, $scope, sharedService, SweetAlert) {
+  function newController($state,$cookies,  formServices, $scope, sharedService, $timeout, SweetAlert) {
     var vm = this;
     vm.infoUser = {};
     vm.exit = exit;
@@ -28,7 +28,7 @@
 
     function selecDistritos(){
       var id = vm.antecedentes.canton;
-       addServices.getDistritos(id).then(function(data){
+       formServices.getDistritos(id).then(function(data){
         var data = data.data;
         vm.distritos = data;
       });
@@ -39,11 +39,11 @@
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
-        addServices.saveForm(vm.antecedentes)
+        formServices.saveForm(vm.antecedentes)
         .then(function(resp){
           var data = resp.data;
           SweetAlert.swal("Formulario", data.success, "success");
-          $state.go('home');
+          $timeout(function(){ $state.go('home'); },2000);
         })
         .catch(function(err){
           console.log(err);
@@ -66,23 +66,23 @@
       }
       vm.infoUser = sharedService.getAuth();
       //SELECT NACE POR
-      addServices.getRazones().then(function(data){
+      formServices.getRazones().then(function(data){
         vm.razones = data.data;
       });
       //SELECT PARAMETROS INSCRIPCION FINCA
-      addServices.getParametros().then(function(data){
+      formServices.getParametros().then(function(data){
         vm.parametrosInscripcion = data.data;
       });
       //CANTONES
-      addServices.getCantones(7).then(function(data){
+      formServices.getCantones(7).then(function(data){
         vm.cantones = data.data;
       });
       //DISTRITOS
-      addServices.getDistritos(1).then(function(data){
+      formServices.getDistritos(1).then(function(data){
         vm.distritos = data.data;
       });
       //TRASLAPES ASP/OTRO
-      addServices.getTraslapes().then(function(data){
+      formServices.getTraslapes().then(function(data){
         vm.traslapes = data.data;
       });
       //DEFAUTL
