@@ -15,7 +15,7 @@
                         <th scope="col">PLANO</th>
                         <th scope="col">AREA</th>
                         <th scope="col">FECHA INSCRIPCIÓN</th>
-                        <th scope="col"></th>
+                        <th scope="col" ng-if="vm.infoUser.idrole == 1"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -28,8 +28,8 @@
                         <th scope="row">{{datos.plano}}</th>
                         <th scope="row">{{datos.area}}</th>
                         <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</th>
-                        <th scope="row">
-                            <a ui-sref="form-edit({id:datos.idAntecedente})"><i class="fas fa-pen-square"></i> EDITAR</a>
+                        <th scope="row" ng-if="vm.infoUser.idrole == 1">
+                            <a  ui-sref="form-edit({id:datos.idAntecedente})"><i class="fas fa-pen-square"></i> EDITAR</a>
                         </th scope="row">
                         <th scope="row">
                             <a href="api/form/generatepdf.php?id={{datos.idAntecedente}}" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
