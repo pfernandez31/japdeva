@@ -21,10 +21,30 @@
     vm.addNewMovH = addNewMovH;
     vm.valueRazones = '';
     vm.valueParametro = '';
+    vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
 
 
     active();
+
+    function selectCheck(d,tipo){
+      switch(tipo) {
+          case "razones":
+              vm.antecedentes.razones = d.id;
+              vm.valueRazones = d.id;
+              break;
+          case "parametros":
+              vm.antecedentes.parametros_inscripcion = d.id;
+              vm.valueParametro = d.id;
+              break;
+          case "traslapes":
+              vm.antecedentes.traslapes = d.id;
+              break;
+          default:
+              
+      }
+      
+    }
 
     function selecDistritos(){
       var id = vm.antecedentes.canton;
@@ -35,7 +55,7 @@
     }
 
     function save(){
-      if(vm.antecedentes.finca == null ||  vm.antecedentes.tomo == null || vm.antecedentes.folio == null || vm.antecedentes.asiento == null || vm.antecedentes.identificadorPredial == null || vm.antecedentes.razones.length <= 0 || vm.antecedentes.parametros_inscripcion.length <= 0 || vm.antecedentes.propietarioA == null || vm.antecedentes.propietario == null || vm.antecedentes.finca_inscrita_derecho == null || vm.antecedentes.asesorRegistral == null  ){
+      if(vm.antecedentes.finca == null ||  vm.antecedentes.tomo == null || vm.antecedentes.folio == null || vm.antecedentes.asiento == null || vm.antecedentes.identificadorPredial == null || vm.antecedentes.razones == null || vm.antecedentes.parametros_inscripcion == null || vm.antecedentes.propietarioA == null || vm.antecedentes.propietario == null || vm.antecedentes.finca_inscrita_derecho == null || vm.antecedentes.asesorRegistral == null  ){
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
@@ -90,13 +110,9 @@
       vm.antecedentes.asesor = vm.infoUser.nombre;
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
-      vm.antecedentes.razones = [];
       vm.antecedentes.razon = '';
       vm.antecedentes.opcParametro = '';
       vm.antecedentes.movHistoricos.push({mov:''});
-      vm.antecedentes.traslapes = [];
-      vm.antecedentes.parametros_inscripcion = [];
-      vm.antecedentes.razones = [];
     }
 
     function exit() {

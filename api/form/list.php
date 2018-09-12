@@ -39,8 +39,7 @@
 	n.expediente_numero,
 	n.propietario_original,
 	n.propietario_actual,
-	t.traslape,
-	t.tipo
+	il.idtraslape
 	from antecedentes a
 	left join usuarios u on u.id = a.usuario
 	left join  canton on canton.id = a.idCanton
@@ -50,7 +49,6 @@
 	left join razones_values rv on rv.id = i.idrazon
 	left join parametros_values pv on pv.id = i.idparametro
 	left join notariado n on n.idAntecedente = a.id
-	left join traslapes t on t.idAntecedente = a.id
 	order by a.id DESC
 	";
 	foreach($cnn->query($query) as $row){
@@ -89,8 +87,7 @@
 		$data[$contador]['expediente_numero'] = $row['expediente_numero'];
 		$data[$contador]['propietario_original'] = $row['propietario_original'];
 		$data[$contador]['propietario_actual'] = $row['propietario_actual'];
-		$data[$contador]['traslape'] = $row['traslape'];
-		$data[$contador]['tipo'] = $row['tipo'];
+		$data[$contador]['traslapes'] = $row['idtraslape'];
 		$contador++;
     }
 	echo json_encode($data);

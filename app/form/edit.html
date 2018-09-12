@@ -39,8 +39,8 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title"><span class="required">*</span>Identificador Predial: (<small class="text-muted">7 Dígitos</small>)</label>
-											<input type="text" maxlength="7" ng-model="vm.antecedentes.identificadorPredial"class="form-control">
+											<label class="title"><span class="required">*</span>Identificador Predial: (<small class="text-muted">14 Dígitos</small>)</label>
+											<input type="text" maxlength="14" ng-model="vm.antecedentes.identificadorPredial"class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -51,8 +51,8 @@
 									</div>
 									<div class="col-md-2">
 										<div class="form-group">
-											<label class="title">Área: (<small class="text-muted">8 Dígitos</small>)</label>
-											<input type="text" maxlength="8" ng-model="vm.antecedentes.area" class="form-control">
+											<label class="title">Área:</label>
+											<input type="text" ng-model="vm.antecedentes.area" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -109,7 +109,8 @@
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="r in vm.razones">
 												<label class="form-check-label">
-											    	<input type="checkbox" ng-checked="r.id == vm.checkNace"  class="form-check-input" checklist-model="vm.antecedentes.razones" ng-click="vm.valueRazones = r.id" checklist-value="r">{{r.razon}}
+											    	<input type="checkbox" ng-checked="r.id == vm.checkNace"  ng-click="vm.selectCheck(r,'razones')" class="form-check-input" >
+											    	{{r.razon}}
 											 	</label>
 											</div>
 										</div>
@@ -128,7 +129,8 @@
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="p in vm.parametrosInscripcion">
 												<label class="form-check-label">
-											    	<input type="checkbox" ng-checked="p.id == vm.checkParam"  class="form-check-input" checklist-model="vm.antecedentes.parametros_inscripcion" ng-click="vm.valueParametro = p.id" checklist-value="p" >{{p.parametro}}
+											    	<input type="checkbox" ng-checked="p.id == vm.checkParam" ng-click="vm.selectCheck(p,'parametros')" class="form-check-input" >
+											    	{{p.parametro}}
 											 	</label>
 											</div>
 										</div>
@@ -264,7 +266,8 @@
 											<div class="col-md-9">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'asp'">
-												    	<input type="checkbox"  ng-checked="t.id == vm.checkTraslape" class="form-check-input" checklist-model="vm.antecedentes.traslapes" checklist-value="t" >{{t.traslape}}
+												    	<input type="checkbox"  ng-checked="t.id == vm.checkTraslape" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
+												    	{{t.traslape}}
 												 	</label>
 												</div>
 											</div>
@@ -272,7 +275,8 @@
 											<div class="col-md-12">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'traslape'">
-												    	<input type="checkbox"  ng-checked="t.id == vm.checkTraslape" class="form-check-input" checklist-model="vm.antecedentes.traslapes" checklist-value="t" >{{t.traslape}}
+												    	<input type="checkbox"  ng-checked="t.id == vm.checkTraslape" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
+												    	{{t.traslape}}
 												 	</label>
 												</div>
 											</div>
@@ -333,3 +337,5 @@
         	</div>
     	</div>
     </div>
+
+    

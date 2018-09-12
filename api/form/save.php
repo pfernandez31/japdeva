@@ -11,13 +11,11 @@
 	$asesor = $request->asesor;
 	$canton = (int)$request->canton;
 	$distrito = (int)$request->distrito;
-	$razones = $request->razones; //ARRAY
-	$razones_uno = $razones[0]->id;
 	$razon = $request->razon;
+	$razones = $request->razones;
 	$opcParametro = $request->opcParametro;
-	$traslapes = $request->traslapes; //ARRAY
-	$parametros_inscripcion = $request->parametros_inscripcion; //ARRAY
-	$parametros_inscripcion_uno = $parametros_inscripcion[0]->id;
+	$traslapes = $request->traslapes;
+	$parametros_inscripcion = $request->parametros_inscripcion;
 	$otorgamiento = $request->otorgamiento;
 	$presentacion = $request->presentacion;
 	$ejecutoria_juzgado = $request->ejecutoria_juzgado;
@@ -42,24 +40,22 @@
 	$asesorRegistral = $request->asesorRegistral;
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
-
+	$creado = date('Y-m-d G:i:s');
 	//ANTECEDENTES
-	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado')");
+	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado,fecha_creacion,fecha_modificacion)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado','$creado','$creado')");
 	$idAntecedente = $cnn->lastInsertId();
 
-	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones_uno','$parametros_inscripcion_uno','$razon','$opcParametro')");
+	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro')");
 
 	foreach ($movHistoricos as $key => $value) {
-		$cnn->query("INSERT into movimientos(idAntecedente,movimiento)value('$idAntecedente','$value->mov')");
-	}
-
-	foreach ($traslapes as $key => $value) {
-		$cnn->query("INSERT into traslapes(idAntecedente,traslape,tipo)value('$idAntecedente','$value->traslape','$value->tipo')");
+		if($value->mov != ''){
+			$cnn->query("INSERT into movimientos(idAntecedente,movimiento)value('$idAntecedente','$value->mov')");
+		}
 	}
 
 	$cnn->query("INSERT into notariado(idAntecedente,notario,juzgado,expediente_numero,propietario_original,propietario_actual)value('$idAntecedente','$notario','$juzgado','$numExpediente','$propietario','$propietarioA')");
 
-	$cnn->query("INSERT into informacion_legal(idAntecedente,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal)value('$idAntecedente','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal')");
+	$cnn->query("INSERT into informacion_legal(idAntecedente,idtraslape,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal)value('$idAntecedente','$traslapes','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal')");
 	//OK
 	$resp->success = "Insertado con Exito!";
 	addregistro('insert','registro formulario finca #'.$finca.' creado por '.$asesor);

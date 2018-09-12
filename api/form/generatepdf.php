@@ -5,8 +5,9 @@ require("../logs.php");
 
 if(isset($_GET['id'])){
 	$data = new stdClass();
+	$mov = [];
 	$idFormulario = $_GET['id'];
-	$query = "select u.nombre, a.usuario as usuarioid, a.id, a.finca, a.d, a.derecho, a.identificador_predial, a.plano, a.area, a.idDistrito,a.idCanton, a.plazo_convalidacion, a.otorgamiento, a.presentacion, a.ejecutoria_juzgado, canton.canton, distrito.distrito, il.finca_inscrita_derecho, il.analisis_juridico_caso, il.recomendacion_legal, il.historial_registral, il.analisis_legal, i.fecha as fecha_inscripcion,i.tomo, i.folio, i.asiento, rv.razon as nace_por, i.razon, pv.parametro as parametroSelect, i.parametro, n.notario, n.juzgado, n.expediente_numero, n.propietario_original, n.propietario_actual, t.traslape, t.tipo from antecedentes a left join usuarios u on u.id = a.usuario left join  canton on canton.id = a.idCanton left join distrito on distrito.id = a.idDistrito left join  informacion_legal il on il.idAntecedente = a.id left join  inscripcion i on i.idAntecedente = a.id left join razones_values rv on rv.id = i.idrazon left join parametros_values pv on pv.id = i.idparametro left join notariado n on n.idAntecedente = a.id left join traslapes t on t.idAntecedente = a.id where a.id = '$idFormulario' order by a.id DESC";
+	$query = "select u.nombre, a.usuario as usuarioid, a.id, a.finca, a.d, a.derecho, a.identificador_predial, a.plano, a.area, a.idDistrito,a.idCanton, a.plazo_convalidacion, a.otorgamiento, a.presentacion, a.ejecutoria_juzgado, canton.canton, distrito.distrito, il.finca_inscrita_derecho, il.analisis_juridico_caso, il.recomendacion_legal, il.historial_registral, il.analisis_legal, i.fecha as fecha_inscripcion,i.tomo, i.folio, i.asiento, rv.razon as nace_por, i.razon, pv.parametro as parametroSelect, i.parametro, n.notario, n.juzgado, n.expediente_numero, n.propietario_original, n.propietario_actual, il.idtraslape from antecedentes a left join usuarios u on u.id = a.usuario left join  canton on canton.id = a.idCanton left join distrito on distrito.id = a.idDistrito left join  informacion_legal il on il.idAntecedente = a.id left join  inscripcion i on i.idAntecedente = a.id left join razones_values rv on rv.id = i.idrazon left join parametros_values pv on pv.id = i.idparametro left join notariado n on n.idAntecedente = a.id where a.id = '$idFormulario' order by a.id DESC";
 	foreach($cnn->query($query) as $row){
 		$data->asesor = $row['nombre'];
 		$data->usuarioid = $row['usuarioid'];
@@ -54,8 +55,6 @@ if(isset($_GET['id'])){
 		$data->expediente_numero = $row['expediente_numero'];
 		$data->propietario_original = $row['propietario_original'];
 		$data->propietario_actual = $row['propietario_actual'];
-		$data->traslape = $row['traslape'];
-		$data->tipo = $row['tipo'];
 		$cont = 0;
 		foreach($cnn->query("select movimiento from movimientos where idAntecedente = '$idFormulario'") as $m){
 			$mov[$cont]['movimiento'] = $m['movimiento'];

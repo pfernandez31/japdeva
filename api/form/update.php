@@ -5,30 +5,17 @@
 	$request = json_decode($postdata);
 
 	$resp = new stdClass();
-	
+	$idAntecedente = $request->idAntecedente;
 	$usuario = $request->usuarioId;
  	$movHistoricos = $request->movHistoricos; //ARRAY
 	$asesor = $request->asesor;
 	$canton = (int)$request->canton;
 	$distrito = (int)$request->distrito;
-	$razones = $request->razones; //ARRAY
-	$razones_uno = $razones[0]->id;
-	if(isset($request->razon)){
-		$razon = $request->razon;
-	}
-	else{
-		$razon = '';
-	}
-	
-	if(isset($request->opcParametro)){
-		$opcParametro = $request->opcParametro;
-	}
-	else{
-		$opcParametro = '';
-	}
-	$traslapes = $request->traslapes; //ARRAY
-	$parametros_inscripcion = $request->parametros_inscripcion; //ARRAY
-	$parametros_inscripcion_uno = $parametros_inscripcion[0]->id;
+	$razon = $request->razon;
+	$razones = $request->razones;
+	$opcParametro = $request->opcParametro;
+	$traslapes = $request->traslapes;
+	$parametros_inscripcion = $request->parametros_inscripcion;
 	$otorgamiento = $request->otorgamiento;
 	$presentacion = $request->presentacion;
 	$ejecutoria_juzgado = $request->ejecutoria_juzgado;
@@ -54,23 +41,24 @@
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
 
+	$modificado = date('Y-m-d G:i:s');
 	//ANTECEDENTES
-	/*$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado')");
-	$idAntecedente = $cnn->lastInsertId();
+	$cnn->query("UPDATE antecedentes set usuario ='$usuario', finca = '$finca', d = '$d', derecho = '$derecho', identificador_predial ='$identificadorPredial', plano ='$plano', area ='$area', idDistrito ='$distrito', idCanton ='$canton', plazo_convalidacion ='$plazo', otorgamiento ='$otorgamiento', presentacion ='$presentacion', ejecutoria_juzgado ='$ejecutoria_juzgado', fecha_modificacion = '$modificado' where id = '$idAntecedente'");
 
-	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones_uno','$parametros_inscripcion_uno','$razon','$opcParametro')");
 
+	$cnn->query("UPDATE inscripcion set fecha = '$inscripcion', tomo = '$tomo', folio = '$folio', asiento = '$asiento', idrazon = '$razones', idparametro = '$parametros_inscripcion', razon = '$razon', parametro = '$opcParametro' where idAntecedente = '$idAntecedente'");
+
+	$cnn->query("DELETE from movimientos where idAntecedente = '$idAntecedente'");
 	foreach ($movHistoricos as $key => $value) {
-		$cnn->query("INSERT into movimientos(idAntecedente,movimiento)value('$idAntecedente','$value->mov')");
+		if($value->mov != ''){
+			$cnn->query("INSERT into movimientos(idAntecedente,movimiento)value('$idAntecedente','$value->mov')");
+		}
 	}
 
-	foreach ($traslapes as $key => $value) {
-		$cnn->query("INSERT into traslapes(idAntecedente,traslape,tipo)value('$idAntecedente','$value->traslape','$value->tipo')");
-	}
 
-	$cnn->query("INSERT into notariado(idAntecedente,notario,juzgado,expediente_numero,propietario_original,propietario_actual)value('$idAntecedente','$notario','$juzgado','$numExpediente','$propietario','$propietarioA')");
+	$cnn->query("UPDATE notariado set notario = '$notario', juzgado = '$juzgado', expediente_numero = '$numExpediente', propietario_original = '$propietario', propietario_actual = '$propietarioA' where idAntecedente = '$idAntecedente'");
 
-	$cnn->query("INSERT into informacion_legal(idAntecedente,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal)value('$idAntecedente','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal')");*/
+	$cnn->query("UPDATE informacion_legal set finca_inscrita_derecho = '$finca_inscrita_derecho', idtraslape = '$traslapes' , analisis_juridico_caso = '$analisisCaso', recomendacion_legal = '$recomendacionLegal', historial_registral = '$asesorRegistral', analisis_legal = '$asesorLegal' where idAntecedente = '$idAntecedente'");
 	//OK
 	$resp->success = "Actualizado con Exito!";
 	addregistro('update','registro actualizado finca #'.$finca.' creado por '.$asesor);
