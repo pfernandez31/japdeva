@@ -54,7 +54,7 @@
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Si eliminar",
             closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnCancel: true
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
