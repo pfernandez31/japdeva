@@ -104,7 +104,7 @@ body{
   }
   /* FORM TYPOGRAPHY*/
   .formLogin input[type=button], input[type=submit], input[type=reset]  {
-	background-color: #56baed;
+	background-color: #81cddc;
 	border: none;
 	color: white;
 	padding: 15px 80px;
@@ -297,7 +297,7 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
+    padding: 32px 10px;
     background: #fff;
     border: none;
     border-radius: 0;
@@ -328,7 +328,7 @@ a, a:hover, a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background:#81cddc;
     color: #fff;
     transition: all 0.3s;
 }
@@ -344,7 +344,6 @@ a, a:hover, a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul p {
