@@ -5,7 +5,7 @@
     .module('app.form')
     .controller('editController', editController);
 
-  function editController($state,$cookies, $stateParams, $timeout, formServices, $scope, sharedService, SweetAlert) {
+  function editController($state,$cookies, $stateParams, $timeout, formServices, $scope, sharedService, SweetAlert, $window) {
     var vm = this;
     vm.infoUser = {};
     vm.exit = exit;
@@ -21,6 +21,7 @@
     vm.addNewMovH = addNewMovH;
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
+    vm.eliminar = eliminar;
 
 
     active();
@@ -42,6 +43,26 @@
               
       }
       
+    }
+
+    function eliminar(){
+      SweetAlert.swal({
+            title: "Eliminar Registro?", //Bold text
+            text: "Desea eliminar este registro del sistema!", //light text
+            type: "warning", //type -- adds appropiriate icon
+            showCancelButton: true, // displays cancel btton
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si eliminar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, 
+        function(isConfirm){ //Function that triggers on user action.
+            if(isConfirm){
+              var id = vm.idAntecedente;
+              var finca  = vm.antecedentes.finca;
+              $window.location.href = "api/form/deleteitem.php?id="+id+"&finca="+finca;
+            }
+        });
     }
 
     function selecDistritos(){

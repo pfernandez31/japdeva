@@ -55,7 +55,7 @@
     }
 
     function save(){
-      if(vm.antecedentes.finca == null ||  vm.antecedentes.tomo == null || vm.antecedentes.folio == null || vm.antecedentes.asiento == null || vm.antecedentes.identificadorPredial == null || vm.antecedentes.razones == null || vm.antecedentes.parametros_inscripcion == null || vm.antecedentes.propietarioA == null || vm.antecedentes.propietario == null || vm.antecedentes.finca_inscrita_derecho == null || vm.antecedentes.asesorRegistral == null  ){
+      if(vm.antecedentes.finca == '' ||   vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
@@ -79,7 +79,34 @@
 
 
     function active(){
-
+       //INICIALIZAR
+       vm.antecedentes.razones = '';
+       vm.antecedentes.ntomo = '';
+       vm.antecedentes.nasiento = '';
+       vm.antecedentes.area_traslape = '';
+       vm.antecedentes.pne = '';
+       vm.antecedentes.traslapes = '';
+       vm.antecedentes.parametros_inscripcion = '';
+       vm.antecedentes.finca = '';
+       vm.antecedentes.d = '';
+       vm.antecedentes.derecho = '';
+       vm.antecedentes.identificadorPredial = '';
+       vm.antecedentes.plano = '';
+       vm.antecedentes.area = '';
+       vm.antecedentes.tomo = '';
+       vm.antecedentes.folio = '';
+       vm.antecedentes.asiento = '';
+       vm.antecedentes.plazo = '';
+       vm.antecedentes.notario = '';
+       vm.antecedentes.juzgado = '';
+       vm.antecedentes.numExpediente = '';
+       vm.antecedentes.propietario = '';
+       vm.antecedentes.propietarioA = '';
+       vm.antecedentes.analisisCaso = '';
+       vm.antecedentes.recomendacionLegal = '';
+       vm.antecedentes.asesorRegistral = '';
+       vm.antecedentes.asesorLegal = '';
+       vm.antecedentes.finca_inscrita_derecho = '';
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");
@@ -111,6 +138,7 @@
       vm.antecedentes.canton = '1';
       vm.antecedentes.distrito = '1';
       vm.antecedentes.razon = '';
+      vm.antecedentes.otrarazon = '';
       vm.antecedentes.opcParametro = '';
       vm.antecedentes.movHistoricos.push({mov:''});
     }

@@ -26,6 +26,9 @@
 	il.recomendacion_legal,
 	il.historial_registral,
 	il.analisis_legal,
+	il.pne,
+	il.area_traslape,
+	il.idtraslape,
 	i.fecha as fecha_inscripcion,
 	i.tomo,
 	i.folio,
@@ -39,7 +42,8 @@
 	n.expediente_numero,
 	n.propietario_original,
 	n.propietario_actual,
-	il.idtraslape
+	n.ntomo,
+	n.nasiento
 	from antecedentes a
 	left join usuarios u on u.id = a.usuario
 	left join  canton on canton.id = a.idCanton
@@ -88,6 +92,10 @@
 		$data[$contador]['propietario_original'] = $row['propietario_original'];
 		$data[$contador]['propietario_actual'] = $row['propietario_actual'];
 		$data[$contador]['traslapes'] = $row['idtraslape'];
+		$data[$contador]['ntomo'] = $row['ntomo'];
+		$data[$contador]['nasiento'] = $row['nasiento'];
+		$data[$contador]['area_traslape'] = $row['area_traslape'];
+		$data[$contador]['pne'] = $row['pne'];
 		$contador++;
     }
 	echo json_encode($data);

@@ -11,8 +11,16 @@
 	$asesor = $request->asesor;
 	$canton = (int)$request->canton;
 	$distrito = (int)$request->distrito;
-	$razon = $request->razon;
 	$razones = $request->razones;
+	if($razones == 12){
+		$razon = $request->otrarazon;
+	} else{
+		$razon = $request->razon;
+	}
+	$ntomo = $request->ntomo;
+	$nasiento = $request->nasiento;
+	$area_traslape = $request->area_traslape;
+	$pne = $request->pne;
 	$opcParametro = $request->opcParametro;
 	$traslapes = $request->traslapes;
 	$parametros_inscripcion = $request->parametros_inscripcion;
@@ -56,9 +64,9 @@
 	}
 
 
-	$cnn->query("UPDATE notariado set notario = '$notario', juzgado = '$juzgado', expediente_numero = '$numExpediente', propietario_original = '$propietario', propietario_actual = '$propietarioA' where idAntecedente = '$idAntecedente'");
+	$cnn->query("UPDATE notariado set notario = '$notario', juzgado = '$juzgado', expediente_numero = '$numExpediente', propietario_original = '$propietario', propietario_actual = '$propietarioA', ntomo = '$ntomo', nasiento = '$nasiento' where idAntecedente = '$idAntecedente'");
 
-	$cnn->query("UPDATE informacion_legal set finca_inscrita_derecho = '$finca_inscrita_derecho', idtraslape = '$traslapes' , analisis_juridico_caso = '$analisisCaso', recomendacion_legal = '$recomendacionLegal', historial_registral = '$asesorRegistral', analisis_legal = '$asesorLegal' where idAntecedente = '$idAntecedente'");
+	$cnn->query("UPDATE informacion_legal set finca_inscrita_derecho = '$finca_inscrita_derecho', idtraslape = '$traslapes' , analisis_juridico_caso = '$analisisCaso', recomendacion_legal = '$recomendacionLegal', historial_registral = '$asesorRegistral', analisis_legal = '$asesorLegal', area_traslape = '$area_traslape', pne = '$pne' where idAntecedente = '$idAntecedente'");
 	//OK
 	$resp->success = "Actualizado con Exito!";
 	addregistro('update','registro actualizado finca #'.$finca.' creado por '.$asesor);

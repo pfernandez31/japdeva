@@ -25,6 +25,9 @@ il.analisis_juridico_caso,
 il.recomendacion_legal,
 il.historial_registral,
 il.analisis_legal,
+il.pne,
+il.area_traslape,
+il.idtraslape,
 i.fecha as fecha_inscripcion,
 i.tomo,
 i.folio,
@@ -39,8 +42,8 @@ n.juzgado,
 n.expediente_numero,
 n.propietario_original,
 n.propietario_actual,
-il.idtraslape 
-
+n.ntomo,
+n.nasiento
 from antecedentes a
 left join usuarios u on u.id = a.usuario
 left join  informacion_legal il on il.idAntecedente = a.id
@@ -79,7 +82,14 @@ order by a.id DESC  limit 1";
 		$data->checkNace = $row['razonid'];
 		$data->razones = $row['razonid'];
 		$data->nace_por = $row['nace_por'];
-		$data->razon = $row['nace_por_value'];
+		
+		if($row['razonid'] == 12){
+			$data->otrarazon = $row['nace_por_value'];
+			$data->razon = '';
+		} else{
+			$data->otrarazon = '';
+			$data->razon = $row['nace_por_value'];
+		}
 		$data->checkParam = $row['parametroid'];
 		$data->parametros_inscripcion = $row['parametroid'];
 		$data->opcParametro = $row['parametro_value'];
@@ -90,6 +100,10 @@ order by a.id DESC  limit 1";
 		$data->propietarioA = $row['propietario_actual'];
 		$data->checkTraslape = $row['idtraslape'];
 		$data->traslapes = $row['idtraslape'];
+		$data->ntomo = $row['ntomo'];
+		$data->nasiento = $row['nasiento'];
+		$data->area_traslape = $row['area_traslape'];
+		$data->pne = $row['pne'];
 		$cont = 0;
 		foreach($cnn->query("select movimiento from movimientos where idAntecedente = '$idFormulario'") as $m){
 			$mov[$cont]['mov'] = $m['movimiento'];

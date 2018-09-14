@@ -11,7 +11,7 @@
 		$cnn->query("delete from notariado where idAntecedente = '$idAntecedente'");
 		$cnn->query("delete from movimientos where idAntecedente = '$idAntecedente'");
 
-		addregistro('delete',"se elimino la fila #".$idAntecedente." asociada a finca ".$finca);
+		addregistro('delete',"se elimino el registro de finca ".$finca);
 		header("location: ../../#!/home/");
 	} else{
 		header("location: ../../");
