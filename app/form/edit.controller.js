@@ -60,7 +60,7 @@
             if(isConfirm){
               var id = vm.idAntecedente;
               var finca  = vm.antecedentes.finca;
-              $window.location.href = "api/form/deleteitem.php?id="+id+"&finca="+finca;
+              $window.location.href = "api/form/delete.php?id="+id+"&finca="+finca;
             }
         });
     }
