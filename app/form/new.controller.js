@@ -21,6 +21,7 @@
     vm.addNewMovH = addNewMovH;
     vm.valueRazones = '';
     vm.valueParametro = '';
+    vm.valueTraslape = '';
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
 
@@ -32,12 +33,24 @@
           case "razones":
               vm.antecedentes.razones = d.id;
               vm.valueRazones = d.id;
+              if(d.id == 12){
+                vm.selectOtro = false;
+                vm.antecedentes.razon = '';
+              } else {
+                vm.selectOtro = true;
+                vm.antecedentes.otrarazon = '';
+                vm.antecedentes.razon = '';
+              }
               break;
           case "parametros":
               vm.antecedentes.parametros_inscripcion = d.id;
               vm.valueParametro = d.id;
+              if(d.id != 3){
+                vm.antecedentes.opcParametro = '';
+              }
               break;
           case "traslapes":
+              vm.valueTraslape = d.id;
               vm.antecedentes.traslapes = d.id;
               break;
           default:
@@ -55,19 +68,34 @@
     }
 
     function save(){
-      if(vm.antecedentes.finca == '' ||   vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
+      if(vm.antecedentes.inscripcion == '' || vm.antecedentes.finca == '' ||  vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
-        formServices.saveForm(vm.antecedentes)
-        .then(function(resp){
-          var data = resp.data;
-          SweetAlert.swal("Formulario", data.success, "success");
-          $timeout(function(){ $state.go('home'); },2000);
-        })
-        .catch(function(err){
-          console.log(err);
-        })
+        console.log(vm.antecedentes);
+        SweetAlert.swal({
+          title: "Agregar Registro", //Bold text
+          text: "¿Desea insertar el registro al sistema?", //light text
+          type: "warning", //type -- adds appropiriate icon
+          showCancelButton: true, // displays cancel btton
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Si",
+          closeOnConfirm: false,
+          closeOnCancel: true
+        }, 
+        function(isConfirm){ //Function that triggers on user action.
+            if(isConfirm){
+              formServices.saveForm(vm.antecedentes)
+                .then(function(resp){
+                  var data = resp.data;
+                  SweetAlert.swal("Formulario", data.success, "success");
+                  $timeout(function(){ $state.go('home'); },500);
+                })
+                .catch(function(err){
+                  console.log(err);
+                })
+            }
+        });
       }
       
       
@@ -107,6 +135,7 @@
        vm.antecedentes.asesorRegistral = '';
        vm.antecedentes.asesorLegal = '';
        vm.antecedentes.finca_inscrita_derecho = '';
+       vm.antecedentes.inscripcion = ''; 
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");
@@ -141,6 +170,7 @@
       vm.antecedentes.otrarazon = '';
       vm.antecedentes.opcParametro = '';
       vm.antecedentes.movHistoricos.push({mov:''});
+      vm.selectOtro = true;
     }
 
     function exit() {

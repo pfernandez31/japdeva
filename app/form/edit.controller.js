@@ -31,12 +31,24 @@
           case "razones":
               vm.antecedentes.razones = d.id;
               vm.valueRazones = d.id;
+              if(d.id == 12){
+                vm.selectOtro = false;
+                vm.antecedentes.razon = '';
+              } else {
+                vm.selectOtro = true;
+                vm.antecedentes.otrarazon = '';
+                vm.antecedentes.razon = '';
+              }
               break;
           case "parametros":
               vm.antecedentes.parametros_inscripcion = d.id;
               vm.valueParametro = d.id;
+              if(d.id != 3){
+                vm.antecedentes.opcParametro = '';
+              }
               break;
           case "traslapes":
+              vm.valueTraslape = d.id;
               vm.antecedentes.traslapes = d.id;
               break;
           default:
@@ -47,22 +59,22 @@
 
     function eliminar(){
       SweetAlert.swal({
-            title: "Eliminar Registro?", //Bold text
-            text: "Desea eliminar este registro del sistema!", //light text
-            type: "warning", //type -- adds appropiriate icon
-            showCancelButton: true, // displays cancel btton
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Si eliminar",
-            closeOnConfirm: false,
-            closeOnCancel: true
-        }, 
-        function(isConfirm){ //Function that triggers on user action.
-            if(isConfirm){
-              var id = vm.idAntecedente;
-              var finca  = vm.antecedentes.finca;
-              $window.location.href = "api/form/delete.php?id="+id+"&finca="+finca;
-            }
-        });
+          title: "Eliminar Registro?", //Bold text
+          text: "Desea eliminar este registro del sistema!", //light text
+          type: "warning", //type -- adds appropiriate icon
+          showCancelButton: true, // displays cancel btton
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Si eliminar",
+          closeOnConfirm: false,
+          closeOnCancel: true
+      }, 
+      function(isConfirm){ //Function that triggers on user action.
+          if(isConfirm){
+            var id = vm.idAntecedente;
+            var finca  = vm.antecedentes.finca;
+            $window.location.href = "api/form/delete.php?id="+id+"&finca="+finca;
+          }
+      });
     }
 
     function selecDistritos(){
@@ -74,15 +86,29 @@
     }
 
     function update(){
-		formServices.updateForm(vm.antecedentes)
-			.then(function(resp){
-			  var data = resp.data;
-			  SweetAlert.swal("Formulario", data.success, "success");
-			  $timeout(function(){ $state.go('home'); },2000);
-			})
-			.catch(function(err){
-			  console.log(err);
-			})
+      SweetAlert.swal({
+          title: "Actualizar Registro", //Bold text
+          text: "¿Desea actualizar la información?", //light text
+          type: "warning", //type -- adds appropiriate icon
+          showCancelButton: true, // displays cancel btton
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Si",
+          closeOnConfirm: false,
+          closeOnCancel: true
+        }, 
+        function(isConfirm){ //Function that triggers on user action.
+            if(isConfirm){
+              formServices.updateForm(vm.antecedentes)
+                .then(function(resp){
+                  var data = resp.data;
+                  SweetAlert.swal("Formulario", data.success, "success");
+                  $timeout(function(){ $state.go('home'); },500);
+                })
+                .catch(function(err){
+                  console.log(err);
+                })
+            }
+        });
     }
 
     function addNewMovH(){
@@ -97,6 +123,7 @@
       }
       vm.infoUser = sharedService.getAuth();
       vm.idAntecedente = $stateParams.id;
+      vm.selectOtro = true;
       //SELECT NACE POR
       formServices.getRazones().then(function(data){
         vm.razones = data.data;
@@ -127,8 +154,12 @@
       		data.ejecutoria_juzgado = new Date(data.ejecutoria_juzgado);
       		vm.checkNace =  data.checkNace;
           vm.valueRazones = data.checkNace;
+          if(vm.valueRazones == 12){
+             vm.selectOtro = false;
+          }
       		vm.checkParam =  data.checkParam;
           vm.valueParametro = data.checkParam;
+          vm.valueTraslape = data.checkTraslape;
       		vm.checkTraslape =  data.checkTraslape;
       		vm.antecedentes = data;
       		vm.antecedentes.asesor = vm.infoUser.nombre;
