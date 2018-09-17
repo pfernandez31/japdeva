@@ -7,7 +7,61 @@ if(isset($_GET['id'])){
 	$data = new stdClass();
 	$mov = [];
 	$idFormulario = $_GET['id'];
-	$query = "select u.nombre, a.usuario as usuarioid, a.id, a.finca, a.d, a.derecho, a.identificador_predial, a.plano, a.area, a.idDistrito,a.idCanton, a.plazo_convalidacion, a.otorgamiento, a.presentacion, a.ejecutoria_juzgado, canton.canton, distrito.distrito, il.finca_inscrita_derecho, il.analisis_juridico_caso, il.recomendacion_legal, il.historial_registral, il.analisis_legal, il.pne, il.area_traslape, i.fecha as fecha_inscripcion,i.tomo, i.folio, i.asiento, rv.razon as nace_por, i.razon, pv.parametro as parametroSelect, i.parametro, n.notario, n.juzgado, n.expediente_numero, n.propietario_original, n.propietario_actual, il.idtraslape, n.ntomo, n.nasiento from antecedentes a left join usuarios u on u.id = a.usuario left join  canton on canton.id = a.idCanton left join distrito on distrito.id = a.idDistrito left join  informacion_legal il on il.idAntecedente = a.id left join  inscripcion i on i.idAntecedente = a.id left join razones_values rv on rv.id = i.idrazon left join parametros_values pv on pv.id = i.idparametro left join notariado n on n.idAntecedente = a.id where a.id = '$idFormulario' order by a.id DESC";
+	$query = "select
+u.nombre,
+a.usuario as usuarioid,
+a.id,
+a.finca,
+a.d,
+a.derecho,
+a.identificador_predial,
+a.plano,
+a.area,
+a.idDistrito,
+a.idCanton,
+a.plazo_convalidacion,
+a.otorgamiento,
+a.presentacion,
+a.ejecutoria_juzgado,
+canton.canton,
+distrito.distrito,
+il.finca_inscrita_derecho,
+il.analisis_juridico_caso,
+il.recomendacion_legal,
+il.historial_registral,
+il.analisis_legal,
+il.pne,
+il.area_traslape,
+i.fecha as fecha_inscripcion,
+i.tomo,
+i.folio,
+i.asiento,
+rv.razon as nace_por,
+i.razon,
+pv.parametro as parametroSelect,
+i.parametro,
+n.notario,
+n.juzgado,
+n.expediente_numero,
+n.propietario_original,
+n.propietario_actual,
+il.idtraslape,
+tv.traslape,
+n.ntomo,
+n.nasiento
+from antecedentes a
+left join usuarios u on u.id = a.usuario
+left join  canton on canton.id = a.idCanton
+left join distrito on distrito.id = a.idDistrito
+left join  informacion_legal il on il.idAntecedente = a.id
+left join  inscripcion i on i.idAntecedente = a.id
+left join razones_values rv on rv.id = i.idrazon
+left join parametros_values pv on pv.id = i.idparametro
+left join notariado n on n.idAntecedente = a.id
+left join traslapes_values tv on tv.id = il.idtraslape
+where 
+a.id = '$idFormulario' 
+order by a.id DESC";
 	foreach($cnn->query($query) as $row){
 		$data->asesor = $row['nombre'];
 		$data->usuarioid = $row['usuarioid'];
@@ -26,12 +80,14 @@ if(isset($_GET['id'])){
 		$data->ejecutoria_juzgado = $row['ejecutoria_juzgado'];
 		$data->canton = $row['canton'];
 		$data->distrito = $row['distrito'];
-		$data->finca_inscrita_derecho = $row['finca_inscrita_derecho'];
+		$data->finca_inscrita_derecho = strtoupper($row['finca_inscrita_derecho']);
 		$data->analisis_juridico_caso = $row['analisis_juridico_caso'];
 		$data->recomendacion_legal = $row['recomendacion_legal'];
 		$data->historial_registral = $row['historial_registral'];
 		$data->analisis_legal = $row['analisis_legal'];
-		$data->fecha_inscripcion = $row['fecha_inscripcion'];
+
+		$dateTime = strtotime($row['fecha_inscripcion']);
+		$data->fecha_inscripcion = date('Y-m-d', $dateTime);
 		$data->tomo = $row['tomo'];
 		$data->folio = $row['folio'];
 		$data->asiento = $row['asiento'];
@@ -39,21 +95,11 @@ if(isset($_GET['id'])){
 		$data->ntomo = $row['ntomo'];
 		$data->nasiento = $row['nasiento'];
 		$data->area_traslape = $row['area_traslape'];
-		$data->pne = $row['pne'];
-		
-		if($row['razon'] != ''){
-			$data->razon = "<ul><li>".$row['razon']."</li></ul>";
-		} else{
-			$data->razon = $row['razon'];
-		}
-
+		$data->traslape = $row['traslape'];
+		$data->pne = strtoupper($row['pne']);
+		$data->razon = $row['razon'];
 		$data->parametroSelect = $row['parametroSelect'];
-		if($row['parametro'] != ''){
-			$data->parametro = "<ul><li>".$row['parametro']."</li></ul>";
-		} else{
-			$data->parametro = $row['parametro'];
-		}
-		
+		$data->parametro = $row['parametro'];
 		$data->notario = $row['notario'];
 		$data->juzgado = $row['juzgado'];
 		$data->expediente_numero = $row['expediente_numero'];
@@ -92,6 +138,19 @@ if(isset($_GET['id'])){
 	    .title {
 	    	font-weight:bold;
 	    }
+	    .subtitle{
+	    	font-weight:500;
+	    }
+	    .colHeader{
+	    	background-color:#ECECEC;
+	    }
+	    .coldata{
+	    	background-color:#F8F9FA;
+	    	color:#212529;
+	    }
+	    .colextra{
+	    	background-color:#E1E1E1;
+	    }
 	</style>
 	<div class="center">
 	<h1>$encabezado</h1>
@@ -101,66 +160,155 @@ if(isset($_GET['id'])){
 EOF;
 	//ASESOR
 	$html .= <<<EOF
-		<table cellspacing="5">
+		<table cellspacing="0" cellpadding="5">
 			<tr>
-				<td width="25%"><span class="title">ASESOR:</span></td>
-				<td>$data->asesor</td>
+				<td width="15%"  class="colHeader"><span class="title">ASESOR</span></td>
+				<td class="coldata" width="85%">$data->asesor</td>
 			</tr>
 			<tr>
-				<td width="25%"><span class="title">FINCA:</span></td>
-				<td>$data->finca</td>
+				<td width="15%" class="colHeader"><span class="title">FINCA</span></td>
+				<td class="coldata" width="20%">$data->finca</td>
+				<td width="4%" class="colHeader"><span class="subtitle">D</span></td>
+				<td class="coldata" width="12%">$data->d</td>
+				<td width="15%" class="colHeader"><span class="subtitle">DERECHO</span></td>
+				<td class="coldata">$data->derecho</td>
+			</tr>
+			<tr>
+				<td width="35%" class="colHeader"><span class="subtitle">IDENTIFICADOR PREDIAL</span></td>
+				<td class="coldata"  width="65%">$data->identificador_predial</td>
 			</tr>
 			<div></div>
 			<tr >
-				<td width="25%"><span class="title">INSCRIPCIÓN</span></td>
-				<td width="25%"><span class="title">TOMO: </span>$data->tomo</td>
-				<td width="25%"><span class="title">FOLIO: </span>$data->folio</td>
-				<td width="25%"><span class="title">ASIENTO: </span>$data->asiento</td>
+				<td width="25%" class="colHeader"><span class="title">INSCRIPCIÓN</span></td>
+				<td width="25%" class="colHeader"><span class="subtitle">TOMO</span></td>
+				<td width="25%" class="colHeader"><span class="subtitle">FOLIO</span></td>
+				<td width="25%" class="colHeader"><span class="subtitle">ASIENTO</span></td>
+			</tr>
+			<tr>
+				<td width="25%" class="coldata">$data->fecha_inscripcion</td>
+				<td width="25%" class="coldata">$data->tomo</td>
+				<td width="25%" class="coldata">$data->folio</td>
+				<td width="25%" class="coldata">$data->asiento</td>
+			</tr>
+			<tr>
+				<td width="25%" class="colHeader"><span class="title">PLANO</span></td>
+				<td width="24%" class="coldata">$data->plano</td>
+				<td width="2%"></td>
+				<td width="25%" class="colHeader"><span class="title">CANTON</span></td>
+				<td width="25%" class="coldata">$data->canton</td>
+			</tr>
+			<tr>
+				<td width="25%" class="colHeader"><span class="title">AREA</span></td>
+				<td width="24%" class="coldata">$data->area</td>
+				<td width="2%"></td>
+				<td width="25%" class="colHeader"><span class="title">DISTRITO</span></td>
+				<td width="25%" class="coldata">$data->distrito</td>
 			</tr>
 			<div></div>
 			<tr>
-				<td width="50%"><span class="title">PLANO: </span>$data->plano</td>
-				<td width="50%"><span class="title">ÁREA: </span>$data->area</td>
+				<td width="15%" class="colHeader"><span class="title">NACE POR</span></td>
+				<td width="40%" class="coldata">$data->nace_por</td>
+				<td width="45%" class="colextra">$data->razon</td>
+			</tr>
+			<tr>
+				<td width="32%" class="colHeader"><span class="title">INSCRIPCIÓN DE LA FINCA</span></td>
+				<td width="37%" class="coldata">$data->parametroSelect</td>
+				<td width="31%" class="colextra">$data->parametro</td>
+			</tr>
+			<div></div>
+			<tr >
+				<td width="50%" class="colHeader"><span class="title">NOTARIO</span></td>
+				<td width="50%" class="colHeader"><span class="title">JUZGADO</span></td>
+			</tr>
+			<tr>
+				<td width="50%" class="coldata">$data->notario</td>
+				<td width="50%" class="coldata">$data->juzgado</td>
+			</tr>
+			<tr >
+				<td width="25%" class="colHeader"><span class="title">OTORGAMIENTO</span></td>
+				<td width="25%" class="colHeader"><span class="title">PRESENTACION</span></td>
+				<td width="25%" class="colHeader"><span class="title">PLAZO DE CONVALIDACIÓN</span></td>
+				<td width="25%" class="colHeader"><span class="title">EJECUTORIA DEL JUZGADO</span></td>
+			</tr>
+			<tr>
+				<td width="25%" class="coldata">$data->otorgamiento</td>
+				<td width="25%" class="coldata">$data->presentacion</td>
+				<td width="25%" class="coldata">$data->plazo_convalidacion</td>
+				<td width="25%" class="coldata">$data->ejecutoria_juzgado</td>
+			</tr>
+			<tr >
+				<td width="40%" class="colHeader"><span class="title">EXPEDIENTE NUMERO</span></td>
+			</tr>
+			<tr>
+				<td width="40%" class="coldata">$data->expediente_numero</td>
+				<td width="15%" class="colHeader">TOMO</td>
+				<td width="15%" class="coldata">$data->ntomo</td>
+				<td width="15%" class="colHeader">ASIENTO</td>
+				<td width="15%" class="coldata">$data->nasiento</td>
 			</tr>
 			<div></div>
 			<tr>
-				<td width="100%"><span class="title">NACE POR:</span></td>
+				<td width="45%"  class="colHeader"><span class="title">PROPIETARIO ORIGINAL</span></td>
+				<td class="coldata" width="55%">$data->propietario_original</td>
 			</tr>
 			<tr>
-				<td width="25%"></td>
-				<td>$data->nace_por $data->razon</td>
-			</tr>
-			<div></div>
-			<tr>
-				<td width="100%"><span class="title">PARAMETRO DE ANALISIS INSCRIPCIÓN DE LA FINCA</span></td>
-			</tr>
-			<tr>
-				<td width="25%"></td>
-				<td>$data->parametroSelect $data->parametro</td>
+				<td width="45%"  class="colHeader"><span class="title">PROPIETARIO ACTUAL</span></td>
+				<td class="coldata" width="55%">$data->propietario_actual</td>
 			</tr>
 			<div></div>
 			<div></div>
 			<tr>
-				<td width="40%"><span class="title">PROPIETARIO ORIGINAL:</span></td>
-				<td>$data->propietario_original</td>
+				<td width="45%"  class="colHeader"><span class="title">HECHOS RELEVANTES Y TIPOLOGÍA</span></td>
+				<td class="coldata" width="55%">$data->traslape</td>
 			</tr>
 			<tr>
-				<td width="40%"><span class="title">PROPIETARIO ACTUAL:</span></td>
-				<td>$data->propietario_actual</td>
+				<td width="45%"  class="colHeader"><span class="title">PORCENTAJE DEL AREA TRASLAPE</span></td>
+				<td class="coldata" width="30%">$data->area_traslape</td>
+				<td width="10%"  class="colHeader"><span class="title">PNE</span></td>
+				<td class="coldata" width="10%">$data->pne</td>
+			</tr>
+			<div></div>
+			<tr>
+				<td width="38%"  class="colHeader"><span class="title">FINCA INSCRITA A DERECHO</span></td>
+				<td class="coldata" width="10%">$data->finca_inscrita_derecho</td>
+			</tr>
+			<tr>
+				<td width="38%"  class="colHeader"><span class="title">ANÁLISIS JURÍDICO DEL CASO</span></td>
+				<td class="coldata" width="62%">$data->analisis_juridico_caso</td>
+			</tr>
+			<tr>
+				<td width="38%"  class="colHeader"><span class="title">RECOMENDACIÓN LEGAL</span></td>
+				<td class="coldata" width="62%">$data->recomendacion_legal</td>
+			</tr>
+			<div></div>
+			<tr>
+				<td width="40%"  class="colHeader"><span class="title">ASESOR RESPONSABLE / <br>HISTORIAL REGISTRAL</span></td>
+				<td class="coldata" width="60%">$data->historial_registral</td>
+			</tr>
+			<tr>
+				<td width="40%"  class="colHeader"><span class="title">ASESOR RESPONSABLE / <br>ANÁLISIS LEGAL</span></td>
+				<td class="coldata" width="60%">$data->analisis_legal</td>
 			</tr>
 		</table>
 EOF;
 	//MOVIMIENTOS HISTORICOS
 	$html .= <<<EOF
 		<div style="height:50px"></div>
-		<div class="center"><h5>MOVIMIENTOS HISTORICOS POSTERIORES A 1975</h5></div>
+		<div class="center title"><h3>MOVIMIENTOS HISTORICOS POSTERIORES A 1975</h3></div>
+		<table cellspacing="0" cellpadding="5">
 EOF;
 	foreach (json_decode($data->movimiento)  as $key => $value) {
 		$m = ($key+1).") ".$value->movimiento;
 		$html .= <<<EOF
-	        <p class="list">$m</p>	
+			<tr>
+				<td class="colHeader" width="100%">$m</td>
+			</tr>	
 EOF;
-	} //FIN MOVIMIENTOS HISTORICOS
+	}
+	$html .= <<<EOF
+		</table>
+EOF;
+	 //FIN MOVIMIENTOS HISTORICOS
 	//GENERAR
 	$pdf->writeHTML($html, true, false, true, false, '');
 	$pdf->Output($data->finca.'.pdf', 'I');
