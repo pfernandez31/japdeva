@@ -102,7 +102,7 @@
                 .then(function(resp){
                   var data = resp.data;
                   if(data.success){
-                    SweetAlert.swal("Formulario", data.success, "success");
+                    SweetAlert.swal("Formulario", "actualizado correctamente!", "success");
                     $timeout(function(){ $state.go('home'); },500);
                   } else {
                     SweetAlert.swal("No se ha podido actualizar el formulario", "verifique la información digitada", "error");
