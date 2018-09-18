@@ -99,7 +99,7 @@
 	}
 	
 	//OK
-	$resp->success = "Actualizado con Exito!";
+	$resp->success = true;
 	addregistro('update','registro actualizado finca #'.$finca.' creado por '.$asesor);
 	echo json_encode($resp);
 ?>
