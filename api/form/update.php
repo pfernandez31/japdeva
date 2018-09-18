@@ -58,7 +58,7 @@
 	//ANTECEDENTES
 	$cnn->query("UPDATE antecedentes set usuario ='$usuario', finca = '$finca', d = '$d', derecho = '$derecho', identificador_predial ='$identificadorPredial', plano ='$plano', area ='$area', idDistrito ='$distrito', idCanton ='$canton', plazo_convalidacion ='$plazo', otorgamiento ='$otorgamiento', presentacion ='$presentacion', ejecutoria_juzgado ='$ejecutoria_juzgado', fecha_modificacion = '$modificado' where id = '$idAntecedente'");
 
-	$existInscripcion = $cnn->query("select * from inscripcion where idAntecedente = '$idAntecedente''");
+	$existInscripcion = $cnn->query("select * from inscripcion where idAntecedente = '$idAntecedente'");
 	$insc = $existInscripcion->fetchAll();
 	$inscTotal = count($insc);
 	if($inscTotal == 0){	
@@ -77,7 +77,7 @@
 	}
 
 
-	$existNotariado = $cnn->query("select * from notariado where idAntecedente = '$idAntecedente''");
+	$existNotariado = $cnn->query("select * from notariado where idAntecedente = '$idAntecedente'");
 	$en = $existNotariado->fetchAll();
 	$enTotal = count($en);
 	if($enTotal == 0){	
@@ -88,7 +88,7 @@
 	}
 
 
-	$existInformacion = $cnn->query("select * from informacion_legal where idAntecedente = '$idAntecedente''");
+	$existInformacion = $cnn->query("select * from informacion_legal where idAntecedente = '$idAntecedente'");
 	$il = $existInformacion->fetchAll();
 	$ilTotal = count($il);
 	if($ilTotal == 0){	
