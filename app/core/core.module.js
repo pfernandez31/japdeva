@@ -17,7 +17,7 @@
 	   })
     .config(['ADMdtpProvider', function(ADMdtp) {
       ADMdtp.setOptions({
-          format: 'YYYY/MM/DD hh:mm',
+          format: 'DD-MM-YYYY hh:mm',
           default: 'today',
           calType: "gregorian"
       });

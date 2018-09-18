@@ -24,16 +24,16 @@
 	$opcParametro = $request->opcParametro;
 	$traslapes = $request->traslapes;
 	$parametros_inscripcion = $request->parametros_inscripcion;
-	$otorgamiento = $request->otorgamiento;
-	$presentacion = $request->presentacion;
-	$ejecutoria_juzgado = $request->ejecutoria_juzgado;
+	$dateotorgamiento = $request->otorgamiento;
+	$datepresentacion = $request->presentacion;
+	$dateejecutoria_juzgado = $request->ejecutoria_juzgado;
 	$finca = $request->finca;
 	$d = $request->d;
 	$derecho = $request->derecho;
 	$identificadorPredial = $request->identificadorPredial;
 	$plano = $request->plano;
 	$area = $request->area;
-	$inscripcion = $request->inscripcion;
+	$dateinscripcion = $request->inscripcion;
 	$tomo = $request->tomo;
 	$folio = $request->folio;
 	$asiento = $request->asiento;
@@ -48,6 +48,11 @@
 	$asesorRegistral = $request->asesorRegistral;
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
+
+	$otorgamiento =  date('Y-m-d H:i:s',strtotime($dateotorgamiento));
+	$presentacion =  date('Y-m-d H:i:s',strtotime($datepresentacion));
+	$ejecutoria_juzgado = date('Y-m-d H:i:s',strtotime($dateejecutoria_juzgado));
+	$inscripcion =   date('Y-m-d H:i:s',strtotime($dateinscripcion));
 
 	$modificado = date('Y-m-d G:i:s');
 	//ANTECEDENTES

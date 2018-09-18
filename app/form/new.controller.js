@@ -72,7 +72,6 @@
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
-        console.log(vm.antecedentes);
         SweetAlert.swal({
           title: "Agregar Registro", //Bold text
           text: "¿Desea insertar el registro al sistema?", //light text
@@ -88,8 +87,14 @@
               formServices.saveForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
-                  SweetAlert.swal("Formulario", data.success, "success");
-                  $timeout(function(){ $state.go('home'); },500);
+                  if(data.success){
+                    SweetAlert.swal("Formulario", "Insertado con Exito!", "success");
+                    $timeout(function(){ $state.go('home'); },500);
+                  } else {
+                    SweetAlert.swal("No se ha podido guardar el formulario", "verifique la información digitada", "error");
+                    console.log(data);
+                  }
+                  
                 })
                 .catch(function(err){
                   console.log(err);
@@ -113,7 +118,7 @@
        vm.antecedentes.nasiento = '';
        vm.antecedentes.area_traslape = '';
        vm.antecedentes.pne = '';
-       vm.antecedentes.traslapes = '';
+       vm.antecedentes.traslapes = 0;
        vm.antecedentes.parametros_inscripcion = '';
        vm.antecedentes.finca = '';
        vm.antecedentes.d = '';
@@ -135,7 +140,7 @@
        vm.antecedentes.asesorRegistral = '';
        vm.antecedentes.asesorLegal = '';
        vm.antecedentes.finca_inscrita_derecho = '';
-       vm.antecedentes.inscripcion = ''; 
+       vm.antecedentes.inscripcion = '';
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");
