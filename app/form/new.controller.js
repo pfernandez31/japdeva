@@ -5,7 +5,7 @@
     .module('app.form')
     .controller('newController', newController);
 
-  function newController($state,$cookies,  formServices, $scope, sharedService, $timeout, SweetAlert) {
+  function newController($state,$cookies, formServices, $scope, sharedService, $timeout, SweetAlert) {
     var vm = this;
     vm.infoUser = {};
     vm.exit = exit;
@@ -24,39 +24,43 @@
     vm.valueTraslape = '';
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
+    vm.optionsDatePickert = {
+      changeYear: true,
+      changeMonth: true,
+      dateFormat: 'dd-mm-yy'
+    }
+
 
 
     active();
 
     function selectCheck(d,tipo){
       switch(tipo) {
-          case "razones":
-              vm.antecedentes.razones = d.id;
-              vm.valueRazones = d.id;
-              if(d.id == 12){
-                vm.selectOtro = false;
-                vm.antecedentes.razon = '';
-              } else {
-                vm.selectOtro = true;
-                vm.antecedentes.otrarazon = '';
-                vm.antecedentes.razon = '';
-              }
-              break;
-          case "parametros":
-              vm.antecedentes.parametros_inscripcion = d.id;
-              vm.valueParametro = d.id;
-              if(d.id != 3){
-                vm.antecedentes.opcParametro = '';
-              }
-              break;
-          case "traslapes":
-              vm.valueTraslape = d.id;
-              vm.antecedentes.traslapes = d.id;
-              break;
-          default:
-              
+        case "razones":
+        vm.antecedentes.razones = d.id;
+        vm.valueRazones = d.id;
+        if(d.id == 12){
+          vm.selectOtro = false;
+          vm.antecedentes.razon = '';
+        } else {
+          vm.selectOtro = true;
+          vm.antecedentes.otrarazon = '';
+          vm.antecedentes.razon = '';
+        }
+        break;
+        case "parametros":
+        vm.antecedentes.parametros_inscripcion = d.id;
+        vm.valueParametro = d.id;
+        if(d.id != 3){
+          vm.antecedentes.opcParametro = '';
+        }
+        break;
+        case "traslapes":
+        vm.valueTraslape = d.id;
+        vm.antecedentes.traslapes = d.id;
+        break;
+        default: 
       }
-      
     }
 
     function selecDistritos(){
@@ -141,6 +145,9 @@
        vm.antecedentes.asesorLegal = '';
        vm.antecedentes.finca_inscrita_derecho = '';
        vm.antecedentes.inscripcion = '';
+       vm.antecedentes.otorgamiento = new Date();
+       vm.antecedentes.presentacion = new Date();
+       vm.antecedentes.ejecutoria_juzgado = new Date();
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");

@@ -84,7 +84,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="title"><span class="required">*</span>Inscripción: </label>
-											<adm-dtp ng-model="vm.antecedentes.inscripcion" options='date1_options'></adm-dtp>
+											<input type="text" class="form-control" ng-model="vm.antecedentes.inscripcion" ui-date="vm.optionsDatePickert">
 										</div>
 									</div>
 
@@ -156,7 +156,7 @@
 											<div class="title">Otorgamiento:</div>
 										</div>
 										<div class="col-md-4">
-											<adm-dtp ng-model="vm.antecedentes.otorgamiento" options='date1_options'></adm-dtp>
+											<input type="text" class="form-control" ng-model="vm.antecedentes.otorgamiento" ui-date="vm.optionsDatePickert">
 										</div>
 									</div>
 									<div class="col-md-12 row" >
@@ -164,7 +164,7 @@
 											<div class="title">Presentación:</div>
 										</div>
 										<div class="col-md-4 py-2">
-											<adm-dtp ng-model="vm.antecedentes.presentacion" options='date1_options'></adm-dtp>
+											<input type="text" class="form-control" ng-model="vm.antecedentes.presentacion" ui-date="vm.optionsDatePickert">
 										</div>
 									</div>
 
@@ -182,7 +182,7 @@
 											<div class="title">Ejecutoria del Juzgado:</div>
 										</div>
 										<div class="col-md-4 py-2">
-											<adm-dtp ng-model="vm.antecedentes.ejecutoria_juzgado" options='date1_options'></adm-dtp>
+											<input type="text" class="form-control" ng-model="vm.antecedentes.ejecutoria_juzgado" ui-date="vm.optionsDatePickert">
 										</div>
 									</div>
 
@@ -289,7 +289,7 @@
 											<div class="col-md-9">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'asp'">
-												    	<input type="checkbox"   ng-checked="vm.valueTraslape == t.id" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
+												    	<input type="checkbox"  ng-checked="vm.valueTraslape == t.id" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
 												    	{{t.traslape}}
 												 	</label>
 												</div>
@@ -298,7 +298,7 @@
 											<div class="col-md-12">
 												<div class="form-check" ng-repeat="t in vm.traslapes">
 													<label class="form-check-label" ng-if="t.tipo == 'traslape'">
-												    	<input type="checkbox"   ng-checked="vm.valueTraslape == t.id" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
+												    	<input type="checkbox" ng-checked="vm.valueTraslape == t.id" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
 												    	{{t.traslape}}
 												 	</label>
 												</div>

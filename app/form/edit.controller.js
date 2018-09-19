@@ -22,6 +22,11 @@
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
     vm.eliminar = eliminar;
+    vm.optionsDatePickert = {
+      changeYear: true,
+      changeMonth: true,
+      dateFormat: 'dd-mm-yy'
+    }
 
 
     active();
@@ -98,6 +103,10 @@
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
+              console.log(vm.antecedentes);
+              if(vm.antecedentes.razones == '' ){ vm.antecedentes.razones = 0; }
+              if(vm.antecedentes.parametros_inscripcion == '' ){ vm.antecedentes.parametros_inscripcion = 0; }
+              if(vm.antecedentes.traslapes == '' ){ vm.antecedentes.traslapes = 0; }
               formServices.updateForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;

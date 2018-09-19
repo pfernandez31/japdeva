@@ -6,8 +6,8 @@
       'ui.router',
       'ngCookies',
       'ui.bootstrap',
-      'ADM-dateTimePicker',
-      'oitozero.ngSweetAlert'
+      'oitozero.ngSweetAlert',
+      'ui.date'
     ])
     .filter('startFrom', function() {
     	return function(input, start) {
@@ -15,12 +15,4 @@
         	return input.slice(start);
     	}
 	   })
-    .config(['ADMdtpProvider', function(ADMdtp) {
-      ADMdtp.setOptions({
-          format: 'DD-MM-YYYY hh:mm',
-          default: 'today',
-          calType: "gregorian"
-      });
-    }]);
-
 })();
