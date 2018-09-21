@@ -163,10 +163,6 @@
       formServices.loadForm(vm.idAntecedente)
       	.then(function(resp){
       		var data = resp.data;
-      		data.inscripcion = new Date(data.inscripcion);
-      		data.otorgamiento = new Date(data.otorgamiento);
-      		data.presentacion = new Date(data.presentacion);
-      		data.ejecutoria_juzgado = new Date(data.ejecutoria_juzgado);
       		vm.checkNace =  data.checkNace;
           vm.valueRazones = data.checkNace;
           if(vm.valueRazones == 12){

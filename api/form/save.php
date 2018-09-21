@@ -49,16 +49,29 @@
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
 
-	$otorgamiento =  date('Y-m-d H:i:s',strtotime($dateotorgamiento));
-	$presentacion =  date('Y-m-d H:i:s',strtotime($datepresentacion));
-	
-	$ejecutoria_juzgado = date('Y-m-d H:i:s',strtotime($dateejecutoria_juzgado));
-	$inscripcion =   date('Y-m-d H:i:s',strtotime($dateinscripcion));
+  	if($dateotorgamiento == null){
+  		$otorgamiento = 'NULL';
+	} else{
+		$otorgamiento = "'".date('Y-m-d H:i:s',strtotime($dateotorgamiento))."'";
+	} 
 
+	if($dateejecutoria_juzgado == null){
+  		$ejecutoria_juzgado = 'NULL';
+	} else{
+		$ejecutoria_juzgado = "'".date('Y-m-d H:i:s',strtotime($dateejecutoria_juzgado))."'";
+	}
 
+	if($datepresentacion == null){
+  		$presentacion = 'NULL';
+	} else{
+		$presentacion = "'".date('Y-m-d H:i:s',strtotime($datepresentacion))."'";
+	}
+
+		
+	$inscripcion = date('Y-m-d H:i:s',strtotime($dateinscripcion));
 	$creado = date('Y-m-d G:i:s');  //FECHA
 	//ANTECEDENTES
-	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado,fecha_creacion,fecha_modificacion)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo','$otorgamiento','$presentacion','$ejecutoria_juzgado','$creado','$creado')");
+	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado,fecha_creacion,fecha_modificacion)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo',$otorgamiento,$presentacion,$ejecutoria_juzgado,'$creado','$creado')");
 	$idAntecedente = $cnn->lastInsertId();
 
 	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro')");

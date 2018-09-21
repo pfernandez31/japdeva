@@ -49,14 +49,29 @@
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
 
-	$otorgamiento =  date('Y-m-d H:i:s',strtotime($dateotorgamiento));
-	$presentacion =  date('Y-m-d H:i:s',strtotime($datepresentacion));
-	$ejecutoria_juzgado = date('Y-m-d H:i:s',strtotime($dateejecutoria_juzgado));
+	if($dateotorgamiento == null){
+  		$otorgamiento = 'NULL';
+	} else{
+		$otorgamiento = "'".date('Y-m-d H:i:s',strtotime($dateotorgamiento))."'";
+	} 
+
+	if($dateejecutoria_juzgado == null){
+  		$ejecutoria_juzgado = 'NULL';
+	} else{
+		$ejecutoria_juzgado = "'".date('Y-m-d H:i:s',strtotime($dateejecutoria_juzgado))."'";
+	}
+
+	if($datepresentacion == null){
+  		$presentacion = 'NULL';
+	} else{
+		$presentacion = "'".date('Y-m-d H:i:s',strtotime($datepresentacion))."'";
+	}
+
 	$inscripcion =   date('Y-m-d H:i:s',strtotime($dateinscripcion));
 
 	$modificado = date('Y-m-d G:i:s');
 	//ANTECEDENTES
-	$cnn->query("UPDATE antecedentes set usuario ='$usuario', finca = '$finca', d = '$d', derecho = '$derecho', identificador_predial ='$identificadorPredial', plano ='$plano', area ='$area', idDistrito ='$distrito', idCanton ='$canton', plazo_convalidacion ='$plazo', otorgamiento ='$otorgamiento', presentacion ='$presentacion', ejecutoria_juzgado ='$ejecutoria_juzgado', fecha_modificacion = '$modificado' where id = '$idAntecedente'");
+	$cnn->query("UPDATE antecedentes set usuario ='$usuario', finca = '$finca', d = '$d', derecho = '$derecho', identificador_predial ='$identificadorPredial', plano ='$plano', area ='$area', idDistrito ='$distrito', idCanton ='$canton', plazo_convalidacion ='$plazo', otorgamiento = $otorgamiento, presentacion = $presentacion, ejecutoria_juzgado = $ejecutoria_juzgado, fecha_modificacion = '$modificado' where id = '$idAntecedente'");
 
 	$existInscripcion = $cnn->query("select * from inscripcion where idAntecedente = '$idAntecedente'");
 	$insc = $existInscripcion->fetchAll();

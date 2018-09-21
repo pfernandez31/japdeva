@@ -72,7 +72,8 @@
     }
 
     function save(){
-      if(vm.antecedentes.inscripcion == '' || vm.antecedentes.finca == '' ||  vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
+      console.log(vm.antecedentes);
+      if(vm.antecedentes.inscripcion == null || vm.antecedentes.finca == '' ||  vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
       else{
@@ -144,10 +145,10 @@
        vm.antecedentes.asesorRegistral = '';
        vm.antecedentes.asesorLegal = '';
        vm.antecedentes.finca_inscrita_derecho = '';
-       vm.antecedentes.inscripcion = '';
-       vm.antecedentes.otorgamiento = new Date();
-       vm.antecedentes.presentacion = new Date();
-       vm.antecedentes.ejecutoria_juzgado = new Date();
+       vm.antecedentes.inscripcion = null; //FECHA
+       vm.antecedentes.otorgamiento = null; //FECHA
+       vm.antecedentes.presentacion = null; //FECHA
+       vm.antecedentes.ejecutoria_juzgado = null; //FECHA
       var existe = $cookies.get('loggin');
       if(!existe){
           $state.go("login");
