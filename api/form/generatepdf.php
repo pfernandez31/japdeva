@@ -106,7 +106,7 @@ order by a.id DESC";
 		$data->propietario_original = $row['propietario_original'];
 		$data->propietario_actual = $row['propietario_actual'];
 		$cont = 0;
-		foreach($cnn->query("select movimiento from movimientos where idAntecedente = '$idFormulario'") as $m){
+		foreach($cnn->query("SELECT movimiento from movimientos where idAntecedente = '$idFormulario' ORDER By id ASC") as $m){
 			$mov[$cont]['movimiento'] = $m['movimiento'];
 			$cont++;
 		}

@@ -105,7 +105,7 @@ order by a.id DESC  limit 1";
 		$data->area_traslape = $row['area_traslape'];
 		$data->pne = $row['pne'];
 		$cont = 0;
-		foreach($cnn->query("select movimiento from movimientos where idAntecedente = '$idFormulario'") as $m){
+		foreach($cnn->query("SELECT movimiento from movimientos where idAntecedente = '$idFormulario' ORDER By id ASC") as $m){
 			$mov[$cont]['mov'] = $m['movimiento'];
 			$cont++;
 		}
