@@ -4,32 +4,84 @@
         <div class="col-md-2">
             <div ng-include="'app/templates/sidebar.html'"></div>
         </div>
-        <div class="col-md-10 ">
-            <h4>Registro de Formularios</h4>
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">USUARIO</th>
-                        <th scope="col">FECHA</th>
-                        <th scope="col">REGISTRO DE ACTIVIDAD</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="datos in vm.listActivity |  startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
-                        <th scope="row">{{datos.usuario}}</th>
-                        <th scope="row">{{datos.fecha | date:  "dd-MM-y"}}</th>
-                        <th scope="row">{{datos.registro}}</th>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="text-center">
-                <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
-                    Anterior
-                </button>
-                {{vm.currentPage+1}}/{{vm.numberOfPages()}}
-                <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
-                    Siguiente
-                </button>
+        <div class="col-md-10 row">
+            <div class="col-md-12 p-0  pb-3 ">
+                <div class="col-md-12  p-0 pb-3 row ">
+                    <div class="col-md-3">
+                        <h4>Reporte de Formularios</h4>
+                    </div>
+                </div>
+                <div class="col-md-12  p-0 pb-3 row text-center ">
+                    <div class="col-md-2 text-left">
+                        <div class="form-group">
+                            <label>Finca</label>
+                            <input type="text" ng-change="vm.btnFinca()" class="fcontrol" style="width: 120px;" ng-model="vm.filter.finca">
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-left">
+                        <div class="form-group">
+                            <label>Fecha Inscripcion</label>
+                            <input type="text" class="fcontrol" ng-change="vm.btnFecha()" style="width: 130px;" ng-model="vm.filter.fecha" ui-date="vm.optionsDatePickert">
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-left">
+                        <div class="form-group">
+                            <label>Filtrar por Role</label>
+                            <select class="fcontrol" ng-change="vm.btnRole()" ng-model="vm.filter.role">
+                                <option value="3">Seleccione</option>
+                                <option value="2">Digitador</option>
+                                <option value="1">Administrador</option>
+                                <option value="0">Ambos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button class="btn btn-primary" ng-click="vm.filtrar()">Consultar Información</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12  pb-3">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">RESPONSABLE</th>
+                            <th scope="col">FINCA</th>
+                            <th scope="col">DERECHO</th>
+                            <th scope="col">IDENTIFICADOR PREDIAL</th>
+                            <th scope="col">PLANO</th>
+                            <th scope="col">AREA</th>
+                            <th scope="col">FECHA INSCRIPCIÓN</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="datos in vm.listAntecedentes  | startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize">
+                            <th scope="row">{{datos.responsable}}</th>
+                            <th scope="row">{{datos.finca}}</th>
+                            <th scope="row">{{datos.derecho}}</th>
+                            <th scope="row">{{datos.identificador}}</th>
+                            <th scope="row">{{datos.plano}}</th>
+                            <th scope="row">{{datos.area}}</th>
+                            <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</th>
+                            <th scope="row">
+                                <a  ui-sref="form-edit({id:datos.idAntecedente})"><i class="fas fa-pen-square"></i> EDITAR</a>
+                            </th scope="row">
+                            <th scope="row">
+                                <a href="api/form/generatepdf.php?id={{datos.idAntecedente}}" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button class="btn btn-default" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
+                        Anterior
+                    </button>
+                    {{vm.currentPage+1}}/{{vm.numberOfPages()}}
+                    <button class="btn btn-default" ng-disabled="vm.currentPage >= vm.getData().length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
+                        Siguiente
+                    </button>
+                </div>
             </div>
         </div>
     </div>
