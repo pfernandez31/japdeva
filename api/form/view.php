@@ -1,5 +1,6 @@
 <?php 
-	require("../conexion.php");
+date_default_timezone_set('America/Costa_Rica');
+require("../conexion.php");
 if(isset($_GET['id'])){
 	$mov = [];
 	$data = new stdClass();

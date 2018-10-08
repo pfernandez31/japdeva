@@ -1,10 +1,12 @@
 <?php
+	date_default_timezone_set('America/Costa_Rica');
 	require("../conexion.php");
 	$data = [];
  	$contador = 0;
 	$query = "
 	select
 	u.nombre,
+	u.idrole,
 	a.usuario as usuarioid,
 	a.id,
 	a.finca,
@@ -57,6 +59,7 @@
 	";
 	foreach($cnn->query($query) as $row){
 		$data[$contador]['asesor'] = $row['nombre'];
+		$data[$contador]['role'] = $row['idrole'];
 		$data[$contador]['usuarioid'] = $row['usuarioid'];
 		$data[$contador]['id'] = $row['id'];
 		$data[$contador]['finca'] = $row['finca'];

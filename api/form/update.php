@@ -1,4 +1,5 @@
 <?php
+	date_default_timezone_set('America/Costa_Rica');
 	require("../conexion.php");
 	require("../logs.php");
 	$postdata = file_get_contents("php://input");

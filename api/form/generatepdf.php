@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set('America/Costa_Rica');
 require("../conexion.php");
 require_once '../vendor/autoload.php';
 require("../logs.php");
