@@ -25,7 +25,8 @@
     vm.optionsDatePickert = {
       changeYear: true,
       changeMonth: true,
-      dateFormat: 'dd-mm-yy'
+      dateFormat: 'dd-mm-yy',
+      yearRange: '1900:-0' 
     }
 
 
@@ -136,6 +137,7 @@
       if(!existe){
           $state.go("login");
       }
+      vm.defaultDate = new Date();
       vm.infoUser = sharedService.getAuth();
       vm.idAntecedente = $stateParams.id;
       vm.selectOtro = true;

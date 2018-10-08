@@ -27,7 +27,8 @@
     vm.optionsDatePickert = {
       changeYear: true,
       changeMonth: true,
-      dateFormat: 'dd-mm-yy'
+      dateFormat: 'dd-mm-yy',
+      yearRange: '1900:-0' 
     }
 
 
