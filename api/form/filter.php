@@ -11,22 +11,23 @@
  		$fecha = '';
  		$fecha2 = '';
  	}
- 	$role = $request->role;
+
+ 	$usuario = $request->usuario;
 
 	$data = [];
  	$contador = 0;
 
 
- 	if($role == "1" || $role == "2"  && $fecha == '' && $finca == ''){  //FILTRO DIGITADOR | ADMINISTRADOR
- 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id WHERE u.idrole = '$role' order by a.id DESC";
+ 	if($usuario != "0"  && $fecha == '' && $finca == ''){  //FILTRO USUARIO
+ 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id WHERE u.id = '$usuario' order by a.id DESC";
  	}
-	else if($role == "0"  && $fecha == '' && $finca == ''){	//FILTRO AMBOS DIGITADOR & ADMINISTRADOR
+	else if($usuario == "0"  && $fecha == '' && $finca == ''){	//FILTRO AMBOS DIGITADOR & ADMINISTRADOR
 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id  order by a.id DESC";
 	}
-	else if($role == "3"  && $fecha != '' && $finca == ''){ //FILTRO FECHA INSCRIPCION
+	else if($usuario == "0"  && $fecha != '' && $finca == ''){ //FILTRO FECHA INSCRIPCION
 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id  WHERE  i.fecha >= '$fecha'  AND i.fecha < '$fecha2'   order by a.id DESC";
 	}
-	else if($role == "3"  && $fecha == '' && $finca != ''){ //FILTRO FINCA
+	else if($usuario == "0"  && $fecha == '' && $finca != ''){ //FILTRO FINCA
 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id  WHERE  a.finca = '$finca'   order by a.id DESC";
 	} else {  //MOSTRAR TODOS
 		$query = "SELECT u.nombre, u.idrole, a.usuario as usuarioid, a.id, a.finca, a.derecho, a.identificador_predial, a.plano, a.area, i.fecha as fecha_inscripcion FROM antecedentes a left join usuarios u on u.id = a.usuario left join  inscripcion i on i.idAntecedente = a.id order by a.id DESC";

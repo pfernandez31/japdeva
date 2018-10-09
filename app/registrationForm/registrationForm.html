@@ -24,18 +24,16 @@
                             <input type="text" class="fcontrol" ng-change="vm.btnFecha()" style="width: 130px;" ng-model="vm.filter.fecha" ui-date="vm.optionsDatePickert">
                         </div>
                     </div>
-                    <div class="col-md-3 text-left">
+                    <div class="col-md-4 text-left">
                         <div class="form-group">
-                            <label>Filtrar por Role</label>
-                            <select class="fcontrol" ng-change="vm.btnRole()" ng-model="vm.filter.role">
-                                <option value="3">Seleccione</option>
-                                <option value="2">Digitador</option>
-                                <option value="1">Administrador</option>
-                                <option value="0">Ambos</option>
+                            <label>Filtrar por Usuario</label>
+                            <select class="fcontrol" ng-change="vm.btnUsuario()" ng-model="vm.filter.usuario">
+                                <option value="0">Seleccionar</option>
+                                <option ng-repeat="u in vm.listUsuarios"  value="{{u.id}}">{{u.nombre}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-md-3 text-right">
                         <button class="btn btn-primary" ng-click="vm.filtrar()">Consultar Información</button>
                     </div>
                 </div>

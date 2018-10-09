@@ -10,11 +10,12 @@
     	var service = {
 	        path: PATHSERVICE,
 	        getForms: getForms,
-	        filter: filter
+	        filter: filter,
+	        getUsers: getUsers
 	    };
 	    return service;
 
-	     function getForms(){
+	    function getForms(){
 	      var link = service.path+"form/list.php";
 	      var getRequest = {
 	        method: 'GET',
@@ -26,9 +27,21 @@
 	      return $http(getRequest);
 	    }
 
-	    function filter(finca,fecha,role){
+	    function getUsers(){
+	      var link = service.path+"session/list.php";
+	      var getRequest = {
+	        method: 'GET',
+	        url: link,
+	        headers: {
+	          'Content-Type': 'application/json'
+	        }
+	      };
+	      return $http(getRequest);
+	    }
+
+	    function filter(finca,fecha,usuario){
 	    	var link = service.path+"form/filter.php";
-      		return $http.post(link, { finca: finca, fecha: fecha, role:role });
+      		return $http.post(link, { finca: finca, fecha: fecha, usuario:usuario });
 	    }
     }
 

@@ -15,6 +15,7 @@
     vm.getData = getData;
     vm.numberOfPages = numberOfPages;
     vm.filter = {};
+    vm.listUsuarios = [];
     vm.optionsDatePickert = {
       changeYear: true,
       changeMonth: true,
@@ -23,17 +24,17 @@
     vm.filtrar = filtrar;
     vm.btnFinca = btnFinca;
     vm.btnFecha = btnFecha;
-    vm.btnRole = btnRole;
+    vm.btnUsuario = btnUsuario;
 
     function btnFinca(){
       vm.filter.fecha = '';
-      vm.filter.role = '3';
+      vm.filter.usuario = '0';
     }
     function btnFecha(){
       vm.filter.finca = '';
-      vm.filter.role = '3';
+      vm.filter.usuario = '0';
     }
-    function btnRole(){
+    function btnUsuario(){
       vm.filter.fecha = '';
       vm.filter.finca = '';
     }
@@ -42,7 +43,8 @@
 
     function filtrar(){
       vm.listAntecedentes = [];
-      registrationFormServices.filter(vm.filter.finca,vm.filter.fecha, vm.filter.role)
+      console.log(vm.filter.usuario);
+      registrationFormServices.filter(vm.filter.finca,vm.filter.fecha, vm.filter.usuario)
         .then(function(resp){
           var data = resp.data;
           if(data.length >= 1){
@@ -65,6 +67,10 @@
           }
           else{
             SweetAlert.swal("Información", "No hemos encontrado resultados", "error");
+            vm.filter.finca = '';
+            vm.filter.fecha = '';
+            vm.filter.usuario = '0';
+            active();
           }
         })
         .catch(function(err){
@@ -88,9 +94,19 @@
 
       vm.filter.finca = '';
       vm.filter.fecha = '';
-      vm.filter.role = '3';
+      vm.filter.usuario = '0';
 
       vm.infoUser = sharedService.getAuth();
+
+      registrationFormServices.getUsers()
+        .then(function(resp){
+          var data = resp.data;
+          vm.listUsuarios = data;
+        })
+        .catch(function(err){
+          console.log(err);
+        });
+
       registrationFormServices.getForms()
         .then(function(resp){
           var data = resp.data;
