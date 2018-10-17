@@ -44,7 +44,7 @@
                             <th scope="row">{{datos.identificador}}</th>
                             <th scope="row">{{datos.plano}}</th>
                             <th scope="row">{{datos.area}}</th>
-                            <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y"}}</th>
+                            <th scope="row">{{datos.fecha_inscripcion | date:  "dd-MM-y" : 'UTC'}}</th>
                             <th scope="row">
                                 <a  ui-sref="form-edit({id:datos.idAntecedente})"><i class="fas fa-pen-square"></i> EDITAR</a>
                             </th scope="row">

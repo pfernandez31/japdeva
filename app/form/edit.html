@@ -84,7 +84,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="title"><span class="required">*</span>Inscripción: </label>
-											<input type="text" class="form-control" ng-model="vm.antecedentes.inscripcion" ui-date="vm.optionsDatePickert">
+											<input type="text" class="form-control" ng-model="vm.antecedentes.inscripcion" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd">
 										</div>
 									</div>
 
@@ -182,7 +182,7 @@
 											<div class="title">Ejecutoria del Juzgado:</div>
 										</div>
 										<div class="col-md-4 py-2">
-											<input type="text" class="form-control" ng-model="vm.antecedentes.ejecutoria_juzgado" ui-date="vm.optionsDatePickert">
+											<input type="text" class="form-control" ng-model="vm.antecedentes.ejecutoria_juzgado" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd" >
 										</div>
 									</div>
 

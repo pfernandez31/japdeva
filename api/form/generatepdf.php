@@ -76,9 +76,14 @@ order by a.id DESC";
 		$data->idDistrito = $row['idDistrito'];
 		$data->idCanton = $row['idCanton'];
 		$data->plazo_convalidacion = $row['plazo_convalidacion'];
-		$data->otorgamiento = $row['otorgamiento'];
-		$data->presentacion = $row['presentacion'];
-		$data->ejecutoria_juzgado = $row['ejecutoria_juzgado'];
+
+		$dateTime2 = strtotime($row['otorgamiento']);
+		$data->otorgamiento = date('d-m-Y', $dateTime2);
+		$dateTime3 = strtotime($row['presentacion']);
+		$data->presentacion = date('d-m-Y', $dateTime3);
+		$dateTime4 = strtotime($row['ejecutoria_juzgado']);
+		$data->ejecutoria_juzgado = date('d-m-Y', $dateTime4);
+
 		$data->canton = $row['canton'];
 		$data->distrito = $row['distrito'];
 		$data->finca_inscrita_derecho = strtoupper($row['finca_inscrita_derecho']);
@@ -88,7 +93,7 @@ order by a.id DESC";
 		$data->analisis_legal = $row['analisis_legal'];
 
 		$dateTime = strtotime($row['fecha_inscripcion']);
-		$data->fecha_inscripcion = date('Y-m-d', $dateTime);
+		$data->fecha_inscripcion = date('d-m-Y', $dateTime);
 		$data->tomo = $row['tomo'];
 		$data->folio = $row['folio'];
 		$data->asiento = $row['asiento'];
