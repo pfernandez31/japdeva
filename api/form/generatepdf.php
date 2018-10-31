@@ -37,6 +37,7 @@ i.fecha as fecha_inscripcion,
 i.tomo,
 i.folio,
 i.asiento,
+i.matricula,
 rv.razon as nace_por,
 i.razon,
 pv.parametro as parametroSelect,
@@ -97,6 +98,7 @@ order by a.id DESC";
 		$data->tomo = $row['tomo'];
 		$data->folio = $row['folio'];
 		$data->asiento = $row['asiento'];
+		$data->matricula = $row['matricula'];
 		$data->nace_por = $row['nace_por'];
 		$data->ntomo = $row['ntomo'];
 		$data->nasiento = $row['nasiento'];
@@ -185,16 +187,18 @@ EOF;
 			</tr>
 			<div></div>
 			<tr >
-				<td width="25%" class="colHeader"><span class="title">INSCRIPCIÓN</span></td>
-				<td width="25%" class="colHeader"><span class="subtitle">TOMO</span></td>
-				<td width="25%" class="colHeader"><span class="subtitle">FOLIO</span></td>
-				<td width="25%" class="colHeader"><span class="subtitle">ASIENTO</span></td>
+				<td width="20%" class="colHeader"><span class="title">INSCRIPCIÓN</span></td>
+				<td width="20%" class="colHeader"><span class="subtitle">TOMO</span></td>
+				<td width="20%" class="colHeader"><span class="subtitle">FOLIO</span></td>
+				<td width="20%" class="colHeader"><span class="subtitle">ASIENTO</span></td>
+				<td width="20%" class="colHeader"><span class="subtitle">MATRICULA</span></td>
 			</tr>
 			<tr>
-				<td width="25%" class="coldata">$data->fecha_inscripcion</td>
-				<td width="25%" class="coldata">$data->tomo</td>
-				<td width="25%" class="coldata">$data->folio</td>
-				<td width="25%" class="coldata">$data->asiento</td>
+				<td width="20%" class="coldata">$data->fecha_inscripcion</td>
+				<td width="20%" class="coldata">$data->tomo</td>
+				<td width="20%" class="coldata">$data->folio</td>
+				<td width="20%" class="coldata">$data->asiento</td>
+				<td width="20%" class="coldata">$data->matricula</td>
 			</tr>
 			<tr>
 				<td width="25%" class="colHeader"><span class="title">PLANO</span></td>

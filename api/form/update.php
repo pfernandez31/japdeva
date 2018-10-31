@@ -49,6 +49,7 @@
 	$asesorRegistral = $request->asesorRegistral;
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
+	$matricula = $request->matricula;
 
 	if($dateotorgamiento == null){
   		$otorgamiento = 'NULL';
@@ -78,10 +79,10 @@
 	$insc = $existInscripcion->fetchAll();
 	$inscTotal = count($insc);
 	if($inscTotal == 0){	
-		$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro')");
+		$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro,matricula)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro', '$matricula' )");
 	}
 	else{
-		$cnn->query("UPDATE inscripcion set fecha = '$inscripcion', tomo = '$tomo', folio = '$folio', asiento = '$asiento', idrazon = '$razones', idparametro = '$parametros_inscripcion', razon = '$razon', parametro = '$opcParametro' where idAntecedente = '$idAntecedente'");
+		$cnn->query("UPDATE inscripcion set fecha = '$inscripcion', tomo = '$tomo', folio = '$folio', asiento = '$asiento', idrazon = '$razones', idparametro = '$parametros_inscripcion', razon = '$razon', parametro = '$opcParametro', matricula = '$matricula' where idAntecedente = '$idAntecedente'");
 	}
 
 

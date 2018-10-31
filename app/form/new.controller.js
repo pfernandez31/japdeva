@@ -135,6 +135,7 @@
        vm.antecedentes.tomo = '';
        vm.antecedentes.folio = '';
        vm.antecedentes.asiento = '';
+       vm.antecedentes.matricula = '';
        vm.antecedentes.plazo = '';
        vm.antecedentes.notario = '';
        vm.antecedentes.juzgado = '';

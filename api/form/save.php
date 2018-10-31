@@ -49,6 +49,7 @@
 	$asesorRegistral = $request->asesorRegistral;
 	$asesorLegal = $request->asesorLegal;
 	$finca_inscrita_derecho = $request->finca_inscrita_derecho;
+	$matricula = $request->matricula;
 
   	if($dateotorgamiento == null){
   		$otorgamiento = 'NULL';
@@ -75,7 +76,7 @@
 	$cnn->query("INSERT into antecedentes(usuario,finca,d,derecho,identificador_predial,plano,area,idDistrito,idCanton,plazo_convalidacion,otorgamiento,presentacion,ejecutoria_juzgado,fecha_creacion,fecha_modificacion)values('$usuario','$finca','$d','$derecho','$identificadorPredial','$plano','$area','$distrito','$canton','$plazo',$otorgamiento,$presentacion,$ejecutoria_juzgado,'$creado','$creado')");
 	$idAntecedente = $cnn->lastInsertId();
 
-	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro')");
+	$cnn->query("INSERT into inscripcion(idAntecedente,fecha,tomo,folio,asiento,idrazon,idparametro,razon,parametro,matricula)value('$idAntecedente','$inscripcion','$tomo','$folio','$asiento','$razones','$parametros_inscripcion','$razon','$opcParametro','$matricula')");
 
 	foreach ($movHistoricos as $key => $value) {
 		if($value->mov != ''){

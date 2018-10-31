@@ -33,6 +33,7 @@ i.fecha as fecha_inscripcion,
 i.tomo,
 i.folio,
 i.asiento,
+i.matricula,
 rv.id as razonid,
 rv.razon as nace_por,
 i.razon as nace_por_value,
@@ -80,6 +81,7 @@ order by a.id DESC  limit 1";
 		$data->tomo = $row['tomo'];
 		$data->folio = $row['folio'];
 		$data->asiento = $row['asiento'];
+		$data->matricula = $row['matricula'];
 		$data->checkNace = $row['razonid'];
 		$data->razones = $row['razonid'];
 		$data->nace_por = $row['nace_por'];

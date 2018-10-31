@@ -35,6 +35,7 @@
 	i.tomo,
 	i.folio,
 	i.asiento,
+	i.matricula,
 	rv.razon as nace_por,
 	i.razon,
 	pv.parametro as parametroSelect,
@@ -85,6 +86,7 @@
 		$data[$contador]['tomo'] = $row['tomo'];
 		$data[$contador]['folio'] = $row['folio'];
 		$data[$contador]['asiento'] = $row['asiento'];
+		$data[$contador]['matricula'] = $row['matricula'];
 		$data[$contador]['nace_por'] = $row['nace_por'];
 		$data[$contador]['razon'] = $row['razon'];
 		$data[$contador]['parametroSelect'] = $row['parametroSelect'];
