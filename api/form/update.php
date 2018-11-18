@@ -1,5 +1,5 @@
 <?php
-	date_default_timezone_set('America/Costa_Rica');
+	date_default_timezone_set('UTC');
 	require("../conexion.php");
 	require("../logs.php");
 	$postdata = file_get_contents("php://input");
@@ -70,6 +70,7 @@
 	}
 
 	$inscripcion =   date('Y-m-d H:i:s',strtotime($dateinscripcion));
+
 
 	$modificado = date('Y-m-d G:i:s');
 	//ANTECEDENTES

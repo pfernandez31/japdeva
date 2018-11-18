@@ -8,7 +8,8 @@
       'ui.bootstrap',
       'oitozero.ngSweetAlert',
       'ui.date',
-      'angularMoment'
+      'angularMoment',
+      'datetime'
     ])
     .filter('startFrom', function() {
     	return function(input, start) {
@@ -16,23 +17,10 @@
         	return input.slice(start);
     	}
 	   })
-    .config(function(){
-      moment.locale('es', {
-          relativeTime : {
-            future: "hace %s",
-            past:   "hace %s",
-            s:  "segundos",
-            m:  "un minuto",
-            mm: "%d minutos",
-            h:  "una hora",
-            hh: "%d horas",
-            d:  "un día",
-            dd: "%d días",
-            M:  "un mes",
-            MM: "%d meses",
-            y:  "a año",
-            yy: "%d años"
-          }
-      });
+    .run(function(amMoment) {
+      amMoment.changeLocale('es');
+    })
+    .constant('angularMomentConfig', {
+        timezone: 'America/Costa_Rica'
     })
 })();

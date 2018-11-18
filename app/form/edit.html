@@ -83,8 +83,9 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label class="title"><span class="required">*</span>Inscripción: </label>
-											<input type="text" class="form-control" ng-model="vm.antecedentes.inscripcion" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd">
+											<label class="title"><span class="required">*</span>Inscripción:</label>
+											<input type="text" class="form-control" ng-model="vm.antecedentes.inscripcion" 
+											datetime="dd-MM-yyyy" datetime-timezone="+0000">
 										</div>
 									</div>
 
@@ -162,7 +163,7 @@
 											<div class="title">Otorgamiento:</div>
 										</div>
 										<div class="col-md-4">
-											<input type="text" class="form-control" ng-model="vm.antecedentes.otorgamiento" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd" >
+											<input type="text" class="form-control" ng-model="vm.antecedentes.otorgamiento" datetime="dd-MM-yyyy" datetime-timezone="+0000">
 										</div>
 									</div>
 									<div class="col-md-12 row" >
@@ -170,7 +171,7 @@
 											<div class="title">Presentación:</div>
 										</div>
 										<div class="col-md-4 py-2">
-											<input type="text" class="form-control" ng-model="vm.antecedentes.presentacion" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd" >
+											<input type="text" class="form-control" ng-model="vm.antecedentes.presentacion" datetime="dd-MM-yyyy" datetime-timezone="+0000">
 										</div>
 									</div>
 
@@ -188,7 +189,7 @@
 											<div class="title">Ejecutoria del Juzgado:</div>
 										</div>
 										<div class="col-md-4 py-2">
-											<input type="text" class="form-control" ng-model="vm.antecedentes.ejecutoria_juzgado" ui-date="{dateFormat: 'dd-mm-yy'}" ui-date-format="yy-mm-dd" >
+											<input type="text" class="form-control" ng-model="vm.antecedentes.ejecutoria_juzgado" datetime="dd-MM-yyyy" datetime-timezone="+0000">
 										</div>
 									</div>
 

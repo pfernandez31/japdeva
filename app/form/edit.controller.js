@@ -22,12 +22,6 @@
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
     vm.eliminar = eliminar;
-    vm.optionsDatePickert = {
-      changeYear: true,
-      changeMonth: true,
-      dateFormat: 'dd-mm-yy',
-      yearRange: '1900:-0' 
-    }
 
 
     active();
@@ -104,10 +98,23 @@
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
-              console.log(vm.antecedentes);
               if(vm.antecedentes.razones == '' ){ vm.antecedentes.razones = 0; }
               if(vm.antecedentes.parametros_inscripcion == '' ){ vm.antecedentes.parametros_inscripcion = 0; }
               if(vm.antecedentes.traslapes == '' ){ vm.antecedentes.traslapes = 0; }
+              vm.antecedentes.inscripcion = moment.utc(vm.antecedentes.inscripcion).format("YYYY-MM-DD");
+              
+              if(vm.antecedentes.otorgamiento != null){
+                vm.antecedentes.otorgamiento = moment.utc(vm.antecedentes.otorgamiento).format("YYYY-MM-DD");
+              }
+              
+              if(vm.antecedentes.presentacion != null){
+                vm.antecedentes.presentacion = moment.utc(vm.antecedentes.presentacion).format("YYYY-MM-DD");
+              }
+              
+              if(vm.antecedentes.ejecutoria_juzgado != null){
+                vm.antecedentes.ejecutoria_juzgado = moment.utc(vm.antecedentes.ejecutoria_juzgado).format("YYYY-MM-DD");  
+              }
+              
               formServices.updateForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
@@ -178,6 +185,21 @@
       		vm.antecedentes.asesor = vm.infoUser.nombre;
       		vm.antecedentes.usuarioId = vm.infoUser.idusuario;
           vm.antecedentes.movHistoricos.push({mov:''});
+
+          vm.antecedentes.inscripcion = new Date(data.inscripcion);
+          
+          if(data.otorgamiento != null){
+            vm.antecedentes.otorgamiento = new Date(data.otorgamiento);
+          } else { vm.antecedentes.otorgamiento = null; }
+          
+          if(data.ejecutoria_juzgado != null){
+            vm.antecedentes.ejecutoria_juzgado = new Date(data.ejecutoria_juzgado);            
+          } else { vm.antecedentes.ejecutoria_juzgado = null; }
+          
+          if(data.presentacion != null){
+            vm.antecedentes.presentacion = new Date(data.presentacion);
+          } else { vm.antecedentes.presentacion = null; }
+
       		vm. selecDistritos();
       	})
     }

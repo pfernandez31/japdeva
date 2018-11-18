@@ -24,12 +24,7 @@
     vm.valueTraslape = '';
     vm.selectCheck = selectCheck;
     $scope.wizardMeta = {};
-    vm.optionsDatePickert = {
-      changeYear: true,
-      changeMonth: true,
-      dateFormat: 'dd-mm-yy',
-      yearRange: '1900:-0' 
-    }
+
 
 
 
@@ -73,7 +68,6 @@
     }
 
     function save(){
-      console.log(vm.antecedentes);
       if(vm.antecedentes.inscripcion == null || vm.antecedentes.finca == '' ||  vm.antecedentes.identificadorPredial == '' || vm.antecedentes.razones == '' || vm.antecedentes.parametros_inscripcion == '' || vm.antecedentes.propietarioA == '' || vm.antecedentes.propietario == '' || vm.antecedentes.asesorRegistral == '' ){
         SweetAlert.swal("Verifique Información", 'Algunos campos son requeridos(*) ', "warning");
       }
@@ -90,6 +84,18 @@
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
+              console.log(vm.antecedentes.otorgamiento);
+              vm.antecedentes.inscripcion = moment.utc(vm.antecedentes.inscripcion).format("YYYY-MM-DD");
+              if(vm.antecedentes.otorgamiento != null){
+                vm.antecedentes.otorgamiento = moment.utc(vm.antecedentes.otorgamiento).format("YYYY-MM-DD");
+              }
+              if(vm.antecedentes.otorgamiento != null){
+                vm.antecedentes.presentacion = moment.utc(vm.antecedentes.presentacion).format("YYYY-MM-DD");
+              }
+              if(vm.antecedentes.otorgamiento != null){
+                vm.antecedentes.ejecutoria_juzgado = moment.utc(vm.antecedentes.ejecutoria_juzgado).format("YYYY-MM-DD");  
+              }
+
               formServices.saveForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
