@@ -78,12 +78,27 @@ order by a.id DESC";
 		$data->idCanton = $row['idCanton'];
 		$data->plazo_convalidacion = $row['plazo_convalidacion'];
 
-		$dateTime2 = strtotime($row['otorgamiento']);
-		$data->otorgamiento = date('d-m-Y', $dateTime2);
-		$dateTime3 = strtotime($row['presentacion']);
-		$data->presentacion = date('d-m-Y', $dateTime3);
-		$dateTime4 = strtotime($row['ejecutoria_juzgado']);
-		$data->ejecutoria_juzgado = date('d-m-Y', $dateTime4);
+		if($row['otorgamiento'] != null){
+			$dateTime2 = strtotime($row['otorgamiento']);
+			$data->otorgamiento = date('d-m-Y', $dateTime2);
+		} else {
+			$data->otorgamiento =  '';
+		}
+
+		if($row['presentacion'] != null){
+			$dateTime3 = strtotime($row['presentacion']);
+			$data->presentacion = date('d-m-Y', $dateTime3);
+		} else {
+			$data->presentacion =  '';
+		}
+
+		if($row['ejecutoria_juzgado'] != null){
+			$dateTime4 = strtotime($row['ejecutoria_juzgado']);
+			$data->ejecutoria_juzgado = date('d-m-Y', $dateTime4);
+		} else {
+			$data->ejecutoria_juzgado =  '';
+		}
+		
 
 		$data->canton = $row['canton'];
 		$data->distrito = $row['distrito'];

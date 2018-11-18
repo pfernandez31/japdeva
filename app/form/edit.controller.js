@@ -102,19 +102,25 @@
               if(vm.antecedentes.parametros_inscripcion == '' ){ vm.antecedentes.parametros_inscripcion = 0; }
               if(vm.antecedentes.traslapes == '' ){ vm.antecedentes.traslapes = 0; }
               vm.antecedentes.inscripcion = moment.utc(vm.antecedentes.inscripcion).format("YYYY-MM-DD");
-              
+      
               if(vm.antecedentes.otorgamiento != null){
                 vm.antecedentes.otorgamiento = moment.utc(vm.antecedentes.otorgamiento).format("YYYY-MM-DD");
+              } else {
+                 vm.antecedentes.otorgamiento = '';
               }
               
               if(vm.antecedentes.presentacion != null){
                 vm.antecedentes.presentacion = moment.utc(vm.antecedentes.presentacion).format("YYYY-MM-DD");
+              } else {
+                vm.antecedentes.presentacion = '';
               }
               
               if(vm.antecedentes.ejecutoria_juzgado != null){
                 vm.antecedentes.ejecutoria_juzgado = moment.utc(vm.antecedentes.ejecutoria_juzgado).format("YYYY-MM-DD");  
+              } else {
+                vm.antecedentes.ejecutoria_juzgado = '';
               }
-              
+              console.log(vm.antecedentes);
               formServices.updateForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
