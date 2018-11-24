@@ -140,7 +140,7 @@ order by a.id DESC";
     $pdf->SetPrintHeader(false);
     $pdf->SetPrintFooter(false);
     $pdf->AddPage();
-    $encabezado = 'ESTUDIO ANTECEDENTES FINCAS MATAMBU';
+    $encabezado = 'ESTUDIO ANTECEDENTES FINCAS';
 	    $html = <<<EOF
 	<style>
 		.center {
@@ -319,7 +319,7 @@ EOF;
 	//MOVIMIENTOS HISTORICOS
 	$html .= <<<EOF
 		<div style="height:50px"></div>
-		<div class="center title"><h3>MOVIMIENTOS HISTORICOS POSTERIORES A 1975</h3></div>
+		<div class="center title"><h3>MOVIMIENTOS HISTORICOS POSTERIORES A 1950</h3></div>
 		<table cellspacing="0" cellpadding="5">
 EOF;
 	foreach (json_decode($data->movimiento)  as $key => $value) {
