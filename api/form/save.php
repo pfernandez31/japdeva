@@ -24,6 +24,7 @@
 	$pne = $request->pne;
 	$opcParametro = $request->opcParametro;
 	$traslapes = $request->traslapes;
+	$Traslaperazon = $request->Traslaperazon; 
 	$parametros_inscripcion = $request->parametros_inscripcion;
 	$dateotorgamiento = $request->otorgamiento; //FECHA
 	$datepresentacion = $request->presentacion; //FECHA
@@ -86,7 +87,7 @@
 
 	$cnn->query("INSERT into notariado(idAntecedente,notario,juzgado,expediente_numero,propietario_original,propietario_actual,ntomo,nasiento)value('$idAntecedente','$notario','$juzgado','$numExpediente','$propietario','$propietarioA','$ntomo','$nasiento')");
 
-	$cnn->query("INSERT into informacion_legal(idAntecedente,idtraslape,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal,area_traslape,pne)value('$idAntecedente','$traslapes','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal','$area_traslape','$pne')");
+	$cnn->query("INSERT into informacion_legal(idAntecedente,idtraslape,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal,area_traslape,pne,valueTraslape)value('$idAntecedente','$traslapes','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal','$area_traslape','$pne','$Traslaperazon')");
 	//OK
 	$resp->success = true;
 	addregistro('insert','registro formulario finca #'.$finca.' creado por '.$asesor);

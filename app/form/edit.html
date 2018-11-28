@@ -308,6 +308,9 @@
 												    	<input type="checkbox" ng-checked="vm.valueTraslape == t.id" ng-click="vm.selectCheck(t,'traslapes')" class="form-check-input" >
 												    	{{t.traslape}}
 												 	</label>
+												 	<div class="form-group col-md-4 text-left"  ng-if="t.id == 10" style="padding: 0px;">
+													    <input type="text" ng-disabled="vm.selectOtroT" ng-model="vm.antecedentes.Traslaperazon" class="text-left form-control form-control-sm">
+													 </div>
 												</div>
 											</div>
 										</div>

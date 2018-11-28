@@ -54,6 +54,12 @@
         case "traslapes":
         vm.valueTraslape = d.id;
         vm.antecedentes.traslapes = d.id;
+        if(d.id == 10){
+          vm.selectOtroT = false;
+        } else {
+          vm.selectOtroT = true;
+          vm.antecedentes.Traslaperazon = '';
+        }
         break;
         default: 
       }
@@ -84,7 +90,6 @@
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
-              console.log(vm.antecedentes.otorgamiento);
               vm.antecedentes.inscripcion = moment.utc(vm.antecedentes.inscripcion).format("YYYY-MM-DD");
               if(vm.antecedentes.otorgamiento != null){
                 vm.antecedentes.otorgamiento = moment.utc(vm.antecedentes.otorgamiento).format("YYYY-MM-DD");
@@ -95,7 +100,6 @@
               if(vm.antecedentes.otorgamiento != null){
                 vm.antecedentes.ejecutoria_juzgado = moment.utc(vm.antecedentes.ejecutoria_juzgado).format("YYYY-MM-DD");  
               }
-
               formServices.saveForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
@@ -190,8 +194,10 @@
       vm.antecedentes.razon = '';
       vm.antecedentes.otrarazon = '';
       vm.antecedentes.opcParametro = '';
+      vm.antecedentes.Traslaperazon = '';
       vm.antecedentes.movHistoricos.push({mov:''});
       vm.selectOtro = true;
+      vm.selectOtroT = true;
     }
 
     function exit() {

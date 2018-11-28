@@ -50,6 +50,12 @@
           case "traslapes":
               vm.valueTraslape = d.id;
               vm.antecedentes.traslapes = d.id;
+              if(d.id == 10){
+                vm.selectOtroT = false;
+              } else {
+                vm.selectOtroT = true;
+                vm.antecedentes.Traslaperazon = '';
+              }
               break;
           default:
               
@@ -120,7 +126,6 @@
               } else {
                 vm.antecedentes.ejecutoria_juzgado = '';
               }
-              console.log(vm.antecedentes);
               formServices.updateForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
@@ -154,6 +159,7 @@
       vm.infoUser = sharedService.getAuth();
       vm.idAntecedente = $stateParams.id;
       vm.selectOtro = true;
+      vm.selectOtroT = true;
       //SELECT NACE POR
       formServices.getRazones().then(function(data){
         vm.razones = data.data;
@@ -186,6 +192,9 @@
       		vm.checkParam =  data.checkParam;
           vm.valueParametro = data.checkParam;
           vm.valueTraslape = data.checkTraslape;
+          if(vm.valueTraslape == 10){
+             vm.selectOtroT = false;
+          }
       		vm.checkTraslape =  data.checkTraslape;
       		vm.antecedentes = data;
       		vm.antecedentes.asesor = vm.infoUser.nombre;

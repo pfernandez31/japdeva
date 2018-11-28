@@ -31,6 +31,7 @@
 	il.pne,
 	il.area_traslape,
 	il.idtraslape,
+	il.valueTraslape,
 	i.fecha as fecha_inscripcion,
 	i.tomo,
 	i.folio,
@@ -97,6 +98,7 @@
 		$data[$contador]['propietario_original'] = $row['propietario_original'];
 		$data[$contador]['propietario_actual'] = $row['propietario_actual'];
 		$data[$contador]['traslapes'] = $row['idtraslape'];
+		$data[$contador]['Traslaperazon'] = $row['valueTraslape'];
 		$data[$contador]['ntomo'] = $row['ntomo'];
 		$data[$contador]['nasiento'] = $row['nasiento'];
 		$data[$contador]['area_traslape'] = $row['area_traslape'];

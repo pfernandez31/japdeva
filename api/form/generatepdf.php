@@ -48,6 +48,7 @@ n.expediente_numero,
 n.propietario_original,
 n.propietario_actual,
 il.idtraslape,
+il.valueTraslape,
 tv.traslape,
 n.ntomo,
 n.nasiento
@@ -119,6 +120,7 @@ order by a.id DESC";
 		$data->nasiento = $row['nasiento'];
 		$data->area_traslape = $row['area_traslape'];
 		$data->traslape = $row['traslape'];
+		$data->valueTraslape = $row['valueTraslape'];
 		$data->pne = strtoupper($row['pne']);
 		$data->razon = $row['razon'];
 		$data->parametroSelect = $row['parametroSelect'];
@@ -283,8 +285,9 @@ EOF;
 			<div></div>
 			<div></div>
 			<tr>
-				<td width="45%"  class="colHeader"><span class="title">HECHOS RELEVANTES Y TIPOLOGÍA</span></td>
-				<td class="coldata" width="55%">$data->traslape</td>
+				<td width="32%" class="colHeader"><span class="title">HECHOS RELEVANTES Y TIPOLOGÍA</span></td>
+				<td width="37%" class="coldata" >$data->traslape</td>
+				<td width="31%" class="colextra">$data->valueTraslape</td>
 			</tr>
 			<tr>
 				<td width="45%"  class="colHeader"><span class="title">PORCENTAJE DEL AREA TRASLAPE</span></td>

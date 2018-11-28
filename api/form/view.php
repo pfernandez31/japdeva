@@ -29,6 +29,7 @@ il.analisis_legal,
 il.pne,
 il.area_traslape,
 il.idtraslape,
+il.valueTraslape,
 i.fecha as fecha_inscripcion,
 i.tomo,
 i.folio,
@@ -103,6 +104,7 @@ order by a.id DESC  limit 1";
 		$data->propietarioA = $row['propietario_actual'];
 		$data->checkTraslape = $row['idtraslape'];
 		$data->traslapes = $row['idtraslape'];
+		$data->Traslaperazon = $row['valueTraslape'];
 		$data->ntomo = $row['ntomo'];
 		$data->nasiento = $row['nasiento'];
 		$data->area_traslape = $row['area_traslape'];

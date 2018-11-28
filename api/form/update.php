@@ -24,6 +24,7 @@
 	$pne = $request->pne;
 	$opcParametro = $request->opcParametro;
 	$traslapes = $request->traslapes;
+	$Traslaperazon = $request->Traslaperazon; 
 	$parametros_inscripcion = $request->parametros_inscripcion;
 	$dateotorgamiento = $request->otorgamiento;
 	$datepresentacion = $request->presentacion;
@@ -113,7 +114,7 @@
 		$cnn->query("INSERT into informacion_legal(idAntecedente,idtraslape,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal,area_traslape,pne)value('$idAntecedente','$traslapes','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal','$area_traslape','$pne')");
 	}
 	else{
-		$cnn->query("UPDATE informacion_legal set finca_inscrita_derecho = '$finca_inscrita_derecho', idtraslape = '$traslapes' , analisis_juridico_caso = '$analisisCaso', recomendacion_legal = '$recomendacionLegal', historial_registral = '$asesorRegistral', analisis_legal = '$asesorLegal', area_traslape = '$area_traslape', pne = '$pne' where idAntecedente = '$idAntecedente'");
+		$cnn->query("UPDATE informacion_legal set finca_inscrita_derecho = '$finca_inscrita_derecho', idtraslape = '$traslapes' , analisis_juridico_caso = '$analisisCaso', recomendacion_legal = '$recomendacionLegal', historial_registral = '$asesorRegistral', analisis_legal = '$asesorLegal', area_traslape = '$area_traslape', pne = '$pne', valueTraslape = '$Traslaperazon' where idAntecedente = '$idAntecedente'");
 	}
 	
 	//OK
