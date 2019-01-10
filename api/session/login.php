@@ -7,7 +7,7 @@
  	$pass = $request->pass;
  	$objeto = new stdClass();
 	
-	$count = $cnn->query("SELECT  * FROM usuarios where usuario = '$usuario' && AES_DECRYPT(password,'japdeva') = '$pass'");
+	$count = $cnn->query("SELECT  * FROM usuarios where usuario = '$usuario' && AES_DECRYPT(password,'japdeva') = '$pass' AND estado = '1'");
 	$rows = $count->fetchAll();
 	$num_rows = count($rows);
 
