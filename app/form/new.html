@@ -27,8 +27,8 @@
 									</div>
 									<div class="col-md-2">
 										<div class="form-group">
-											<label class="title">D: (<small class="text-muted">3 Dígito</small>)</label>
-											<input type="text" maxlength="3" ng-model="vm.antecedentes.d" class="form-control">
+											<label class="title">Duplicado: (<small class="text-muted">1 Dígito</small>)</label>
+											<input type="text" maxlength="1" ng-model="vm.antecedentes.d" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -114,14 +114,10 @@
 										<div class="col-md-5">
 											<div class="form-check" ng-repeat="r in vm.razones">
 												<label class="form-check-label">
-											    	<input type="checkbox"  ng-checked="vm.valueRazones == r.id" ng-click="vm.selectCheck(r,'razones')" class="form-check-input" >{{r.razon}} <input type="text" ng-if="r.id == 12" ng-disabled="vm.selectOtro" ng-model="vm.antecedentes.otrarazon" class="text-left form-control form-control-sm">
+											    	<input type="checkbox"  ng-checked="vm.valueRazones == r.id" ng-click="vm.selectCheck(r,'razones')" class="form-check-input">{{r.razon}} <input type="text" ng-if="r.id == 12" ng-disabled="vm.selectOtro" ng-model="vm.antecedentes.otrarazon" class="text-left form-control form-control-sm">
 											 	</label>
 											</div>
 										</div>
-										 <div class="form-group col-md-4 text-left"  ng-if="vm.valueRazones == 2 ||  vm.valueRazones == 3">
-										    <label ng-if="vm.valueRazones == 2">No.Expediente</label>
-										    <input type="text" ng-model="vm.antecedentes.razon" class="text-left form-control form-control-sm">
-										 </div>
 									</div>
 
 									<div class="col-md-12 row pt-4">

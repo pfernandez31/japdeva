@@ -193,7 +193,7 @@ EOF;
 			<tr>
 				<td width="15%" class="colHeader"><span class="title">FINCA</span></td>
 				<td class="coldata" width="20%">$data->finca</td>
-				<td width="4%" class="colHeader"><span class="subtitle">D</span></td>
+				<td width="15%" class="colHeader"><span class="subtitle">DUPLICADO</span></td>
 				<td class="coldata" width="12%">$data->d</td>
 				<td width="15%" class="colHeader"><span class="subtitle">DERECHO</span></td>
 				<td class="coldata">$data->derecho</td>
@@ -255,12 +255,13 @@ EOF;
 				<td width="25%" class="colHeader"><span class="title">OTORGAMIENTO</span></td>
 				<td width="25%" class="colHeader"><span class="title">PRESENTACION</span></td>
 				<td width="25%" class="colHeader"><span class="title">PLAZO DE CONVALIDACIÓN</span></td>
+				<td width="25%" class="colHeader"><span class="title"></span></td>
 			</tr>
 			<tr>
 				<td width="25%" class="coldata">$data->otorgamiento</td>
 				<td width="25%" class="coldata">$data->presentacion</td>
 				<td width="25%" class="coldata">$data->plazo_convalidacion</td>
-				<td width="25%" class="coldata">$data->ejecutoria_juzgado</td>
+				<td width="25%" class="coldata"></td>
 			</tr>
 			<tr >
 				<td width="40%" class="colHeader"><span class="title">EXPEDIENTE NUMERO</span></td>
