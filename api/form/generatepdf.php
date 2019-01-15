@@ -255,7 +255,6 @@ EOF;
 				<td width="25%" class="colHeader"><span class="title">OTORGAMIENTO</span></td>
 				<td width="25%" class="colHeader"><span class="title">PRESENTACION</span></td>
 				<td width="25%" class="colHeader"><span class="title">PLAZO DE CONVALIDACIÓN</span></td>
-				<td width="25%" class="colHeader"><span class="title">EJECUTORIA DEL JUZGADO</span></td>
 			</tr>
 			<tr>
 				<td width="25%" class="coldata">$data->otorgamiento</td>
