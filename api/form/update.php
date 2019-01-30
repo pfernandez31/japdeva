@@ -119,6 +119,6 @@
 	
 	//OK
 	$resp->success = true;
-	addregistro('update','registro actualizado finca #'.$finca.' creado por '.$asesor);
+	addregistro('update','registro actualizado finca #'.$finca.' creado por '.$asesor,$usuario);
 	echo json_encode($resp);
 ?>

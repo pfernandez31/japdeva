@@ -90,6 +90,6 @@
 	$cnn->query("INSERT into informacion_legal(idAntecedente,idtraslape,finca_inscrita_derecho,analisis_juridico_caso,recomendacion_legal,historial_registral,analisis_legal,area_traslape,pne,valueTraslape)value('$idAntecedente','$traslapes','$finca_inscrita_derecho','$analisisCaso','$recomendacionLegal','$asesorRegistral','$asesorLegal','$area_traslape','$pne','$Traslaperazon')");
 	//OK
 	$resp->success = true;
-	addregistro('insert','registro formulario finca #'.$finca.' creado por '.$asesor);
+	addregistro('insert','registro formulario finca #'.$finca.' creado por '.$asesor,$usuario);
 	echo json_encode($resp);
 ?>

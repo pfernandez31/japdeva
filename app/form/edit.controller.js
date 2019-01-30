@@ -78,7 +78,8 @@
           if(isConfirm){
             var id = vm.idAntecedente;
             var finca  = vm.antecedentes.finca;
-            $window.location.href = "api/form/delete.php?id="+id+"&finca="+finca;
+            var usuario = vm.infoUser.idusuario;
+            $window.location.href = "api/form/delete.php?id="+id+"&finca="+finca+"&idusuario="+usuario;
           }
       });
     }

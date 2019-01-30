@@ -22,11 +22,11 @@
 			$_SESSION['idusuario'] = $row['id'];
 			$_SESSION['nombre'] = $row['nombre'];
 	    }
-	    addregistro('auth','inicio de session');
+	    addregistro('auth','inicio de session '.$objeto->nombre,$objeto->idusuario);
 	}else{
 		$objeto->loggin = false;
 		$objeto->error = "Usuario o Contraseña Incorrecta";
-		addregistro('auth','error inicio de session');
+		addregistro('auth','error inicio de session',0);
 	}
 	echo json_encode($objeto);
 ?>

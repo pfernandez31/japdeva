@@ -90,6 +90,7 @@
         }, 
         function(isConfirm){ //Function that triggers on user action.
             if(isConfirm){
+              console.log(vm.antecedentes.inscripcion);
               vm.antecedentes.inscripcion = moment.utc(vm.antecedentes.inscripcion).format("YYYY-MM-DD");
               if(vm.antecedentes.otorgamiento != null){
                 vm.antecedentes.otorgamiento = moment.utc(vm.antecedentes.otorgamiento).format("YYYY-MM-DD");
@@ -100,6 +101,7 @@
               if(vm.antecedentes.otorgamiento != null){
                 vm.antecedentes.ejecutoria_juzgado = moment.utc(vm.antecedentes.ejecutoria_juzgado).format("YYYY-MM-DD");  
               }
+              console.log(vm.antecedentes);
               formServices.saveForm(vm.antecedentes)
                 .then(function(resp){
                   var data = resp.data;
@@ -128,6 +130,7 @@
 
 
     function active(){
+
        //INICIALIZAR
        vm.antecedentes.razones = '';
        vm.antecedentes.ntomo = '';
